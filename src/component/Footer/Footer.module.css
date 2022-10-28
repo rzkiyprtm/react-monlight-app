@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.leftcontent > p {
+  margin-left: 35px;
+}
+
+.rightcontent > img {
+  margin-right: 35px;
+}
+
+.container {
+  max-width: 1465px;
+  margin: auto;
+}
+
+.footercontainer {
+  display: flex;
+  /* margin: auto; */
+}
+
+.leftfootcontent,
+.rightfootcontent {
+  flex: 1;
+}
+
+.footercontainer {
+  justify-content: space-between;
+  background-color: #F8F8F8;
+  height:500px;
+;
+}
+
+.leftfootcontent {
+  margin: 200px 0px 0px 70px;
+}
+
+.aboutdetail {
+  margin-top: 200px;
+  width: 140px;
+}
+
+.aboutdetail p {
+  font-size: 16px;
+  color: #4F5665;
+}
+
+.sosmeddetail {
+  position: relative;
+  display: flex;
+  margin-top: 20px;
+  width: 140px;
+  justify-content: space-between;
+}
+
+.backlogo {
+  background-color: rgb(37, 23, 23);
+  padding: 15px;
+  position: relative;
+  left: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.imglogo {
+  position: absolute;
+  bottom: -1px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+
+.copyright {
+  font-size: 16px;
+  color: #AFB5C0;
+  margin-top: 40px;
+}
+
+.rightfootcontent {
+  margin-top: 160px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.contentdetail h2 {
+  font-size: 18px;
+  color: #0B132A;
+  font-weight: 500;
+}
+
+.contentdetail ol li {
+  font-size: 16px;
+  margin-top: 20px;
+  list-style: none;
+  color: #4F5665;
+}
+
+.contentdetail ol li:hover {
+  /* opacity: 70%; */
+  color: #6A4029;
+  cursor: pointer;
+}
+
+.ol {
+  padding: 0;
+  margin: 0;
+}

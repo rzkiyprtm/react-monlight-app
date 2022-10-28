@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+  --primary-color: #FFBA33;
+  --secondary-color: #1c3fa8;
+  --dark-color: #333;
+  --red-color: #ff0037;
+  --shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  font-weight: 900;
+}
+
+.container {
+  max-width: 1440px;
+  margin: auto;
+  height: 1000px;
+}
+
+.mainctg,
+.fullwidth,
+.headcontent,
+.logodetail,
+.signupcontent,
+.btngoogle,
+.footercontainer {
+  display: flex;
+}
+
+.sidecontent,
+.formcontent,
+.leftfootcontent,
+.rightfootcontent {
+  flex: 1;
+}
+
+.sidecontent img {
+  height: 1000px;
+  width: 100%;
+}
+
+h1 {
+  margin-bottom: 90px;
+}
+
+.headcontent {
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+}
+
+.logodetail {
+  align-items: center;
+}
+
+.logodetail h2 {
+  font-size: 20px;
+  font-style: 1000px;
+}
+
+.logo {
+  width: 50px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.rightheadcontent {
+  background-color: #6A4029;
+  padding: 13px 50px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.rightheadcontent p {
+  /* user-select: none; */
+  margin: auto;
+  color: rgb(255, 255, 255);
+}
+
+.rightheadcontent:active {
+  background-color: #c6e2be;
+  position: relative;
+  top: 2px;
+}
+
+.rightheadcontent:hover {
+  opacity: 75%;
+  transition: ease-in-out 0.2s;
+}
+
+.signupcontent {
+  margin-top: 50px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signupcontent h1 {
+  font-size: 35px;
+  color: black;
+}
+
+.forget{
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* form */
+form {
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.fullwidth {
+  margin: 20px 0px;
+  width: 600px;
+}
+
+.inputdiv {
+  width: 60%;
+  margin: 10px;
+}
+
+.signcontainer {
+  width: 60%;
+}
+
+label {
+  color: var(--dark-color);
+  font-weight: 700;
+}
+
+input {
+  font-size: large;
+  display: block;
+  height: 60px;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 20px;
+  padding: 10px;
+  border: 1.2px solid #4F5665;
+}
+
+
+/* button */
+
+.signcontainer {
+  text-align: center;
+}
+
+.btnsignup {
+  background-color: var(--primary-color);
+  margin-top: 70px;
+  font-size: 18px;
+  width: 360px;
+  padding: 20px 0px;
+  color: #fff;
+  margin-top: 40px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-weight: 1000;
+  user-select: none;
+}
+
+.signup {
+  background-color: #6A4029;
+  font-size: 18px;
+  color: #f4f4f4;
+  width: 360px;
+  padding: 20px 90px;
+  margin-top: 40px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-weight: 1000;
+  user-select: none;
+  height: 70px;
+  text-align: center;
+}
+
+
+
+button {
+  margin-top: 40px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-weight: 1000;
+  user-select: none;
+}
+
+button:active {
+  position: relative;
+  top: 2px;
+}
+
+button:hover {
+  opacity: 85%;
+  transition: ease-in-out 0.2s;
+}
+
+input:focus {
+  outline: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.btnsignup a {
+  color: #fff;
+}
+
+
+/* get member */
+
+.getmember {
+  position: relative;
+  display: flex;
+  width: 900px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20px;
+  left: 220px;
+  bottom: 90px;
+}
+
+.infomember {
+  padding: 40px;
+}
+
+.infomember h2 {
+  width: 75%;
+  font-size: 35px;
+  font-weight: 500;
+}
+
+.infomember p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #4F5665;
+}
+
+.btncreate {
+  margin: auto;
+  background-color: var(--primary-color);
+  padding: 20px 50px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  width: 250px;
+  font-size: large;
+  color: #fff;
+}
+
+.btncreate:active {
+  background-color: #050505;
+  position: relative;
+  top: 2px;
+}
+
+.btncreate h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+}

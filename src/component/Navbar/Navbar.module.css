@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.maincontainer {
+  max-width: 1440px;
+  margin: auto;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: inherit;
+  list-style:none;
+  gap: 7.5rem;
+  align-items: center;
+  color: #333;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li:hover {
+  /* border-bottom: 2px #6A4029 solid; */
+  color: #6A4029;
+  transition: ease-in-out 0.1s;
+}
+
+.nav ol {
+  text-decoration: none;
+  font-weight: 700;
+  color: inherit;
+  animation: slideInFromLeft 1s ease-in;
+}
+
+.navigationBar div {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  /* border-bottom: 1px solid #000; */
+}
+
+.navigationBar {
+  justify-content: space-between;
+  margin: auto;
+  /* width: 1440px; */
+  text-align: center;
+}
+
+.navBar {
+  align-items: center;
+  font-size: large;
+  padding: 0px !important;
+}
+
+.putra{
+  /* background-image: url(/images/parker.jpeg); */
+  background-size: 34px;
+  height: 34px;
+  width: 34px;
+  margin-left: auto;
+  margin-right: auto;
+  /* display: block; */
+  border-radius: 50%;
+  }
+
+.leftContent > p {
+  margin-left: 35px;
+  margin-bottom: 0;
+}
+
+.rightContent > img {
+  margin-right: 35px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon1 {
+  margin-top: 3px;
+  width: 28px;
+  height: 28px;
+}
+
+.right-content > img:hover {
+  opacity: 80%;
+}

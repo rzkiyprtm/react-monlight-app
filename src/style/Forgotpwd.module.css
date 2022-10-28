@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.container {
+  display: block;
+  max-width: 1465px;
+  margin: auto;
+  background-image: url(/src/assets/images/forgotbg.png);
+  height: 900px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.box{
+  position: relative;
+  /* border: 1px solid black; */
+  height: 900px;
+  justify-content: center;
+}
+
+.bigtitle {
+padding: 170px 0px 0px 0px;
+color: #fff;
+}
+
+.bigtitle p {
+  font-weight: 900;
+}
+
+.h1font {
+  font-size: 60px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: yellow;
+}
+
+.label {
+padding: 70px 0px 50px 0px;
+display: flex;
+margin: auto;
+gap: 3em;
+justify-content: center;
+}
+
+input {
+  height: 80px;
+  width: 600px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+
+.label button{
+  height: 80px;
+  width: 180px;
+  border: none;
+  border-radius: 20px;
+  background-color: #FFBA33;
+  font-size: 20px;
+  font-weight: 700;
+  color: #6A4029;
+}
+
+input::placeholder {
+  padding-left: 30px;
+  font-size: 20px;
+  margin: auto;
+}
+
+.txtbottom {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.bottom {
+  padding-top: 70px;
+}
+
+.bottom button {
+  height: 60px;
+  width: 400px;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: #6A4029;
+  color: #fff;
+}
+
+.bottom button:hover {
+  color: #333;
+}
+
+.label button:hover {
+  color: #fff;
+}
+
+.timer {
+  padding-top: 20px;
+  font-weight: 900;
+  color: #fff;
+}

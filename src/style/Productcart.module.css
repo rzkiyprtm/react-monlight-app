@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.bordercontainer {
+  max-width: 1440px;
+  margin: auto;
+}
+
+/* main content */
+
+.maincontent {
+  background: url(/src/assets/images/bg-cart.png);
+  background-size: cover;
+  height: 1200px;
+}
+
+.mainbox {
+  border: 1px solid black;
+  border-radius: 20px;
+  height: 600px;
+  width: 400px;
+}
+
+.contentBox {
+  display: flex;
+  justify-content: center;
+  gap: 9em;
+  padding-top: 70px;
+}
+
+.textLeft h1 {
+  font-weight: 800;
+  width: 350px;
+}
+
+.listBuy {
+  display: flex;
+  justify-content: center;
+  gap: 2.2em;
+}
+
+.listBuy img {
+  height: 80px;
+  border-radius: 20px;
+}
+
+.namePrd p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.price {
+  margin: auto;
+}
+
+.price p {
+  margin: 0;
+}
