@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import css from '../style/Productdetail.module.css'
 import imgbg from '../assets/images/product/25.png'
 import icon1 from '../assets/images/Icon/location.png'
+import Navbar from '../component/Navbar/Navbar'
+import Footer from '../component/Footer/Footer'
 
 export default class productDetail extends Component {
   render() {
     return (
-      <div className=''>
+      <div>
+        <Navbar />
         <section className={css.main}>
       <div className="row align-items-center">
         <div className="col-12 bg-light d-flex p-0">
@@ -58,8 +61,8 @@ export default class productDetail extends Component {
                 <button className={css.pick}>Pick up</button>
               </div>
               <div className={css.label}>
-                <label for="">Set time</label>
-                <input type="text" placeholder="timeeee"/>
+                <label className={css.labeldetail} for="">Set time</label>
+                <input className={css.inputdetail} type="text" placeholder="timeeee"/>
               </div>
             </div>
           </div>
@@ -88,6 +91,7 @@ export default class productDetail extends Component {
         </div>
       </div>
     </section>
+    <Footer />
       </div>
     )
   }

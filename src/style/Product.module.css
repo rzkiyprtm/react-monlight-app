@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.maincontainer {
+  max-width: 1440px;
+  margin: auto;
+}
+
 /* main right css */
 .tnc {
   font-size: 10px; font-weight: 700; color: black; margin: 10px 0px 0px 0px;
@@ -195,4 +213,28 @@ button:hover {
 
 .buttonleft {
   background-color: #6A4029; font-weight: 700; color: #fff;
+}
+
+/* media query */
+
+@media screen and (max-width: 768px) {
+  .insidenav ul {
+    gap: 1em;
+    padding-left: 25px;
+    padding-top: 20px;
+  }
+  .allbox1, .allbox2, .allbox3  {
+    gap: 5px;
+    position: relative;
+    left: 1px;
+  }
+
+  .buttonleft {
+    position: relative;
+    left: -22px;
+  }
+  .txt6 {
+    padding-top: 20px;
+  }
+
 }

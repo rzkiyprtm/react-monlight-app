@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.main {
+  max-width: 1440px;
+}
+
+.mainBg {
+  background: url(../assets/images/history-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 1150px;
+  text-align: center;
+}
+
+.cardsBox {
+  /* display: flex; */
+  gap: 3em;
+  justify-content: center;
+  position: relative;
+  height: 800px;
+  width: 1150px;
+  top: 60px;
+  margin: auto;
+}
+
+.title {
+  color: #fff;
+  padding-top: 140px;
+}
+
+.title h1 {
+  font-size: 45px;
+  font-weight: 900;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+}
+
+.mainBox1 {
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  height: 110px;
+  width: 340px;
+}
+
+.mainBox1 img {
+  border-radius: 50%;
+  height: 70px;
+  margin: 19px 0px 19px 30px;
+}
+
+.name p {
+  margin: 0;
+  text-align: left;
+}
+
+.name {
+  margin: auto;
+}
+
+.txt {
+  font-weight: bolder;
+}
+
+.txt1 {
+  font-weight: lighter;
+}
+
+.mainbox, .mainbox2, .mainbox3, .mainbox4, .mainbox5 {
+  display: flex;
+  gap: 3em;
+  margin: auto;
+  justify-content: center;
+}
+
+.mainbox2, .mainbox3, .mainbox4, .mainbox5 {
+  padding-top: 40px;
+}
+
+/* media query */
+
+@media screen and (max-width: 768px) {
+  .cardsBox {
+    overflow: hidden;
+  }
+  .main {
+    overflow: hidden;
+  }
+}

@@ -8,7 +8,7 @@
 body {
   font-family: 'Poppins', sans-serif !important;
   line-height: 1.6;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .maincontainer {
@@ -73,7 +73,6 @@ body {
   }
 
 .leftContent > p {
-  margin-left: 35px;
   margin-bottom: 0;
 }
 
@@ -91,4 +90,35 @@ body {
 
 .right-content > img:hover {
   opacity: 80%;
+}
+
+/* media queries */
+
+@media screen and (max-width: 768px) {
+  .navBar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mainbox {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .rightContent {
+    position: relative;
+    top: -70px;
+    left: 260px;
+  }
+
+  .midContent {
+    position: relative;
+    top: 40px;
+  }
+
+  .leftContent {
+    position: relative;
+    right: 278px;
+    top: 30px;
+  }
 }

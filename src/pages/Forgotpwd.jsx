@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import css from '../style/Forgotpwd.module.css'
+import Footer from '../component/Footer/Footer'
 
 
 export default class Forgotpwd extends Component {
@@ -13,7 +14,7 @@ export default class Forgotpwd extends Component {
           <p>Forgot your password? Don't worry, we got your back!</p>
         </div>
         <div className={css.label}>
-          <input type="text" placeholder='Enter your email adress to get link' />
+          <input className={css.input} type="text" placeholder='Enter your email adress to get link' />
           <button className={css.btn}>Send</button>
         </div>
         <div className={css.bottom}>
@@ -23,6 +24,7 @@ export default class Forgotpwd extends Component {
         </div>
         </div>
       </div>
+      <Footer/>
       </div>
     )
   }

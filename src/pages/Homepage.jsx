@@ -10,12 +10,15 @@ import img3 from '../assets/images/product/30.png'
 import map from '../assets/images/map.png'
 import sponsor from '../assets/images/Sponsored.png'
 import testimoni from '../assets/images/testimoni.png'
+import Navbar from '../component/Navbar/Homenavbar'
+import Footer from '../component/Footer/Footer'
 
 
 class Homepage extends Component {
   render() {
     return (
       <div>
+        <Navbar/>
       <main className={css.container}>
         <div className="row align-items-center">
           <div className="col-12 bg-clear">
@@ -63,7 +66,7 @@ class Homepage extends Component {
             </div>
           </div>
 
-      <div className="col-12 bg-clear justify-content-center d-flex">
+      <div className="col-12 bg-clear justify-content-center d-flex p-0" style={{height:'700px'}}>
         <div className={css.mainimg}>
           <img className={css.img1} src={bgImage1} alt=""/>
         </div>
@@ -170,6 +173,7 @@ class Homepage extends Component {
       </div>
       </div>
     </main>
+    <Footer/>
       </div>
     )
   }

@@ -10,7 +10,7 @@ class Homenavbar extends React.Component {
         <div className={css.leftContent}>
           <p>Monlight</p>
         </div>
-        <div className="midContent">
+        <div className={css.midContent}>
           <ol className={css.nav}>
             <li>Home</li>
             <li>Product</li>

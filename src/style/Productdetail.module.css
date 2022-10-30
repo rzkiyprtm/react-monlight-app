@@ -120,7 +120,7 @@ button {
   gap: 1em;
 }
 
-input {
+.inputdetail {
   border: none;
   background:none;
   border-bottom: 1px solid rgb(17, 13, 13);
@@ -267,4 +267,65 @@ button:hover {
 .txt4 {
   font-size: 14px;
   margin: auto;
+}
+
+/* media query */
+
+@media screen and (max-width: 768px) {
+  .boxleft {
+    margin: 0 auto;
+  }
+  .corebox {
+    width: 360px;
+    position: relative;
+    left: -30px;
+  }
+  .sizetitle {
+    margin: 0;
+    padding-top: 40px;
+  }
+  .iconright {
+    margin: 0;
+    padding-left: 35px;
+  }
+  .downcontent {
+    margin: 0;
+    position: relative;
+    left: -18px;
+  }
+  .label {
+    margin: 0;
+    padding-top: 20px ;
+  }
+  .firstbox {
+    margin: 0;
+    left: 90px;
+    /* position: relative; */
+  }
+  .triplebox {
+    margin: 0;
+    /* position: relative; */
+    top: 165px;
+    left: 240px;
+    width: 140px;
+    height: 50px;
+  }
+  .inputdetail {
+    width: 250px;
+  }
+  .imgleft {
+    width: 100px;
+    position: relative;
+    left: 60px;
+  }
+
+  .titledown, .btnleft {
+    position: relative;
+    left: 48px;
+    top: -8px;
+  }
+  .titleup {
+    position: relative;
+    left: 18px;
+  }
 }

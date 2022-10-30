@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import css from '../style/Product.module.css'
+import Card from '../component/Cardproduct/Cardproduct'
 import imgSpagety from '../assets/images/product/29.png'
 import img1 from '../assets/images/product/1.png'
 import img2 from '../assets/images/product/2.png'
@@ -7,14 +8,17 @@ import img3 from '../assets/images/product/3.png'
 import img4 from '../assets/images/product/4.png'
 import img5 from '../assets/images/product/5.png'
 import img6 from '../assets/images/product/6.png'
+import Navbar from '../component/Navbar/Navbar'
+import Footer from '../component/Footer/Footer'
 
 
 export default class Product extends Component {
   render() {
     return (
       <div>
-
-<div className="container-fluid d-flex">
+<Navbar />
+<div className={css.maincontainer}>
+<div className="container-fluid d-flex p-0">
       <div className="col-4 bg-clear border-top">
         <div className={css.upleft}>
           <p className={css.txt1}>Promo for you</p>
@@ -61,15 +65,7 @@ export default class Product extends Component {
 
         <div className={css.productitem}>
           <div className={css.allbox1}>
-            <div className={css.box1}>
-              <div className={css.overimg}>
-                <img src={img1} alt=""/>
-              </div>
-              <div className={css.title}>
-                <p className={css.name}>Veggie Tomato Mix</p>
-                <p className={css.price}>IDR 34.000</p>
-              </div>
-            </div>
+            <Card/>
             <div className={css.box1}>
               <div className={css.overimg}>
                 <img src={img2} alt=""/>
@@ -176,9 +172,9 @@ export default class Product extends Component {
           </div>
         </div>
       </div>
-
-      
   </div>
+</div>
+  <Footer/>
   </div>
     )
   }

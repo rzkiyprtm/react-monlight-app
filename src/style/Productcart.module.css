@@ -6,9 +6,8 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.6;
-  font-weight: 700;
 }
 
 .bordercontainer {
@@ -21,14 +20,22 @@ body {
 .maincontent {
   background: url(/src/assets/images/bg-cart.png);
   background-size: cover;
-  height: 1200px;
+  height: 950px;
 }
 
 .mainbox {
-  border: 1px solid black;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-radius: 20px;
   height: 600px;
   width: 400px;
+}
+
+.txt1 {
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  padding-top: 80px;
 }
 
 .contentBox {
@@ -38,23 +45,36 @@ body {
   padding-top: 70px;
 }
 
-.textLeft h1 {
+.bigtitle {
   font-weight: 800;
-  width: 350px;
+  width: 350px;padding-bottom: 50px;
+  font-size: 40px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+  color: #fff;
 }
 
 .listBuy {
   display: flex;
   justify-content: center;
   gap: 2.2em;
+  padding-top: 60px;
+}
+.listBuy2 {
+  display: flex;
+  justify-content: center;
+  gap: 2.2em;
+  padding-top: 16px;
 }
 
-.listBuy img {
-  height: 80px;
+.listBuy img, .listBuy2 img {
+  height: 70px;
+  width: 65px;
   border-radius: 20px;
+  margin: auto;
 }
 
 .namePrd p {
+  font-size: 14px;
   margin: 0px;
   padding: 0px;
 }
@@ -64,5 +84,213 @@ body {
 }
 
 .price p {
+  margin: auto;
+  font-size: 14px;
+}
+
+.hr1 {
+  border: 1px solid #333;
+  position: relative;
+  width: 330px;
+  margin: auto;
+  top: 40px;
+}
+
+.hr2 {
   margin: 0;
+  position: relative;
+  width: 320px;
+  top: 10px;
+  left: 15px;
+}
+
+.sub, .tax, .ship, .total {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 30px 0px 30px;
+  font-size: 14px;
+}
+
+.sub {
+  padding-top: 70px;
+}
+
+.sub p,.tax p {
+  margin: 0px;
+}
+
+.total {
+  padding-top: 10px;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* right content */
+
+.rightContent {
+  padding-top: 145px;
+}
+
+.txt {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box1 {
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 20px;
+  height: 170px;
+  width: 350px;
+}
+
+.box1 .input {
+  position: relative;
+  left: 15px;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  /* border-bottom: 0.1px solid rgb(0, 0, 0); */
+  padding: 10px 0px 10px 0px;
+  outline: none;
+}
+
+.txt2 {
+  font-size: 20px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+}
+
+.txt p {
+  color: #fff;
+  font-weight: 800;
+}
+
+.edt {
+  cursor: pointer;
+}
+
+.box2 {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  width: 350;
+  height: 200px;
+  /* margin: 0 auto; */
+  gap: 0.3em;
+  border-radius: 20px;
+}
+
+.input {
+  padding-left: 30px;
+}
+
+.input[type='radio']:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+.input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: 
+  #895537;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+.input[type='radio'] {
+  cursor: pointer;
+}
+
+.pay img {
+  height: 33px;
+  margin: 5px;
+}
+
+.pay {
+  position: relative;
+  padding: 0px 0px 0px 40px;
+  top: 23px;
+}
+
+.hr {
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  top: 23px;
+  width: 270px;
+  left: 20px;
+}
+
+.payment {
+  padding-top: 30px;
+}
+
+.btn {
+  padding-top: 40px;
+}
+
+.btn button {
+  width: 350px;
+  height: 70px;
+  border-radius: 20px;
+  background: none;
+  border: none;
+  background-color: #895537;
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn button:hover {
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .contentBox {
+    flex-direction:row;
+    gap: 0;
+    margin: auto;
+  }
+  .leftContent {
+    margin: auto;
+  }
+  .mainbox {
+    position: relative;
+    /* left: -5px; */
+  }
+
+  .rightContent {
+    position: relative;
+    left: -5px;
+    padding-top: 100px;
+  }
+  .bigtitle {
+    width: 100%;
+    font-size: 33px;
+    position: relative;
+    left: 180px;
+  }
+  .btn {
+    padding-top: 29px;
+  }
 }

@@ -338,3 +338,51 @@ button:hover {
 .testimonial img {
   margin-top: 50px;
 }
+
+/* media query */
+
+@media screen and (max-width: 768px) {
+  .testimoniimg {
+    overflow: hidden;
+  }
+  .imgflex img {
+    width: 740px;
+  }
+  .mapimg img {
+    width: 700px;
+  }
+
+  .mainimg img {
+    display: none;
+  }
+  /* .rightcontent1 {
+    position: relative;
+    top: 40px;
+    right: 210px;
+  } */
+
+  .insidebox1 {
+    width: 10em;
+  }
+
+  .mainbanner {
+    gap: 1em;
+  }
+  .titlexl {
+    margin: 0;
+    width: 640px;
+  }
+  .display {
+    margin: auto;
+    text-align: center;
+  }
+  .titles {
+    position: relative;
+    left: 130px;
+  }
+  .btnup {
+    margin: auto;
+    position: relative;
+    right: 40px;
+  }
+}

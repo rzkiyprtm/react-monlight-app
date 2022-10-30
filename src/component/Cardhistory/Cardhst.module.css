@@ -1,0 +1,30 @@
+.mainBox1 {
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  height: 110px;
+  width: 340px;
+}
+
+.mainBox1 img {
+  border-radius: 50%;
+  height: 70px;
+  margin: 19px 0px 19px 30px;
+}
+
+.name p {
+  margin: 0;
+  text-align: left;
+}
+
+.name {
+  margin: auto;
+}
+
+.txt {
+  font-weight: bolder;
+}
+
+.txt1 {
+  font-weight: lighter;
+}

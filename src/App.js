@@ -1,8 +1,9 @@
 import './App.css';
 import Navbar from "./component/Navbar/Navbar"
 import Footer from "./component/Footer/Footer"
-import Cart from "./pages/Productcart"
+import Product from "./pages/Product"
 // import Detail from "./pages/productDetail"
+// import History from './pages/History';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Navbar />
     </div>
     <div>
-    <Cart />
+    <Product />
     </div>
     <div>
       <Footer/>
