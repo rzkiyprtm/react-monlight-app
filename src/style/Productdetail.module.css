@@ -77,11 +77,6 @@ body {
   margin-right: 200px;
 }
 
-button {
-  background: none;
-  border: none;
-}
-
 .btnright {
   display: flex;
   gap: 1em;
@@ -149,14 +144,24 @@ button {
  margin-left: 88px;
 }
 
+.titleup a {
+  color: black;
+}
+
+.txt1 {
+  font-weight: normal;
+  cursor: pointer;
+}
+
 .txt2 {
   color: #6A4029;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .txt2::before {
   content: '';
   margin-left: 5px;
+  font-weight: bolder;
 }
 
 .imgleft img {
@@ -206,7 +211,7 @@ button {
 }
 
 button:hover {
-  opacity: 80%;
+  /* opacity: 80%; */
   transition: ease-in-out 0.2s;
 }
 
@@ -233,6 +238,7 @@ button:hover {
   /* top: 3px; */
   width: 300px;
   height: 140px;
+  margin: auto;
   margin-left: 180px;
   background-color: #FFBA33;
   font-weight: bolder;
@@ -306,9 +312,9 @@ button:hover {
     margin: 0;
     /* position: relative; */
     top: 165px;
-    left: 240px;
-    width: 140px;
-    height: 50px;
+    left: 30px;
+    width: 540px;
+    height: 80px;
   }
   .inputdetail {
     width: 250px;
@@ -317,6 +323,10 @@ button:hover {
     width: 100px;
     position: relative;
     left: 60px;
+  }
+
+  .numb::before {
+    content: '';
   }
 
   .titledown, .btnleft {

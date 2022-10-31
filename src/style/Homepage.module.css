@@ -53,6 +53,10 @@ body {
   margin-left: 90px;
 }
 
+.insidebox1 img {
+  padding-right: 15px;
+}
+
 .btnup button {
   background-color: #fff;
   border: none;
@@ -64,7 +68,7 @@ body {
 
 .btnup button:hover {
   color: #fff;
-  background-color: #FFBA33;
+  background-color: #6A4029;
 }
 
 .btnup {
@@ -161,9 +165,6 @@ a:visited {
   text-decoration: none;
 }
 
-button a {
-  color: #333;
-}
 
 ul {
   padding: 0;
@@ -285,7 +286,7 @@ ul {
   background: none;
   border: 2px solid;
   border-color: 
-  #FFBA33;
+  #681168;
   border-radius: 20px;
   height: 40px;
   width: 140px;
@@ -297,10 +298,6 @@ ul {
   gap: 7em;
   justify-content: center;
   margin-top: 100px;
-}
-
-button:hover {
-  background-color: #FFBA33;
 }
 
 .main3 {

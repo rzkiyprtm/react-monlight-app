@@ -61,6 +61,10 @@ justify-content: center;
   outline: none;
 }
 
+.btn {
+  margin: auto;
+}
+
 .label .btn {
   height: 80px;
   width: 280px;

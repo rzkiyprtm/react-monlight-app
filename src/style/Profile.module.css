@@ -226,11 +226,16 @@ border-radius: 50%;
   align-items: center;
 }
 
+.mail[type='date']{
+  cursor: pointer;
+}
+
 .inputprofile[type=radio]{
   float: left;
   clear: none;
   width: 1em;
   height: 1em;
+  cursor: pointer;
 }
 
 .inputprofile[type='radio']:after {
@@ -238,7 +243,6 @@ border-radius: 50%;
   height: 15px;
   border-radius: 15px;
   top: -2px;
-  left: -1px;
   position: relative;
   background-color: #d1d3d1;
   content: '';
@@ -251,8 +255,8 @@ border-radius: 50%;
   width: 15px;
   height: 15px;
   border-radius: 15px;
-  top: -2px;
-  left: -1px;
+  /* top: -2px; */
+  /* left: -1px; */
   position: relative;
   background-color: #ffa500;
   content: '';
@@ -286,13 +290,12 @@ border-radius: 50%;
 .buttonup, .buttondown {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* gap: 8px; */
   align-items: center;
-  
 }
 
 .buttondown {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .buttondown .editbtn {
@@ -344,9 +347,6 @@ border-radius: 50%;
   cursor: pointer;
 }
 
-button a:hover {
-  color: #333;
-}
 
 .rightcontent a:hover {
   border-bottom: 1px solid #6A4029;
@@ -365,14 +365,23 @@ a:visited {
 }
 
 .btnsave {
+  /* margin: auto; */
+  height: 50px;
+  width: 250px;
   background-color: #ffa500;
 }
 
 .btncancel {
+  margin: 10px 0px 0px 0px;
+  height: 50px;
+  width: 250px;
   background-color: #6A4029;
 }
 
 .editbtn {
+  margin: 10px 0px 0px 0px;
+  height: 50px;
+  width: 250px;
   background-color: #d1d3d1;
 }
 

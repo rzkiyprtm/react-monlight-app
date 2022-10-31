@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import css from '../../component/Cardproduct/Cardprd.module.css'
-import img5 from '../../assets/images/product/1.png'
 
-export default class Cardproduct extends Component {
+class Cardproduct extends Component {
   render() {
+    const {title, price, img} = this.props
+    console.log(img);
     return (
       <div className={css.box1}>
               <div className={css.overimg}>
-                <img src={img5} alt=""/>
+                <img src={`http://localhost:8181${img}`} alt=""/>
               </div>
               <div className={css.title}>
-                 <p className={css.name}>Veggie Tomato Mix</p>
-                <p className={css.price}>IDR 34.000</p>
+                 <p className={css.name}>{title}</p>
+                <p className={css.price}>{price}</p>
               </div>
             </div>
     )
   }
 }
+
+export default Cardproduct

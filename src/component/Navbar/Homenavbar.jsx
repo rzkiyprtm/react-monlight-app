@@ -1,32 +1,103 @@
 import React from 'react'
 import css from "../Navbar/Homenavbar.module.css"
+import withNavigate from "../../Helper/withNavigate";
+import { Link } from "react-router-dom";
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-class Homenavbar extends React.Component {
-  render() {
-    return (
-      <div className='container-xxl p-0'>
-        <header className={css.navigationBar}>
-      <div className={css.navBar}>
-        <div className={css.leftContent}>
-          <p>Monlight</p>
-        </div>
-        <div className={css.midContent}>
-          <ol className={css.nav}>
-            <li>Home</li>
-            <li>Product</li>
-            <li>Your Cart</li>
-            <li>History</li>
-          </ol>
-        </div>
-        <div className={css.rightcontent}>
-        <button>Sign In</button>
-        <button>Sign Up</button>
-        </div>
+
+const Homenavbar = () => {
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    if(!localStorage.getItem('token')) {
+      navigate('/login')
+    }
+  }, []);
+
+
+  return (
+    <div className='container-xxl p-0'>
+      <header className={css.navigationBar}>
+    <div className={css.navBar}>
+      <div className={css.leftContent}>
+        <p>Monlight</p>
       </div>
-    </header>
+      <div className={css.midContent}>
+        <ol className={css.nav}>
+        <Link to = {'/'}>
+          <li>Home</li>
+          </Link>
+          <Link to={'/product'}>
+          <li>Product</li>
+          </Link>
+          <Link to={'/payment'}>
+          <li>Your Cart</li>
+          </Link>
+          <Link to={'/history'}>
+          <li>History</li>
+          </Link>
+        </ol>
       </div>
-    )
-  }
+      <div className={css.rightcontent}>
+        <Link to={'/sigin'}>
+      {/* <button className={css.signin}>Sign In</button> */}
+        </Link>
+      <button 
+      onClick={() => {
+        localStorage.removeItem('token')
+      }}
+      className={css.signup}>Logout</button>
+      </div>
+    </div>
+  </header>
+    </div>
+  )
 }
 
-export default Homenavbar
+// class Homenavbar extends React.Component {
+//   render() {
+//     return (
+//       <div className='container-xxl p-0'>
+//         <header className={css.navigationBar}>
+//       <div className={css.navBar}>
+//         <div className={css.leftContent}>
+//           <p>Monlight</p>
+//         </div>
+//         <div className={css.midContent}>
+//           <ol className={css.nav}>
+//           <Link to = {'/'}>
+//             <li>Home</li>
+//             </Link>
+//             <Link to={'/product'}>
+//             <li>Product</li>
+//             </Link>
+//             <Link to={'/payment'}>
+//             <li>Your Cart</li>
+//             </Link>
+//             <Link to={'/history'}>
+//             <li>History</li>
+//             </Link>
+//           </ol>
+//         </div>
+//         <div className={css.rightcontent}>
+//           <Link to={'/sigin'}>
+//         {/* <button className={css.signin}>Sign In</button> */}
+//           </Link>
+//           <Link to={'/signup'}>
+//         <button 
+//         onClick={() => {
+//           localStorage.removeItem('token')
+//         }}
+//         className={css.signup}>Logout</button>
+//           </Link>
+//         </div>
+//       </div>
+//     </header>
+//       </div>
+//     )
+//   }
+// }
+
+export default withNavigate(Homenavbar)

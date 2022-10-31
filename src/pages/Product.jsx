@@ -2,18 +2,39 @@ import React, { Component } from 'react'
 import css from '../style/Product.module.css'
 import Card from '../component/Cardproduct/Cardproduct'
 import imgSpagety from '../assets/images/product/29.png'
-import img1 from '../assets/images/product/1.png'
-import img2 from '../assets/images/product/2.png'
-import img3 from '../assets/images/product/3.png'
-import img4 from '../assets/images/product/4.png'
-import img5 from '../assets/images/product/5.png'
-import img6 from '../assets/images/product/6.png'
 import Navbar from '../component/Navbar/Navbar'
 import Footer from '../component/Footer/Footer'
+import withNavigate from "../Helper/withNavigate";
+import { Link } from "react-router-dom";
+import { useState } from 'react'
+import axios from 'axios'
 
 
-export default class Product extends Component {
+class Product extends Component {
+
+  
+  state={
+    product:[],
+  }
+  
+  // handleChange(event) {
+  //   this.setState({ searchValue: event.target.value });
+  // }
+
+componentDidMount(){
+  const url = "http://localhost:8181/api/monlight-project/products/get?price=low"
+  axios.get(url).then((res) => 
+  this.setState({
+    product: res.data.result.result.data
+  }, () =>{
+    console.log(res.data.result.result.data)
+  })
+  // console.log(res.data.result.result.data)
+  ).catch((err) => console.log(err))
+}
+
   render() {
+
     return (
       <div>
 <Navbar />
@@ -65,36 +86,15 @@ export default class Product extends Component {
 
         <div className={css.productitem}>
           <div className={css.allbox1}>
-            <Card/>
-            <div className={css.box1}>
-              <div className={css.overimg}>
-                <img src={img2} alt=""/>
-              </div>
-              <div className={css.title}>
-                 <p className={css.name}>Veggie Tomato Mix</p>
-                <p className={css.price}>IDR 34.000</p>
-              </div>
-            </div>
-            <div className={css.box1}>
-              <div className={css.overimg}>
-                <img src={img3} alt=""/>
-              </div>
-              <div className={css.title}>
-                 <p className={css.name}>Veggie Tomato Mix</p>
-                <p className={css.price}>IDR 34.000</p>
-              </div>
-            </div>
-            <div className={css.box1}>
-              <div className={css.overimg}>
-                <img src={img4} alt=""/>
-              </div>
-              <div className={css.title}>
-                 <p className={css.name}>Veggie Tomato Mix</p>
-                <p className={css.price}>IDR 34.000</p>
-              </div>
-            </div>
+                {this.state.product.map((product) => {
+                  return <Card 
+                  img={product.image}
+                  title={product.product_name}
+                  price={product.price}
+                  />
+                })}
           </div>
-          <div className={css.allbox2}>
+          {/* <div className={css.allbox2}>
             <div className={css.box1}>
               <div className={css.overimg}>
                 <img src={img5} alt=""/>
@@ -131,8 +131,8 @@ export default class Product extends Component {
                 <p className={css.price}>IDR 34.000</p>
               </div>
             </div>
-          </div>
-          <div className={css.allbox3}>
+          </div> */}
+          {/* <div className={css.allbox3}>
             <div className={css.box1}>
               <div className={css.overimg}>
                 <img src={img1} alt=""/>
@@ -169,7 +169,7 @@ export default class Product extends Component {
                 <p className={css.price}>IDR 34.000</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
   </div>
@@ -179,3 +179,5 @@ export default class Product extends Component {
     )
   }
 }
+
+export default withNavigate(Product)

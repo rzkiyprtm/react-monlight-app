@@ -1,9 +1,11 @@
+import withNavigate from "../Helper/withNavigate";
+import { Link } from "react-router-dom";
 import React, { Component } from 'react'
 import css from '../style/Forgotpwd.module.css'
 import Footer from '../component/Footer/Footer'
 
 
-export default class Forgotpwd extends Component {
+class Forgotpwd  extends Component {
   render() {
     return (
       <div>
@@ -15,7 +17,9 @@ export default class Forgotpwd extends Component {
         </div>
         <div className={css.label}>
           <input className={css.input} type="text" placeholder='Enter your email adress to get link' />
+          <Link to = {'/'}>
           <button className={css.btn}>Send</button>
+          </Link>
         </div>
         <div className={css.bottom}>
           <p className={css.txtbottom}>Click here if you didn’t receive any link in 2 minutes</p>
@@ -29,3 +33,5 @@ export default class Forgotpwd extends Component {
     )
   }
 }
+
+export default withNavigate(Forgotpwd)

@@ -28,6 +28,11 @@ body {
   margin: 0;
 }
 
+a {
+  color: #9f9f9f;
+}
+
+
 .nav li:hover {
   /* border-bottom: 2px #6A4029 solid; */
   color: #6A4029;

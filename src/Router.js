@@ -13,8 +13,8 @@ import Detail from './pages/productDetail';
 const router = createBrowserRouter ([
   { path: "/app", element: <App />, },
   { path: '/signup', element: <Signup /> },
-  { path: '/login', element: <Login /> },
-  { path: "/", element: <Home /> },
+  { path: '/', element: <Login /> },
+  { path: "/home", element: <Home /> },
   { path: '/profile', element: <Profile /> },
   { path: '/product', element: <Product/> },
   { path: '/forgot', element: <Forgot/> },

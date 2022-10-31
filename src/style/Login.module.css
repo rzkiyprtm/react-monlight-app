@@ -117,9 +117,6 @@ a {
   text-decoration: underline;
 }
 
-button {
-  cursor: pointer;
-}
 
 /* form */
 form {
@@ -214,7 +211,7 @@ button:active {
 }
 
 button:hover {
-  opacity: 85%;
+  /* opacity: 85%; */
   transition: ease-in-out 0.2s;
 }
 

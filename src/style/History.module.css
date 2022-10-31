@@ -13,14 +13,15 @@ body {
 
 .main {
   max-width: 1440px;
+  margin: auto;
 }
 
 .mainBg {
   background: url(../assets/images/history-bg.png);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 1150px;
   text-align: center;
+  margin: auto;
 }
 
 .cardsBox {

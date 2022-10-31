@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import css from '../style/Signup.module.css'
 import imgbg from '../assets/images/img-property.png'
 import Footer from '../component/Footer/Footer'
+import { Link } from "react-router-dom";
+import withNavigate from "../Helper/withNavigate";
 
 
-export default class Signup extends Component {
+class Signup extends Component {
   render() {
     return (
         <div>
@@ -19,7 +21,9 @@ export default class Signup extends Component {
                         <h2 className={css.title}>Monlight</h2>
                     </div>
                     <div className={css.rightheadcontent}>
-                        <a href="/signup/index.html"><p>Login</p></a>
+                        <Link to={'/login'}>
+                        <p>Login</p>
+                        </Link>
                     </div>
                 </div>
                 <div className={css.signupcontent}>
@@ -38,7 +42,7 @@ export default class Signup extends Component {
                            <input className={css.signlabel}  type="tel" placeholder="Enter your phone number" />
                         </div>
                         <div className={css.signcontainer}>
-                            <button className={css.btnsignup}><a href="/profile/index.html">Sign Up</a></button>
+                            <button className={css.btnsignup}>Sign Up</button>
                             <button className={css.signup}>Sign Up with Google</button>
                         </div>
                     </form>
@@ -62,3 +66,5 @@ export default class Signup extends Component {
     )
   }
 }
+
+export default withNavigate(Signup)

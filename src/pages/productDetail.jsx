@@ -4,8 +4,10 @@ import imgbg from '../assets/images/product/25.png'
 import icon1 from '../assets/images/Icon/location.png'
 import Navbar from '../component/Navbar/Navbar'
 import Footer from '../component/Footer/Footer'
+import withNavigate from "../Helper/withNavigate";
+import { Link } from "react-router-dom";
 
-export default class productDetail extends Component {
+class productDetail extends Component {
   render() {
     return (
       <div>
@@ -16,8 +18,10 @@ export default class productDetail extends Component {
          <div className="left-main col-5 m-0">
            <div className={css.boxleft}>
             <div className={css.titleup}>
-              <p className={css.txt1}>Favorite & Promo </p>
-              <p className={css.txt2}>> Cold Brew</p>
+              <Link to={'/product'}>
+              <p className={css.txt1}>Favorite & Promo </p> 
+              </Link>
+              <p className={css.txt2}> > Cold Brew</p>
             </div>
             <div className={css.imgleft}>
               <img src={imgbg} alt=""/>
@@ -81,7 +85,7 @@ export default class productDetail extends Component {
           </div>
           <div class={css.number}>
 	          <p>+</p>
-            <p>2</p>
+            <p className={css.numb}>2</p>
             <p>-</p>
           </div>
         <div className={css.secondbox}>
@@ -96,3 +100,5 @@ export default class productDetail extends Component {
     )
   }
 }
+
+export default withNavigate(productDetail)

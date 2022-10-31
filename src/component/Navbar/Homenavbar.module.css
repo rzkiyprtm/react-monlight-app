@@ -16,6 +16,10 @@ body {
   margin: auto;
 }
 
+a {
+  color: #9f9f9f;
+}
+
 .nav {
   display: flex;
   flex-wrap: inherit;
@@ -83,6 +87,7 @@ body {
   border-radius: 10px;
   background-color: transparent;
   border: none;
+  margin: auto;
 }
 
 .rightcontent button:hover {
@@ -95,6 +100,10 @@ body {
   gap: 2em;
   background: none;
   border: none;
+}
+
+button .signup {
+  background-color: tomato;
 }
 
 /* media queries */
