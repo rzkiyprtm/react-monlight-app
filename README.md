@@ -30,7 +30,7 @@
 
 ## Usage for development
 1. Open your terminal or command prompt
-2. Type `git clone `
+2. Type `git clone https://github.com/rzkiyprtm/react-monlight-app.git`
 3. Open with your text editor
 4. Start to edit and develop
 
