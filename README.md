@@ -26,7 +26,7 @@
 * And others
 
 ## Requirements
-* [`bootstrap`](https://getbootstrap.com/)
+* [`react js`](https://reactjs.org/)
 
 ## Usage for development
 1. Open your terminal or command prompt
@@ -50,6 +50,7 @@
 
 
 ## Previous Project
+* [`HTML CSS Slicing Monlight Cafe Apps`](https://github.com/rzkiyprtm/monlight-frontend)
 * [`Backend Monlight Cafe`](https://github.com/rzkiyprtm/monlight.git)
 
 ## Contributors
