@@ -1,18 +1,16 @@
 import './App.css';
-import Navbar from "./component/Navbar/Navbar"
+// import Navbar from "./component/Navbar/Homenavbar"
 import Footer from "./component/Footer/Footer"
-import Product from "./pages/Product"
-// import Detail from "./pages/productDetail"
-// import History from './pages/History';
+import Login from "./pages/Login"
 
 function App() {
   return (
     <div>
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
     </div>
     <div>
-    <Product />
+    <Login />
     </div>
     <div>
       <Footer/>

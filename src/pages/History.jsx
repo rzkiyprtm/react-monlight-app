@@ -10,7 +10,7 @@ const History = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if(!localStorage.getItem('token')) {
-      navigate('/login')
+      navigate('/')
     }
   }, []);
 

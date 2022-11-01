@@ -21,7 +21,7 @@ class Signup extends Component {
                         <h2 className={css.title}>Monlight</h2>
                     </div>
                     <div className={css.rightheadcontent}>
-                        <Link to={'/login'}>
+                        <Link to={'/'}>
                         <p>Login</p>
                         </Link>
                     </div>

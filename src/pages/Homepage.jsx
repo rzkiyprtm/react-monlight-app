@@ -21,7 +21,7 @@ const Homepage = () => {
 
   useEffect(() => {
     if(!localStorage.getItem('token')) {
-      navigate('/login')
+      navigate('/')
     }
   }, []);
 

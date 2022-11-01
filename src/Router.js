@@ -11,9 +11,9 @@ import History from './pages/History';
 import Detail from './pages/productDetail';
 
 const router = createBrowserRouter ([
-  { path: "/app", element: <App />, },
+  { path: "/", element: <App />, },
   { path: '/signup', element: <Signup /> },
-  { path: '/', element: <Login /> },
+  // { path: '/', element: <Login /> },
   { path: "/home", element: <Home /> },
   { path: '/profile', element: <Profile /> },
   { path: '/product', element: <Product/> },
