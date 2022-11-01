@@ -130,6 +130,9 @@ body {
   height: 700px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2em;
+  padding-left: 80px;
 }
 
 .box1 {
