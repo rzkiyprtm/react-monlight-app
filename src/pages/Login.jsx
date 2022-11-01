@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import css from "../style/Login.module.css";
 import imgbg from "../assets/images/img-property.png";
 import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
-import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { Link , useNavigate } from "react-router-dom";
 
