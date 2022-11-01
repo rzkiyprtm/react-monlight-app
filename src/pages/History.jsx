@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import css from '../style/History.module.css'
 import Cardhst from '../component/Cardhistory/Cardhst'
 import Navbar from '../component/Navbar/Navbar'
