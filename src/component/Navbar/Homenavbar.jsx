@@ -47,6 +47,7 @@ const Homenavbar = () => {
       <button 
       onClick={() => {
         localStorage.removeItem('token')
+        navigate('/')
       }}
       className={css.signup}>Logout</button>
       </div>

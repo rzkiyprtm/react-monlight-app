@@ -248,6 +248,7 @@ const Profile = () => {
                   <button
                   onClick={() => {
                     localStorage.removeItem('token')
+                    navigate('/')
                   }}
                     className={css.editbtn}
                   >
