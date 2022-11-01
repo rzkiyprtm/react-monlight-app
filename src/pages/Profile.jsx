@@ -14,7 +14,6 @@ const Profile = () => {
   useEffect(() => {
     if(!localStorage.getItem('token')) {
       navigate('/');
-      
     }
   }, []);
 

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import css from '../style/Productdetail.module.css'
 import imgbg from '../assets/images/product/25.png'
-import icon1 from '../assets/images/Icon/location.png'
+import icon1 from '../assets/images/Icon/R.webp'
+import icon2 from '../assets/images/Icon/L.webp'
+import icon3 from '../assets/images/Icon/XL.webp'
 import Navbar from '../component/Navbar/Navbar'
 import Footer from '../component/Footer/Footer'
 import withNavigate from "../Helper/withNavigate";
@@ -50,8 +52,8 @@ class productDetail extends Component {
                 <p>Choose a size</p>
                 <div className={css.iconright}>
                   <img src={icon1} alt=""/>
-                  <img src={icon1} alt=""/>
-                  <img src={icon1} alt=""/>
+                  <img src={icon2} alt=""/>
+                  <img src={icon3} alt=""/>
                 </div>
               </div>
             </div>
