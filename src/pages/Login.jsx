@@ -83,10 +83,9 @@ const Login = () => {
                     placeholder='Enter your password'
                   />
                 </div>
-                {/* <div className={css.inputdiv}>
-                            <label className={css.labelsign}>Phone Number:</label>
-                           <input className={css.signlabel}  type="tel" placeholder="Enter your phone number" />
-                        </div> */}
+                <div class="forget">
+                        <a href="/signin/index.html"><p>Forgot Password?</p></a>
+                       </div>
                 <div
                   className={css.signcontainer}
                 >
