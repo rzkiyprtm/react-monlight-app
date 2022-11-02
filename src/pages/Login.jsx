@@ -84,7 +84,9 @@ const Login = () => {
                   />
                 </div>
                 <div class="forget">
-                        <a href="/signin/index.html"><p>Forgot Password?</p></a>
+                  <Link to={'/forgot'}>
+                        <p>Forgot Password?</p>
+                  </Link>
                        </div>
                 <div
                   className={css.signcontainer}
