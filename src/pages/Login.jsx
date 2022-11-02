@@ -15,12 +15,12 @@ const Login = () => {
 	const submitHandler = (e) => {
 		e.preventDefault();
 
-		axios.post('http://localhost:8181/api/monlight-project/auth', {
+		axios.post(`${process.env.REACT_APP_BACKEND_HOST}api/monlight-project/auth`, {
 			email,
 			password
 		})
 		.then((response) => {
-			alert('Login Sakses');
+			alert('Login Success');
 			console.log(response.data.data.token);
 			localStorage.setItem('token', response.data.data.token);
       navigate('/home')
