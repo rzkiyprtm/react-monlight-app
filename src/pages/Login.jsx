@@ -15,7 +15,7 @@ const Login = () => {
 	const submitHandler = (e) => {
 		e.preventDefault();
 
-		axios.post(`${process.env.REACT_APP_BACKEND_HOST}api/monlight-project/auth`, {
+		axios.post(`${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/auth`, {
 			email,
 			password
 		})
