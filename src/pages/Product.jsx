@@ -22,7 +22,7 @@ class Product extends Component {
   // }
 
 componentDidMount(){
-  const url = "http://localhost:8181/api/monlight-project/products/get?price=low"
+  const url = "http://localhost:8181/api/monlight-project/products/get?categories=coffee"
   axios.get(url).then((res) => 
   this.setState({
     product: res.data.result.result.data

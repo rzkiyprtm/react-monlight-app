@@ -10,6 +10,8 @@ import Payment from './pages/Productcart';
 import History from './pages/History';
 import Detail from './pages/productDetail';
 
+import PrivateElement from '../src/component/PrivateElement'
+
 const router = createBrowserRouter ([
   { path: "/app", element: <App />, },
   { path: '/signup', element: <Signup /> },
