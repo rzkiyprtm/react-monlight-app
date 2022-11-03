@@ -12,7 +12,7 @@ const History = () => {
     if(!localStorage.getItem('token')) {
       navigate('/')
     }
-  }, []);
+  });
 
   return (
     <div>

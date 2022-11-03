@@ -5,8 +5,8 @@ import imgSpagety from "../assets/images/product/29.png";
 import Navbar from "../component/Navbar/Navbar";
 import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+// import { Link } from "react-router-dom";
+// import { useState } from "react";
 import axios from "axios";
 
 class Product extends Component {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import css from '../style/Homepage.module.css'  
 import userIcon from '../assets/images/Icon/user.png'
 import locIcon from '../assets/images/Icon/location.png'
@@ -23,7 +23,7 @@ const Homepage = () => {
     if(!localStorage.getItem('token')) {
       navigate('/')
     }
-  }, []);
+  });
 
 
   return (

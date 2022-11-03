@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import css from "../style/Profile.module.css";
 import Navbar from "../component/Navbar/Navbar";
 import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -15,7 +15,7 @@ const Profile = () => {
     if(!localStorage.getItem('token')) {
       navigate('/');
     }
-  }, []);
+  });
 
   return (
     <div>

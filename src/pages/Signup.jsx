@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import css from '../style/Signup.module.css'
 import imgbg from '../assets/images/img-property.png'
 import Footer from '../component/Footer/Footer'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import withNavigate from "../Helper/withNavigate";
 import Axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 

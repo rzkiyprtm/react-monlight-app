@@ -14,7 +14,7 @@ const Homenavbar = () => {
     if(!localStorage.getItem('token')) {
       navigate('/')
     }
-  }, []);
+  });
 
 
   return (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import css from '../style/Productcart.module.css'
 import img1 from '../assets/images/product/2.png'
 import img2 from '../assets/images/product/30.png'
@@ -18,7 +18,7 @@ const Productcart = () => {
     if(!localStorage.getItem('token')) {
       navigate('/')
     }
-  }, []);
+  });
 
 
   return (
