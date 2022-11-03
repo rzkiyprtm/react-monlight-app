@@ -5,7 +5,7 @@ import Footer from '../component/Footer/Footer'
 import { Link } from "react-router-dom";
 import withNavigate from "../Helper/withNavigate";
 import Axios from "axios";
-// import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -31,6 +31,18 @@ class Signup extends Component {
       handleChange(event, field) {
         this.setState({ [field]: event.target.value });
       }
+
+      successToastMessage = () => {
+        toast.success('Sign Up Success !', {
+            position: toast.POSITION.TOP_CENTER
+        });
+    };
+    
+      failedMessage = () => {
+        toast.error('Password or Email Wrong !', {
+          position: toast.POSITION.TOP_CENTER
+      });
+      }
     
       handleSubmit(event) {
         const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/users/register`;
@@ -41,14 +53,20 @@ class Signup extends Component {
         };
         Axios.post(url, data)
           .then((res) => {
-            alert('register sukses')
+            this.successToastMessage()
+            setTimeout(() => {
+              this.props.navigate(`/`)
+            }, 3000)
             // successToastMessage();
             console.log(res.data.msg);
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+          this.failedMessage()
+          console.log(err)});
         event.preventDefault();
       }
     
+   
 
 
   render() {
@@ -116,6 +134,7 @@ class Signup extends Component {
         </section>
       </div>
         <Footer />
+        <ToastContainer/>
         </div>
     )
   }
