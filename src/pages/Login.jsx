@@ -5,27 +5,56 @@ import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
 import axios from "axios";
 import { Link , useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = () => {
   const navigate = useNavigate()
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const successToastMessage = () => {
+    toast.success('Login Success !', {
+        position: toast.POSITION.TOP_CENTER
+    });
+};
+
+  const failedMessage = () => {
+    toast.error('Password or Email Wrong !', {
+      position: toast.POSITION.TOP_CENTER
+  });
+  }
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 
-		axios.post(`${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/auth`, {
-			email,
-			password
-		})
-		.then((response) => {
-			alert('Login Success');
-			console.log(response.data.data.token);
-			localStorage.setItem('token', response.data.data.token);
-      navigate('/home')
-		})
-		.catch((err) => alert('password/email is wrong'));
+    setLoading(true);
+    try {
+      
+      axios.post(`${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/auth`, {
+        email,
+        password
+      })
+      .then((response) => {
+        // alert('Login Success');
+        
+        successToastMessage();
+        localStorage.setItem('token', response.data.data.token);
+        setLoading(false);
+        setTimeout(() => {
+
+          navigate('/home');
+        }, 5000);
+      })
+      .catch((err) => {
+        failedMessage();
+      });
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+
 	};
 
   return (
@@ -96,7 +125,7 @@ const Login = () => {
                       className={css.btnsignup}
 											type='submit'
                     >
-                      Sign In
+                      {loading ? "Authenticating..." : "Sign In"}
                     </button>
                   {/* </Link> */}
                   <button className={css.signup}>
@@ -124,6 +153,7 @@ const Login = () => {
         </section>
       </div>
       <Footer />
+      <ToastContainer />
     </div>
   );
 };
