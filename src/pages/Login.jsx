@@ -1,5 +1,6 @@
 import { useState } from "react";
 import css from "../style/Login.module.css";
+import eyeIcon from '../assets/images/Icon/eye-icon.png'
 import imgbg from "../assets/images/img-property.png";
 import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
@@ -14,18 +15,18 @@ const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
   const successToastMessage = () => {
     toast.success('Login Success !', {
         position: toast.POSITION.TOP_CENTER
     });
 };
-
   const failedMessage = () => {
     toast.error('Password or Email Wrong !', {
       position: toast.POSITION.TOP_CENTER
   });
   }
-
+ 
 	const submitHandler = (e) => {
 		e.preventDefault();
 
@@ -56,6 +57,11 @@ const Login = () => {
     }
 
 	};
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
 
   return (
     <div>
@@ -105,9 +111,10 @@ const Login = () => {
                   >
                     Password:
                   </label>
+                  <img className={css.showpwd} src={eyeIcon} alt="show-password" onClick={togglePassword} />
                   <input
                     className={css.signlabel}
-                    type='password'
+                    type={passwordShown ? "text" : "password"}
 										onChange={(e) => setPassword(e.target.value)}
                     placeholder='Enter your password'
                   />

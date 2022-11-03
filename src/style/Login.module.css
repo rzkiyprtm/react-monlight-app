@@ -155,6 +155,17 @@ form {
   border: 1.2px solid #4F5665;
 }
 
+.showpwd {
+  position: relative;
+  top: 58px;
+  left: 235px;
+  width: 35px;
+  margin: 0 auto;
+  padding: 0;
+  cursor: pointer;
+}
+
+
 
 /* button */
 
@@ -169,7 +180,7 @@ form {
   width: 360px;
   padding: 20px 0px;
   color: #fff;
-  margin-top: 40px;
+  margin-top: 10px;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border: none;

@@ -119,7 +119,7 @@ class Product extends Component {
                       onClick={() => {
                         this.setState({ activeNav: "link1" })
 
-                        const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?limit=5&page=1`;
+                        const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get`;
                         axios
                           .get(url)
                           .then((res) =>
@@ -241,7 +241,7 @@ class Product extends Component {
                   </ul>
                 </div>
               </div>
-              <div className="btn-next">
+              {/* <div className="btn-next">
                   <button className={css.nextbtn}
                   onClick={() => {
                     const url8 = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?page=3&limit=3`;
@@ -293,7 +293,7 @@ class Product extends Component {
                           );
                   }}
                   >prev</button>
-              </div>
+              </div> */}
 
               <div className={css.productitem}>
                 <div className={css.allbox1}>
