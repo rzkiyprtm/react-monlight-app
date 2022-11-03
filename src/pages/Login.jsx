@@ -29,7 +29,7 @@ const Login = () => {
  
 	const submitHandler = (e) => {
 		e.preventDefault();
-
+// console.log(e);
     setLoading(true);
     try {
       
@@ -42,6 +42,7 @@ const Login = () => {
         
         successToastMessage();
         localStorage.setItem('token', response.data.data.token);
+        localStorage.setItem('role', response.data.data.payload.role);
         setLoading(false);
         setTimeout(() => {
 

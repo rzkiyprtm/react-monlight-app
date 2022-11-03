@@ -10,7 +10,7 @@ import Payment from './pages/Productcart';
 import History from './pages/History';
 import Detail from './pages/productDetail';
 
-// import PrivateElement from '../src/component/PrivateElement'
+import PrivateElement from '../src/component/PrivateElement'
 
 const router = createBrowserRouter ([
   { path: "/app", element: <App />, },
@@ -18,7 +18,7 @@ const router = createBrowserRouter ([
   { path: '/', element: <Login /> },
   { path: "/home", element: <Home /> },
   { path: '/profile', element: <Profile /> },
-  { path: '/product', element: <Product/> },
+  { path: '/product', element: <PrivateElement allowedRoles={['User']}> <Product/> </PrivateElement>  },
   { path: '/forgot', element: <Forgot/> },
   { path: '/payment', element: <Payment/> },
   { path: '/history', element: <History/> },

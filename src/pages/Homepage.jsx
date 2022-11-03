@@ -12,18 +12,18 @@ import sponsor from '../assets/images/Sponsored.png'
 import testimoni from '../assets/images/testimoni.png'
 import Navbar from '../component/Navbar/Homenavbar'
 import Footer from '../component/Footer/Footer'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useEffect } from 'react'
+// import { useNavigate } from 'react-router-dom'
 
 const Homepage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
-  useEffect(() => {
-    if(!localStorage.getItem('token')) {
-      navigate('/')
-    }
-  });
+  // useEffect(() => {
+  //   if(!localStorage.getItem('token')) {
+  //     navigate('/')
+  //   }
+  // });
 
 
   return (

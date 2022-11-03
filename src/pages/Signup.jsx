@@ -7,6 +7,7 @@ import withNavigate from "../Helper/withNavigate";
 import Axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import eyeIcon from '../assets/images/Icon/eye-icon.png'
 
 
 
@@ -16,16 +17,27 @@ class Signup extends Component {
     componentDidMount() {
         document.title = "Sign Up";
       }
-
+      
       constructor(props) {
         super(props);
         this.state = {
           email: "",
           password: "",
           phone: "",
+          pwdShown : false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+      }
+
+      showPassword = () => {
+        if (!this.state.pwdShown) return "password"
+        return "text" 
+      }
+    
+      iconShow = () => {
+        if (this.state.pwdShown) return "fa-regular fa-eye"
+        return "fa-regular fa-eye-slash"
       }
     
       handleChange(event, field) {
@@ -102,9 +114,14 @@ class Signup extends Component {
 
                         <div className={css.inputdiv}>
                             <label className={css.labelsign}>Password:</ label>
-                           <input className={css.signlabel} type="password" placeholder="Enter your password"
+                           <input className={css.signlabel1} type={this.showPassword()} placeholder="Enter your password"
                             value={this.state.password}
                             onChange={(event) => this.handleChange(event, "password")} />
+                          <i class={`${this.iconShow()} ${css.password}`} onClick={() => {
+             this.setState((prevState) => ({
+               pwdShown: prevState.pwdShown ? false : true,
+             }));
+         }}></i>
                         </div>
 
                         <div className={css.inputdiv}>
