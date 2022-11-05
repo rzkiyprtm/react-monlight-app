@@ -15,10 +15,10 @@ import PrivateElement from '../src/component/PrivateElement'
 const router = createBrowserRouter ([
   { path: "/app", element: <App />, },
   { path: '/signup', element: <Signup /> },
-  { path: '/', element: <Login /> },
-  { path: "/home", element: <Home /> },
+  { path: '/login', element: <Login /> },
+  { path: "/", element: <Home /> },
   { path: '/profile', element: <Profile /> },
-  { path: '/product', element: <PrivateElement allowedRoles={['User']}> <Product/> </PrivateElement>  },
+  { path: '/product', element: <PrivateElement allowedRoles={['User', 'Admin']}> <Product/> </PrivateElement>  },
   { path: '/forgot', element: <Forgot/> },
   { path: '/payment', element: <Payment/> },
   { path: '/history', element: <History/> },

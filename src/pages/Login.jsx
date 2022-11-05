@@ -43,11 +43,11 @@ const Login = () => {
         successToastMessage();
         localStorage.setItem('token', response.data.data.token);
         localStorage.setItem('role', response.data.data.payload.role);
+        localStorage.setItem('id', response.data.data.payload.id);
         setLoading(false);
         setTimeout(() => {
-
-          navigate('/home');
-        }, 5000);
+          navigate('/');
+        }, 3000);
       })
       .catch((err) => {
         failedMessage();

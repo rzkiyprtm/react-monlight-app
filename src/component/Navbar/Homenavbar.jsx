@@ -2,19 +2,18 @@ import React from 'react'
 import css from "../Navbar/Homenavbar.module.css"
 import withNavigate from "../../Helper/withNavigate";
 import { Link } from "react-router-dom";
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useEffect } from 'react'
+// import { useNavigate } from 'react-router-dom'
 
 
 const Homenavbar = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-
-  useEffect(() => {
-    if(!localStorage.getItem('token')) {
-      navigate('/')
-    }
-  });
+  // useEffect(() => {
+  //   if(!localStorage.getItem('token')) {
+  //     navigate('/')
+  //   }
+  // });
 
 
   return (
@@ -40,17 +39,17 @@ const Homenavbar = () => {
           </Link>
         </ol>
       </div>
+
       <div className={css.rightcontent}>
-        <Link to={'/sigin'}>
-      {/* <button className={css.signin}>Sign In</button> */}
+        <Link to={'/login'}>
+      <button className={css.signin}>Sign In</button>
         </Link>
-      <button 
-      onClick={() => {
-        localStorage.removeItem('token')
-        navigate('/')
-      }}
-      className={css.signup}>Logout</button>
+      
+      <Link to={'/signup'}>
+      <button className={css.signup}>Sign Up</button>
+      </Link>
       </div>
+
     </div>
   </header>
     </div>

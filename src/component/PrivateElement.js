@@ -8,7 +8,7 @@ class PrivateElement extends React.Component {
     // jika false, maka redirect
     // kondisi 1 = apakah sudah login
     const { allowedRoles = [], children } = this.props;
-    // const userInfo = JSON.parse(localStorage["user-info"] || "{}");
+
     if (!localStorage.token)
       return (
         <Navigate

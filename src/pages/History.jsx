@@ -3,16 +3,16 @@ import css from '../style/History.module.css'
 import Cardhst from '../component/Cardhistory/Cardhst'
 import Navbar from '../component/Navbar/Navbar'
 import Footer from '../component/Footer/Footer'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useEffect } from 'react'
+// import { useNavigate } from 'react-router-dom'
 
 const History = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if(!localStorage.getItem('token')) {
-      navigate('/')
-    }
-  });
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   if(!localStorage.getItem('token')) {
+  //     navigate('/')
+  //   }
+  // });
 
   return (
     <div>
