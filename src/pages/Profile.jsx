@@ -58,13 +58,6 @@ const Profile = () => {
   }
 
   console.log(profile);
-
-  // useEffect(() => {
-  //   if(!localStorage.getItem('token')) {
-  //     navigate('/');
-  //   }
-  // });
-
   return (
     <div>
       <Navbar />
