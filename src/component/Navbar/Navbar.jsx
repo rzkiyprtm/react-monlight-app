@@ -1,12 +1,11 @@
 import React from "react";
 import css from "../Navbar/Navbar.module.css";
 import chat from "../../assets/images/chat.png";
-import srcIcon from "../../assets/images/search.png";
 import withNavigate from "../../Helper/withNavigate";
 import { Link } from "react-router-dom";
 import { getProfile } from "../../Helper/Fetch";
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -21,7 +20,9 @@ const Navbar = () => {
     } catch (error) {
       // console.log(error);
       // console.log(error.response.data.statusCode);
-      if (error.response.data.statusCode === 403) {
+      if (
+        error.response.data.statusCode === 403
+      ) {
         navigate("/");
       }
     }
@@ -40,7 +41,7 @@ const Navbar = () => {
           </div>
           <div className={css.midContent}>
             <ol className={css.nav}>
-              <Link to={"/home"}>
+              <Link to={"/"}>
                 <li>Home</li>
               </Link>
               <Link to={"/product"}>
@@ -55,14 +56,18 @@ const Navbar = () => {
             </ol>
           </div>
           <div className={css.rightContent}>
-            <img
-              className={css.icon1}
-              src={srcIcon}
-              alt=''
-            />
-            {/* <div className="search">
-          <input type="text" className="src" />
-        </div> */}
+            <div class={css.searchBox}>
+              <input
+                class={css.searchTxt}
+                type='text'
+                name=''
+                placeholder='Type to Search'
+              />
+              <a class={css.searchBtn} href='#'>
+                <i class='fas fa-search'></i>
+              </a>
+            </div>
+
             <img
               className={css.icon1}
               src={chat}
@@ -71,7 +76,10 @@ const Navbar = () => {
             <Link to={"/profile"}>
               <img
                 className={css.putra}
-                src={imgPrev ?? `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`}
+                src={
+                  imgPrev ??
+                  `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`
+                }
                 alt=''
               />
             </Link>
@@ -80,59 +88,6 @@ const Navbar = () => {
       </header>
     </div>
   );
-}
-// class Navbar extends React.Component {
-//   render() {
-//     return (
-//       <div className={css.maincontainer}>
-//         <header className={css.navigationBar}>
-//           <div className={css.navBar}>
-//             <div className={css.leftContent}>
-//               <p>Monlight</p>
-//             </div>
-//             <div className={css.midContent}>
-//               <ol className={css.nav}>
-//                 <Link to={"/home"}>
-//                   <li>Home</li>
-//                 </Link>
-//                 <Link to={"/product"}>
-//                   <li>Product</li>
-//                 </Link>
-//                 <Link to={"/payment"}>
-//                   <li>Your Cart</li>
-//                 </Link>
-//                 <Link to={"/history"}>
-//                   <li>History</li>
-//                 </Link>
-//               </ol>
-//             </div>
-//             <div className={css.rightContent}>
-//               <img
-//                 className={css.icon1}
-//                 src={srcIcon}
-//                 alt=''
-//               />
-//               {/* <div className="search">
-//             <input type="text" className="src" />
-//           </div> */}
-//               <img
-//                 className={css.icon1}
-//                 src={chat}
-//                 alt=''
-//               />
-//               <Link to={"/profile"}>
-//                 <img
-//                   className={css.putra}
-//                   src={avatar}
-//                   alt=''
-//                 />
-//               </Link>
-//             </div>
-//           </div>
-//         </header>
-//       </div>
-//     );
-//   }
-// }
+};
 
 export default withNavigate(Navbar);

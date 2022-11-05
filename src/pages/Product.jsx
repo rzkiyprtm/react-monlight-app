@@ -5,8 +5,8 @@ import imgSpagety from "../assets/images/product/29.png";
 import Navbar from "../component/Navbar/Navbar";
 import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
-// import { Link } from "react-router-dom";
-// import { useState } from "react";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import axios from "axios";
 
 class Product extends Component {
@@ -115,9 +115,17 @@ class Product extends Component {
                 <div className={css.navitem}>
                   <ul>
                     <li
-                      style={{ color: this.state.activeNav === 'link1' ? '#6A4029' : '' }}
+                      style={{
+                        color:
+                          this.state.activeNav ===
+                          "link1"
+                            ? "#6A4029"
+                            : "",
+                      }}
                       onClick={() => {
-                        this.setState({ activeNav: "link1" })
+                        this.setState({
+                          activeNav: "link1",
+                        });
 
                         const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get`;
                         axios
@@ -146,9 +154,17 @@ class Product extends Component {
                     </li>
 
                     <li
-                      style={{ color: this.state.activeNav === 'link2' ? '#6A4029' : '' }}
+                      style={{
+                        color:
+                          this.state.activeNav ===
+                          "link2"
+                            ? "#6A4029"
+                            : "",
+                      }}
                       onClick={() => {
-                        this.setState({ activeNav: "link2" })
+                        this.setState({
+                          activeNav: "link2",
+                        });
 
                         const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?categories=coffee`;
                         axios
@@ -177,9 +193,17 @@ class Product extends Component {
                     </li>
 
                     <li
-                      style={{ color: this.state.activeNav === 'link3' ? '#6A4029' : '' }}
+                      style={{
+                        color:
+                          this.state.activeNav ===
+                          "link3"
+                            ? "#6A4029"
+                            : "",
+                      }}
                       onClick={() => {
-                        this.setState({ activeNav: "link3" })
+                        this.setState({
+                          activeNav: "link3",
+                        });
 
                         const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?categories=non-coffee`;
                         axios
@@ -208,9 +232,17 @@ class Product extends Component {
                     </li>
 
                     <li
-                      style={{ color: this.state.activeNav === 'link4' ? '#6A4029' : '' }}
+                      style={{
+                        color:
+                          this.state.activeNav ===
+                          "link4"
+                            ? "#6A4029"
+                            : "",
+                      }}
                       onClick={() => {
-                        this.setState({ activeNav: "link4" })
+                        this.setState({
+                          activeNav: "link4",
+                        });
 
                         const url2 = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?categories=food`;
                         axios
@@ -238,6 +270,75 @@ class Product extends Component {
                       Foods
                     </li>
                     <li>Add-on</li>
+                    <DropdownButton
+                      id='dropdown-basic-button'
+                      title='Sort'
+                    >
+                      <Dropdown.Item
+                        onClick={() => {
+                          const urlSortMurah = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?sort=murah`;
+                          axios
+                            .get(urlSortMurah)
+                            .then((res) =>
+                              this.setState(
+                                {
+                                  product:
+                                    res.data
+                                      .result
+                                      .result
+                                      .data,
+                                },
+                                () => {
+                                  console.log(
+                                    res.data
+                                      .result
+                                      .result
+                                      .data,
+                                  );
+                                },
+                              ),
+                            )
+                            .catch((err) =>
+                              console.log(err),
+                            );
+                        }}
+                        href='#/action-1'
+                      >
+                        0-100
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => {
+                          const urlSortMahal = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?sort=mahal`;
+                          axios
+                            .get(urlSortMahal)
+                            .then((res) =>
+                              this.setState(
+                                {
+                                  product:
+                                    res.data
+                                      .result
+                                      .result
+                                      .data,
+                                },
+                                () => {
+                                  console.log(
+                                    res.data
+                                      .result
+                                      .result
+                                      .data,
+                                  );
+                                },
+                              ),
+                            )
+                            .catch((err) =>
+                              console.log(err),
+                            );
+                        }}
+                        href='#/action-2'
+                      >
+                        100-0
+                      </Dropdown.Item>
+                    </DropdownButton>
                   </ul>
                 </div>
               </div>

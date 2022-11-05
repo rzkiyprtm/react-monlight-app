@@ -285,12 +285,15 @@ ul {
   margin-top: 20px;
   background: none;
   border: 2px solid;
-  border-color: 
-  #681168;
   border-radius: 20px;
   height: 40px;
   width: 140px;
   font-size: 13px;
+}
+
+.btnprice button:hover, .btnprice1 button:hover {
+  background-color: #6A4029;
+  color: #fff;
 }
 
 .mainbanner {

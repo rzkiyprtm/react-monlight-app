@@ -22,6 +22,18 @@ export const getProfile = () => {
   });
 };
 
+export const editProfile = () => {
+  const login = (localStorage.getItem('token'));
+  const token = login;
+  console.log(token);
+  const URL = 'http://localhost:8181/api/monlight-project/users/profile';
+  return axios.patch(URL, {
+    headers: {
+      'access-token': token,
+    }
+  })
+}
+
 export const login = (data) => {
   return axiosRequest("POST", "auths/login", data);
 };

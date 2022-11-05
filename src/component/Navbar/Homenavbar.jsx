@@ -25,7 +25,7 @@ const Homenavbar = () => {
       </div>
       <div className={css.midContent}>
         <ol className={css.nav}>
-        <Link to = {'/home'}>
+        <Link to = {'/'}>
           <li>Home</li>
           </Link>
           <Link to={'/product'}>

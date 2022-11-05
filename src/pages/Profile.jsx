@@ -43,8 +43,6 @@ const Profile = () => {
       setProfile(result.data.result[0]);
       console.log(result);
     } catch (error) {
-      // console.log(error);
-      // console.log(error.response.data.statusCode);
       if (error.response.data.statusCode === 403) {
        ;
       }
@@ -54,6 +52,10 @@ const Profile = () => {
   useEffect(() => {
     getDataProfile();
   }, []);
+
+  const getBirthday = () => {
+    return new Date(profile.birthday).toLocaleDateString();
+  }
 
   console.log(profile);
 
@@ -260,9 +262,11 @@ const Profile = () => {
                   <input
                     className={css.mail}
                     onChange={handleDOB}
+                    name='birthday'
                             type="text"
                             disabled={isEdit}
                             value={profile.birthday}
+                            placeholder={getBirthday()}
                   />
                 </div>
                 <div className={css.gender}>
