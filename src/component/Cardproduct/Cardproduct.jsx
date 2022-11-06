@@ -8,7 +8,7 @@ class Cardproduct extends Component {
     return (
       <div className={css.box1}>
               <div className={css.overimg}>
-                <img src={`http://localhost:8181${img}`} alt=""/>
+                <img src={`${process.env.REACT_APP_BACKEND_HOST}/${img}`} alt=""/>
               </div>
               <div className={css.title}>
                  <p className={css.name}>{title}</p>

@@ -10,9 +10,21 @@ import avatar from '../../assets/images/Icon/avatar.jpg'
 
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const [state, setState] = useState("");
+  const text = state.text;
+  const title = state.title;
   const [profile, setProfile] = useState({});
-  const [imgPrev, setImgPrev] = useState();
+  const [search, setSearch] = useState(() => "");
+
+  const setValue = (event) => {
+    console.log(event);
+    setSearch(event.target.value);
+  };
+  const getSearch = () => {
+    return navigate(`/product/get?search=${search}`);
+  };
+
   const getDataProfile = async () => {
     try {
       const result = await getProfile();
@@ -20,8 +32,6 @@ const Navbar = () => {
       setProfile(result.data.result[0]);
       console.log(result);
     } catch (error) {
-      // console.log(error);
-      // console.log(error.response.data.statusCode);
       if (
         error.response.data.statusCode === 403
       ) {
@@ -61,9 +71,10 @@ const Navbar = () => {
             <div class={css.searchBox}>
               <input
                 class={css.searchTxt}
-                type='text'
-                name=''
-                placeholder='Type to Search'
+                type="text"
+              placeholder="search here ..."
+              onChange={setValue}
+              onSubmit={getSearch}
               />
               <a class={css.searchBtn} href='#'>
                 <i class='fas fa-search'></i>

@@ -21,18 +21,6 @@ export const getProfile = () => {
   });
 };
 
-// export const editProfile = () => {
-//   const login = (localStorage.getItem('token'));
-//   const token = login;
-//   console.log(token);
-//   const URL = 'http://localhost:8181/api/monlight-project/users/profile';
-//   return axios.patch(URL, {
-//     headers: {
-//       'access-token': token,
-//     }
-//   })
-// }
-
 export const editProfile = (body) => {
   const login = (localStorage.getItem("token"));
   const token = login;
@@ -50,4 +38,26 @@ export const editProfile = (body) => {
 
 export const login = (data) => {
   return axiosRequest("POST", "auths/login", data);
+};
+
+export const getProduct = (param) => {
+  console.log(param);
+  const queryParam = {
+    categories: param.categories ?? "",
+    sort: param.sort ?? "id",
+  };
+  const URL = `http://localhost:8181/api/monlight-project/products/get?categories=${queryParam.categories}&sort=${queryParam.sort}&limit=12&page=1`;
+  return axios.get(URL);
+};
+
+export const getProductById = (id) => {
+  const login = (localStorage.getItem("token"));
+  const token = login;
+  // console.log(token);
+  const URL = `http://localhost:8181/api/monlight-project/products/${id}`;
+  return axios.get(URL, {
+    headers: {
+      "access-token": token,
+    },
+  });
 };

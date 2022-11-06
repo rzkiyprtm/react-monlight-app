@@ -402,11 +402,13 @@ class Product extends Component {
                     (product) => {
                       return (
                         <Card
+                        key={product.index}
                           img={product.image}
                           title={
                             product.product_name
                           }
                           price={product.price}
+                          id={product.id}
                         />
                       );
                     },
