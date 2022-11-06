@@ -179,11 +179,15 @@
 }
 
 .profiledetailleft {
-  margin: auto;
-  padding-left: 50px;
+  padding: 23px 0px 0px 50px;
   font-weight: bold;
 }
 
+.profiledetailright {
+  /* margin: auto; */
+  font-weight: bold;
+  padding-top: 70px;
+}
 .inputprofile {
   display: block;
   border: none;
@@ -195,11 +199,6 @@
  margin-bottom: 18px;
 }
 
-.profiledetailright {
-  margin: auto;
-  font-weight: bold;
-  /* padding-top: 20px; */
-}
 
 
 .gender {

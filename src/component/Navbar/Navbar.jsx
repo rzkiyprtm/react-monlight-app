@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { getProfile } from "../../Helper/Fetch";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import avatar from '../../assets/images/Icon/avatar.jpg'
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -77,8 +79,7 @@ const Navbar = () => {
               <img
                 className={css.putra}
                 src={
-                  imgPrev ??
-                  `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`
+                  !profile.image ? avatar : `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`
                 }
                 alt=''
               />

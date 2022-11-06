@@ -5,20 +5,21 @@ import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getProfile } from "../Helper/Fetch";
+import { editProfile, getProfile } from "../Helper/Fetch";
 import editIcon from '../assets/images/Icon/edit.png'
+import avatar from '../assets/images/Icon/avatar.jpg'
 
 const Profile = () => {
   const navigate = useNavigate();
   const target = useRef(null);
   const [profile, setProfile] = useState({});
-  const [isEdit, setIsEdit] = useState(true);
   const [imgPrev, setImgPrev] = useState();
+  const [isEdit, setIsEdit] = useState(true);
   const [body, setBody] = useState({});
   console.log(body);
 
   const handleAddress = (e) => {
-    setBody({ ...body, delivery_address: e.target.value });
+    setBody({ ...body, address: e.target.value });
   };
   const handleDisplayName = (e) => {
     setBody({ ...body, display_name: e.target.value });
@@ -30,10 +31,18 @@ const Profile = () => {
     setBody({ ...body, last_name: e.target.value });
   };
   const handleDOB = (e) => {
-    setBody({ ...body, date_of_birth: e.target.value });
+    setBody({ ...body, birthday: e.target.value });
   };
   const handleGender = (e) => {
     setBody({ ...body, gender: e.target.value });
+  };
+  const handleImage = (e) => {
+    console.log(e);
+    setBody({ ...body, images: e.target.files[0] });
+    setImgPrev(URL.createObjectURL(e.target.files[0]));
+  };
+  const handlePhone = (e) => {
+    setBody({ ...body, phone: e.target.value });
   };
 
   const getDataProfile = async () => {
@@ -49,15 +58,46 @@ const Profile = () => {
     }
   };
 
+  const handleSaveChange = async () => {
+    const formData = new FormData();
+    Object.keys(body).forEach((key, idx) => {
+      formData.append(key, body[key]);
+    });
+    //   for (var pair of formData.entries()) {
+    //     console.log(pair[0]+ ', ' + pair[1]);
+    // }
+    try {
+      await editProfile(formData);
+      setBody({});
+      setIsEdit(true);
+      await getDataProfile();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const changeHandler = (e) => [
+    setBody({ ...body, [e.target.name]: e.target.value }),
+  ];
+
   useEffect(() => {
     getDataProfile();
   }, []);
 
   const getBirthday = () => {
-    return new Date(profile.birthday).toLocaleDateString();
-  }
+    const date = new Date(profile.birthday);
+    const yyyy = date.getFullYear();
+    let mm = date.getMonth() + 1; // Months start at 0!
+    let dd = date.getDate();
+
+    if (dd < 10) dd = "0" + dd;
+    if (mm < 10) mm = "0" + mm;
+
+    return dd + "/" + mm + "/" + yyyy;
+  };
 
   console.log(profile);
+
   return (
     <div>
       <Navbar />
@@ -67,13 +107,24 @@ const Profile = () => {
             <div className={css.textuser}></div>
             <div className={css.topcontent}>
               <div className={css.profilephoto}>
-                <img className={css.editIcon} src={editIcon} alt="editphoto" />
+                <img
+                onClick={(e) => {
+                  e.preventDefault();
+                  target.current.click();
+                }}
+                className={css.editIcon} src={editIcon} alt="editphoto" />
                 <img
                   className={css.putra}
-                  src={imgPrev ?? `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`}
+                  src={ !profile.image ? avatar : `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`}
                   alt='profile'
                 />
-                <h2>{profile.username}</h2>
+                <input
+                    type="file"
+                    ref={target}
+                    onChange={(e) => handleImage(e)}
+                    style={{ display: "none" }}
+                  />
+                <h2>{profile.display_name}</h2>
                 <p>{profile.email}</p>
                 <h3>
                   Has been ordered 15 products
@@ -86,7 +137,13 @@ const Profile = () => {
                   <div
                     className={css.leftcontact}
                   >
-                  <img className={css.editIcon} src={editIcon} alt="editphoto" />
+                    <div className="ImgProfile">
+                  <img onClick={(e) => {
+                        e.preventDefault();
+                        setIsEdit(!isEdit);
+                      }}
+                  className={css.editIcon} src={editIcon} alt="profile" />
+                    </div>
                     <div
                       className={
                         css.contactleft
@@ -157,14 +214,12 @@ const Profile = () => {
                         Mobile number :
                       </label>
                       <input
-                        className={
-                          css.inputprofile
-                        }
-                        type='tel'
-                        // placeholder='Input phone number'
-                        id="mobilenumber"
-                        disabled={isEdit}
-                        value={profile.mobile_phone}
+                        className={css.inputprofile}
+                        placeholder='Input phone number here'
+                          id="deliveryaddress"
+                            onChange={handlePhone}
+                            disabled={isEdit}
+                            value={profile.phone}
                       />
                       <hr className={css.hr} />
                     </div>
@@ -181,7 +236,12 @@ const Profile = () => {
                   css.profiledetailleft
                 }
               >
-                  <img className={css.editIcon} src={editIcon} alt="editphoto" />
+                  <img 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsEdit(!isEdit);
+                  }}
+                  className={css.editIcon} src={editIcon} alt="editprofile" />
                 <div className={css.textdetail}>
                   <h2>Details</h2>
                 </div>
@@ -194,12 +254,11 @@ const Profile = () => {
                   </label>
                   <input
                     className={css.mail}
-                    type='text'
-                    // placeholder='Input name here'
-                    id="displayname"
+                    type="text"
+                            id="displayname"
                             onChange={handleDisplayName}
                             disabled={isEdit}
-                            value={profile.display_name}
+                            placeholder={profile.display_name}
                   />
                   <hr className={css.hr} />
                 </div>
@@ -212,12 +271,11 @@ const Profile = () => {
                   </label>
                   <input
                     className={css.mail}
-                    type='text'
-                    placeholder='Input first name'
-                    id="firstname"
+                    type="text"
+                            id="firstname"
                             onChange={handleFirstName}
                             disabled={isEdit}
-                            value={profile.first_name}
+                            placeholder={profile.first_name}
                   />
                   <hr className={css.hr} />
                 </div>
@@ -230,12 +288,11 @@ const Profile = () => {
                   </label>
                   <input
                     className={css.mail}
-                    type='text'
-                    placeholder='last name here'
-                    id="lastname"
+                    type="text"
+                            id="lastname"
                             onChange={handleLastName}
                             disabled={isEdit}
-                            value={profile.last_name}
+                            placeholder={profile.last_name}
                   />
                   <hr className={css.hr} />
                 </div>
@@ -247,18 +304,16 @@ const Profile = () => {
               >
                 <div className={css.birth}>
                   <label
-                    className={css.inputprofile}
-                    for='date'
+                  className={css.mail}
                   >
                     Birth Date
                   </label>
                   <input
-                    className={css.mail}
+                    className={css.inputprofile}
                     onChange={handleDOB}
-                    name='birthday'
-                            type="text"
                             disabled={isEdit}
-                            value={profile.birthday}
+                            name="birthday"
+                            type={isEdit ? "text" : "date"}
                             placeholder={getBirthday()}
                   />
                 </div>
@@ -309,11 +364,15 @@ const Profile = () => {
                   change?
                 </p>
                 <button
-                // onClick={handleSaveChange}
+                onClick={handleSaveChange}
                 className={css.btnsave}>
                   Save Change
                 </button>
                 <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsEdit(isEdit);
+                }}
                   className={css.btncancel}
                 >
                   Cancel
