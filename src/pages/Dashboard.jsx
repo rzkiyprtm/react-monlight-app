@@ -18,6 +18,7 @@ import progress from '../assets/images/Icon/progress.png'
 import goalicon from '../assets/images/Icon/goal.png'
 import Navbar from "../component/Navbar/Navbar";
 import NavbarAdmin from '../component/Navbar/AdminNavbar'
+import Footer from '../component/Footer/Footer'
 
 
 export default function Dashboard() {
@@ -138,6 +139,7 @@ export default function Dashboard() {
     </div>
       </div>
     </div>
+    <Footer/>
     </>
   )
 }
