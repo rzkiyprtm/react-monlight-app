@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../style/AddPromo.module.css";
 import Footer from "../component/Footer/Footer";
-import Button from "../component/Button/Button";
 import NavBelumLogin from '../component/Navbar/Homenavbar'
 import Header from "../component/Navbar/Navbar";
 
