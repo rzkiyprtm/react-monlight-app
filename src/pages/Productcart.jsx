@@ -7,23 +7,16 @@ import bank from '../assets/images/Icon/bank.webp'
 import cod from '../assets/images/Icon/cod.webp'
 import Navbar from '../component/Navbar/Navbar'
 import Footer from '../component/Footer/Footer'
-// import { useEffect } from 'react'
-// import { useNavigate } from 'react-router-dom'
+import NavBelumLogin from '../component/Navbar/Homenavbar'
 
 const Productcart = () => {
-  // const navigate = useNavigate();
-
-
-  // useEffect(() => {
-  //   if(!localStorage.getItem('token')) {
-  //     navigate('/')
-  //   }
-  // });
+  const isLogin = localStorage.getItem('token')
+ 
 
 
   return (
     <div>
-      <Navbar/>
+      {isLogin ? <Navbar/> : <NavBelumLogin/>}
     <div className={css.bordercontainer}>
       <div className={css.maincontent}>
       <div className={css.contentBox}>

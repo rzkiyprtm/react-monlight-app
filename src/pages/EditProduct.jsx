@@ -140,7 +140,7 @@ function EditProduct({ navigate }) {
           <div
             className={styles["add-promo"]}
             onClick={() => {
-              navigate("/add-promo");
+              navigate("/addpromo");
             }}
           >
             <Button text="Add Promo" variant="color-4" font="style-1" />

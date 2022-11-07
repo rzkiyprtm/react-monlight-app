@@ -8,6 +8,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    font-weight: 700;
 }
 
 a {
@@ -106,7 +107,7 @@ a {
     list-style: none;
     margin-top: 10rem;
     font-size: .8rem;
-    font-weight: 400;
+    font-weight: 900;
     line-height: 1.2rem;
     color: #4F5665;
 }
@@ -134,8 +135,8 @@ a {
 }
 
 .main-container .right-content .ul li {
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 900;
     color: #9F9F9F;
 }
 

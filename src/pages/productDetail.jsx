@@ -9,6 +9,7 @@ import Footer from '../component/Footer/Footer'
 import withNavigate from "../Helper/withNavigate";
 import { Link } from "react-router-dom";
 
+
 class productDetail extends Component {
   render() {
     return (

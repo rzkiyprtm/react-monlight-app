@@ -76,13 +76,17 @@ body {
   justify-content: center;
 }
 
-.navitem ul {
+.navitem .ul {
   display: flex;
   list-style: none;
-  gap: 5em;
-  margin-top: 25px;
+  gap: 2em;
+  margin: auto;
   cursor: pointer;
-  padding-left: 85px;
+  padding: 40px 0px 0px 80px;
+}
+
+.ul li {
+  padding-right: 30px;
 }
 
 .navitem {
@@ -154,6 +158,26 @@ body {
 
 /* main left start */
 
+.med-bar {
+  position: absolute;
+  height: 450px;
+  padding: 5rem;
+  background-color: black;
+  border-radius: 1rem;
+  right: -2rem;
+  top: 2rem;
+}
+
+.back-bar {
+  position: absolute;
+  height: 390px;
+  padding: 5rem;
+  background-color: #895537;
+  border-radius: 1rem;
+  right: -3.5rem;
+  top: 3.7rem;
+}
+
 .upleft {
   margin: 70px 70px 0px 70px;
   text-align: center;
@@ -193,6 +217,7 @@ body {
 .btnleft {
   text-align: center;
   margin: 30px 40px 0px 40px;
+  padding-top: 40px;
 }
 
 .buttonleft {
@@ -204,7 +229,7 @@ body {
 
 .btnleft button {
   height: 50px;
-  width: 220px;
+  width: 280px;
   border: none;
 }
 

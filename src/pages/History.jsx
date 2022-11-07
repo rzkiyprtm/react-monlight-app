@@ -1,22 +1,18 @@
 import React from 'react'
 import css from '../style/History.module.css'
 import Cardhst from '../component/Cardhistory/Cardhst'
-import Navbar from '../component/Navbar/Navbar'
 import Footer from '../component/Footer/Footer'
-// import { useEffect } from 'react'
-// import { useNavigate } from 'react-router-dom'
+import NavBelumLogin from '../component/Navbar/Homenavbar'
+import Navbar from '../component/Navbar/Navbar'
 
 const History = () => {
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if(!localStorage.getItem('token')) {
-  //     navigate('/')
-  //   }
-  // });
+  const isLogin = localStorage.getItem('token')
+
+
 
   return (
     <div>
-      <Navbar/>
+      {isLogin ? <Navbar/> : <NavBelumLogin/>}
     <div className={css.main}>
       <div className={css.mainBg}>
         <div className={css.title}>

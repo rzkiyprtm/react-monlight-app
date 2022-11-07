@@ -9,6 +9,8 @@ import Forgot from './pages/Forgotpwd';
 import Payment from './pages/Productcart';
 import History from './pages/History';
 import Detail from './pages/productDetail';
+import EditProduct from "./pages/EditProduct";
+import AddPromo from './pages/AddPromo'
 
 import PrivateElement from '../src/component/PrivateElement'
 
@@ -23,6 +25,8 @@ const router = createBrowserRouter ([
   { path: '/payment', element: <Payment/> },
   { path: '/history', element: <History/> },
   { path: '/detail', element: <Detail/> },
+  { path: '/editproduct', element: <EditProduct/> },
+  { path: '/addpromo', element: <AddPromo/> },
 ]);
 
 export default router

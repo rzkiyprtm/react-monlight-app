@@ -7,6 +7,7 @@ import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import CardPromo from '../component/CardPromo/CardPromo'
 import axios from "axios";
 
 class Product extends Component {
@@ -57,7 +58,7 @@ class Product extends Component {
                 </p>
               </div>
               <div className={css.middleleft}>
-                <div className={css.insideleft}>
+                {/* <div className={css.insideleft}>
                   <img
                     src={imgSpagety}
                     alt=''
@@ -80,7 +81,14 @@ class Product extends Component {
                 <h1>FNPR15RG</h1>
                 <p className={css.txt7}>
                   Valid untill November 10th 2022
-                </p>
+                </p> */}
+                <div className={css["back-bar"]}></div>
+              <div className={css["med-bar"]}></div>
+                <CardPromo
+                title="Spaghetty"
+                discount="15%"
+                code="PUTRAPARKER15"
+              />
               </div>
               <div className={css.btnleft}>
                 <button
@@ -113,7 +121,7 @@ class Product extends Component {
             <div className='col-8 bg-clear border-start border-top'>
               <div className={css.insidenav}>
                 <div className={css.navitem}>
-                  <ul>
+                  <ul className={css.ul}>
                     <li
                       style={{
                         color:

@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { editProfile, getProfile } from "../Helper/Fetch";
 import editIcon from '../assets/images/Icon/edit.png'
 import avatar from '../assets/images/Icon/avatar.jpg'
+import NavBelumLogin from '../component/Navbar/Homenavbar'
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -63,9 +64,6 @@ const Profile = () => {
     Object.keys(body).forEach((key, idx) => {
       formData.append(key, body[key]);
     });
-    //   for (var pair of formData.entries()) {
-    //     console.log(pair[0]+ ', ' + pair[1]);
-    // }
     try {
       await editProfile(formData);
       setBody({});
@@ -96,11 +94,13 @@ const Profile = () => {
     return dd + "/" + mm + "/" + yyyy;
   };
 
+  const isLogin = localStorage.getItem('token')
+
   console.log(profile);
 
   return (
     <div>
-      <Navbar />
+     {isLogin ? <Navbar/> : <NavBelumLogin/>}
       <main className={css.maincontent}>
         <div className={css.maincontentgrid}>
           <div className={css.backtopcontent}>

@@ -16,10 +16,17 @@ import jun1 from '../assets/images/Icon/jun1.png'
 import parker from '../assets/images/parker.jpeg'
 import progress from '../assets/images/Icon/progress.png'
 import goalicon from '../assets/images/Icon/goal.png'
+import Navbar from "../component/Navbar/Navbar";
+import NavBelumLogin from '../component/Navbar/Homenavbar'
 
 
 export default function Dashboard() {
+
+  const isLogin = localStorage.getItem('token')
+
   return (
+    <>
+    {isLogin ? <Navbar/> : <NavBelumLogin/>}
     <div className={css.bordercontainer}>
       <div className={css.centerin}>
       <div className={css.topContent}>
@@ -131,5 +138,6 @@ export default function Dashboard() {
     </div>
       </div>
     </div>
+    </>
   )
 }

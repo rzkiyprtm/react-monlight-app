@@ -1,13 +1,11 @@
 import React from "react";
-import styles from "../style/AddPromo.module.css";
+import styles from "../style/AddProduct.module.css";
 import Footer from "../component/Footer/Footer";
-import Button from "../component/Button/Button";
 import NavBelumLogin from '../component/Navbar/Homenavbar'
 import Header from "../component/Navbar/Navbar";
-
 import Camera from "../assets/images/Icon/camera-promo.png";
 
-function AddPromo() {
+function AddProduct() {
   const isLogin = localStorage.getItem('token')
 
   return (
@@ -20,7 +18,7 @@ function AddPromo() {
               <div className={styles.title}>
                 <p>
                   Favorite & Promo
-                  <span> &gt; Add new promo</span>
+                  <span> &gt; Add new Product</span>
                 </p>
               </div>
             </div>
@@ -31,7 +29,7 @@ function AddPromo() {
             <div className="col-lg-4 text-center">
               <section className={styles["left-content"]}>
                 <div className={styles["photo-detail"]}>
-                  <div className={styles["photo-promo"]}>
+                  <div className={styles["photo-product"]}>
                     <img src={Camera} alt="default" />
                   </div>
                   <div className={styles["take-picture"]}>
@@ -42,7 +40,7 @@ function AddPromo() {
                   </div>
                 </div>
                 <form action="">
-                  <div className={`${styles["promo-details"]} `}>
+                  <div className={`${styles["product-details"]} `}>
                     <div
                       className={`${styles["enter-discount"]} ${styles["input-box"]}`}
                     >
@@ -90,14 +88,14 @@ function AddPromo() {
             <div className="col-lg-7 offset-lg-1">
               <section className={styles["right-content"]}>
                 <form action="">
-                  <div className={styles["promo-details"]}>
+                  <div className={styles["product-details"]}>
                     <div className={styles["input-box"]}>
                       <label className={styles["input-title"]}>Name :</label>
                       <input
                         type="text"
                         name="stock"
                         required
-                        placeholder="Type promo name min. 50 characters"
+                        placeholder="Type product name min. 50 characters"
                       />
                     </div>
                     <div className={styles["input-box"]}>
@@ -117,13 +115,13 @@ function AddPromo() {
                       <input
                         type="text"
                         name="code"
-                        placeholder="Describe your promo min. 150 characters"
+                        placeholder="Describe your product min. 150 characters"
                       />
                     </div>
                   </div>
                 </form>
                 <div className={styles["save-change"]}>
-                  <button className={styles.btn3}>Save Promo</button>
+                  <button className={styles.btn3}>Save product</button>
                 </div>
                 <div className={styles.cancel}>
                   <button className={styles.btn4}>Cancel</button>
@@ -138,4 +136,4 @@ function AddPromo() {
   );
 }
 
-export default AddPromo;
+export default AddProduct;
