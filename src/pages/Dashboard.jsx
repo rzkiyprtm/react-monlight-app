@@ -17,16 +17,16 @@ import parker from '../assets/images/parker.jpeg'
 import progress from '../assets/images/Icon/progress.png'
 import goalicon from '../assets/images/Icon/goal.png'
 import Navbar from "../component/Navbar/Navbar";
-import NavBelumLogin from '../component/Navbar/Homenavbar'
+import NavbarAdmin from '../component/Navbar/AdminNavbar'
 
 
 export default function Dashboard() {
 
-  const isLogin = localStorage.getItem('token')
+  const isAdmin = localStorage.getItem('role') === 'Admin'
 
   return (
     <>
-    {isLogin ? <Navbar/> : <NavBelumLogin/>}
+    {isAdmin ? <NavbarAdmin/> : <Navbar/>}
     <div className={css.bordercontainer}>
       <div className={css.centerin}>
       <div className={css.topContent}>

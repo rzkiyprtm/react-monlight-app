@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { editProfile, getProfile } from "../Helper/Fetch";
 import editIcon from '../assets/images/Icon/edit.png'
 import avatar from '../assets/images/Icon/avatar.jpg'
-import NavBelumLogin from '../component/Navbar/Homenavbar'
+import NavbarAdmin from '../component/Navbar/AdminNavbar'
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -22,41 +22,43 @@ const Profile = () => {
   const [displayName, setDisplayName] = useState("");
   const [FirstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [Address, setAddress] = useState("");
+  const [Phone, setPhone] = useState("");
 
 
   const handleAddress = (e) => {
     setBody({ ...body, address: e.target.value });
+    setAddress(e.target.value);
   };
+
   const handleDisplayName = (e) => {
-    // setBody({ ...body, display_name: e.target.value });
+    setBody({ ...body, display_name: e.target.value });
     setDisplayName(e.target.value);
   };
+
   const handleFirstName = (e) => {
-    setFirstName(e.target.value);
-  };
+  setBody({ ...body, first_name: e.target.value });
+  setFirstName(e.target.value);};
+
   const handleLastName = (e) => {
-    // setBody({ ...body, last_name: e.target.value });
-    setLastName(e.target.value)
-  };
-  const handleDOB = (e) => {
-    setBody({ ...body, birthday: e.target.value });
-  };
-  const handleGender = (e) => {
-    setBody({ ...body, gender: e.target.value });
-  };
-  const handleImage = (e) => {
-    console.log(e);
-    setBody({ ...body, images: e.target.files[0] });
+  setBody({ ...body, last_name: e.target.value });
+  setLastName(e.target.value)};
+
+  const handleDOB = (e) => {setBody({ ...body, birthday: e.target.value })};
+  const handleGender = (e) => {setBody({ ...body, gender: e.target.value })};
+  const handleImage = (e) => {setBody({ ...body, images: e.target.files[0] });
     setImgPrev(URL.createObjectURL(e.target.files[0]));
   };
   const handlePhone = (e) => {
-    setBody({ ...body, phone: e.target.value });
-  };
+  setBody({ ...body, phone: e.target.value });
+  setPhone(e.target.value)};
 
   const handleCancel = () => {
     setDisplayName("");
     setFirstName("");
     setLastName("");
+    setAddress("");
+    setPhone("");
   }
 
   const getDataProfile = async () => {
@@ -107,13 +109,13 @@ const Profile = () => {
     return dd + "/" + mm + "/" + yyyy;
   };
 
-  const isLogin = localStorage.getItem('token')
+  const isAdmin = localStorage.getItem('role') === 'Admin'
 
   console.log(profile);
 
   return (
     <div>
-     {isLogin ? <Navbar/> : <NavBelumLogin/>}
+     {isAdmin ? <NavbarAdmin/> : <Navbar/>}
       <main className={css.maincontent}>
         <div className={css.maincontentgrid}>
           <div className={css.backtopcontent}>
@@ -156,7 +158,7 @@ const Profile = () => {
                         setIsEdit(!isEdit);
                       }}
                   className={css.editIcon} src={editIcon} alt="profile" />
-                  <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                  {/* <i class="fa fa-pencil-square" aria-hidden="true"></i> */}
                     </div>
                     <div
                       className={
@@ -201,11 +203,11 @@ const Profile = () => {
                             css.inputprofile
                           }
                           type='text'
-                          placeholder='Input address here'
+                          value={Address}
                           id="deliveryaddress"
-                            onChange={handleAddress}
-                            disabled={isEdit}
-                            value={profile.address}
+                          onChange={handleAddress}
+                          disabled={isEdit}
+                          placeholder={profile.address}
                         />
                         <hr
                           className={css.hr}
@@ -229,11 +231,11 @@ const Profile = () => {
                       </label>
                       <input
                         className={css.inputprofile}
-                        placeholder='Input phone number here'
-                          id="deliveryaddress"
+                        value={Phone}
+                          id="phonenumber"
                             onChange={handlePhone}
                             disabled={isEdit}
-                            value={profile.phone}
+                            placeholder={profile.phone}
                       />
                       <hr className={css.hr} />
                     </div>

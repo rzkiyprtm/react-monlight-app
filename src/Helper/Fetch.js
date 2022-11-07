@@ -61,3 +61,26 @@ export const getProductById = (id) => {
     },
   });
 };
+
+export const getPromoProduct = (id) => {
+  const url = `http://localhost:8181/api/monlight-project/products/${id}`;
+  return axios.get(url);
+};
+
+export const createProduct = (data, token) => {
+  const url = `http://localhost:8181/api/monlight-project/products`;
+  return axios.post(url, data, {
+    headers: {
+      "access-token": token,
+    },
+  });
+};
+
+export const editProduct = (data, token, id) => {
+  const url = `http://localhost:8181/api/monlight-project/products/${id}`;
+  return axios.patch(url, data, {
+    headers: {
+      "access-token": token,
+    },
+  });
+};

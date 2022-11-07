@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import css from "../style/Product.module.css";
 import Card from "../component/Cardproduct/Cardproduct";
 import imgSpagety from "../assets/images/product/29.png";
-import Navbar from "../component/Navbar/Navbar";
+// import Navbar from "../component/Navbar/Navbar";
 import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -44,7 +44,7 @@ class Product extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className={css.maincontainer}>
           <div className='container-fluid d-flex p-0'>
             <div className='col-4 bg-clear border-top'>
@@ -310,9 +310,9 @@ class Product extends Component {
                               console.log(err),
                             );
                         }}
-                        href='#/action-1'
+                        href='#minprice'
                       >
-                        0-100
+                        Min-Max
                       </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() => {
@@ -342,9 +342,9 @@ class Product extends Component {
                               console.log(err),
                             );
                         }}
-                        href='#/action-2'
+                        href='#maxprice'
                       >
-                        100-0
+                        Max-Min
                       </Dropdown.Item>
                     </DropdownButton>
                   </ul>

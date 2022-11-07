@@ -1,11 +1,8 @@
 import React from "react";
-import styles from "../style/EditProduct.module.css";
-import Header from "../component/Navbar/Navbar";
-import Footer from "../component/Footer/Footer";
+import styles from "../style/ProductAdmin.module.css";
 import Button from "../component/Button/Button";
 import Card from "../component/Cardproduct/Cardproduct";
 import CardPromo from "../component/CardPromo/CardPromo";
-
 import { useState, useEffect } from "react";
 import withNavigate from "../Helper/withNavigate";
 import { getProduct } from "../Helper/Fetch";
@@ -18,28 +15,6 @@ import { getProduct } from "../Helper/Fetch";
 // };
 
 function EditProduct({ navigate }) {
-  // const getQuery = useQuery();
-  // const [product, setProduct] = useState([]);
-  // const [query, setQuery] = useState({
-  //   search: getQuery.get("search") ? getQuery.get("search") : "",
-  //   categories: getQuery.get("categories") ? getQuery.get("categories") : "",
-  //   sort: getQuery.get("sort") ? getQuery.get("sort") : "",
-  // });
-
-  // const fetchData = async (query) => {
-  //   try {
-  //     const products = await getData(`/products`, query);
-  //     setProduct(products.data.result.result.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData(query);
-  //   console.log(query);
-  //   console.log(product);
-  // }, [query]);
 
   const [allProduct, setAllProduct] = useState([]);
   const [param, setParam] = useState({
@@ -94,8 +69,6 @@ function EditProduct({ navigate }) {
     }
   };
   const handleCoffee = async () => {
-    //   setParam({...param,category:'Non Coffe'})
-    // getProduct()
     try {
       const body = { ...param, categories: "Coffee", sort: "" };
       setParam(body);
@@ -106,13 +79,15 @@ function EditProduct({ navigate }) {
     }
   };
 
+  // const isAdmin = localStorage.getItem('role') === 'Admin'
+
   useEffect(() => {
     getAllProduct();
   }, []);
 
   return (
     <>
-      <Header />
+      {/* {isAdmin ? <AdminNavbar/> : <UserNavbar/>} */}
       <section className={styles["main-container"]}>
         <aside className={styles["left-content"]}>
           <div className={styles.promo}>
@@ -170,12 +145,16 @@ function EditProduct({ navigate }) {
               );
             })}
           </div>
-          <div className={styles["add-product"]}>
-            <Button text="Add Product" />
+          <div 
+          onClick={() => {
+            navigate("/addproduct")}}
+          className={styles["add-product"]}>
+            <Button 
+            text="Add Product" />
           </div>
         </main>
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

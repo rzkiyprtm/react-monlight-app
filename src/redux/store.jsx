@@ -3,17 +3,13 @@ import {
   applyMiddleware,
   combineReducers,
 } from "redux";
-import logger from "redux-logger";
 import rpm from "redux-promise-middleware";
+// import logger from "redux-logger";
+import productsReducer from "./reducers/product";
 
-import login from './reducers/Login'
-import counterReducer from "./reducers/Login";
-import bookReducer from "./reducers/books";
-
-const middleware = applyMiddleware(rpm, logger);
+const middleware = applyMiddleware(rpm);
 const reducers = combineReducers({
-  counter: counterReducer,
-  login: login
+  products: productsReducer,
 });
 const store = createStore(reducers, middleware);
 

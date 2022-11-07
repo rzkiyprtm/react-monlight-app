@@ -7,16 +7,14 @@ import bank from '../assets/images/Icon/bank.webp'
 import cod from '../assets/images/Icon/cod.webp'
 import Navbar from '../component/Navbar/Navbar'
 import Footer from '../component/Footer/Footer'
-import NavBelumLogin from '../component/Navbar/Homenavbar'
+import NavbarAdmin from '../component/Navbar/AdminNavbar'
 
 const Productcart = () => {
-  const isLogin = localStorage.getItem('token')
- 
-
+  const isAdmin = localStorage.getItem('role') === 'Admin'
 
   return (
     <div>
-      {isLogin ? <Navbar/> : <NavBelumLogin/>}
+      {isAdmin ? <NavbarAdmin/> : <Navbar/> }
     <div className={css.bordercontainer}>
       <div className={css.maincontent}>
       <div className={css.contentBox}>

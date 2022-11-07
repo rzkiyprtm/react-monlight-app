@@ -15,11 +15,12 @@ import NavBelumLogin from '../component/Navbar/Homenavbar'
 import Footer from '../component/Footer/Footer'
 // import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import NavbarAdmin from '../component/Navbar/AdminNavbar'
 
 const Homepage = () => {
   const navigate = useNavigate();
   const isLogin = localStorage.getItem('token')
-
+  const isAdmin = localStorage.getItem('role') === 'Admin'
   return (
     <div>
     {isLogin ? <Navbar/> : <NavBelumLogin/>}

@@ -69,11 +69,13 @@ a {
 }
 
 .putra{
+  /* background-image: url(/images/parker.jpeg); */
   background-size: 34px;
   height: 34px;
   width: 34px;
   margin-left: auto;
   margin-right: auto;
+  /* display: block; */
   border-radius: 50%;
   }
 
@@ -161,7 +163,7 @@ a {
   .rightContent {
     position: relative;
     top: -70px;
-    left: 40px;
+    left: 260px;
   }
 
   .midContent {
@@ -174,4 +176,4 @@ a {
     right: 278px;
     top: 30px;
   }
-};
+}
