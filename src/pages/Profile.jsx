@@ -19,17 +19,24 @@ const Profile = () => {
   const [body, setBody] = useState({});
   console.log(body);
 
+  const [displayName, setDisplayName] = useState("");
+  const [FirstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+
   const handleAddress = (e) => {
     setBody({ ...body, address: e.target.value });
   };
   const handleDisplayName = (e) => {
-    setBody({ ...body, display_name: e.target.value });
+    // setBody({ ...body, display_name: e.target.value });
+    setDisplayName(e.target.value);
   };
   const handleFirstName = (e) => {
-    setBody({ ...body, first_name: e.target.value });
+    setFirstName(e.target.value);
   };
   const handleLastName = (e) => {
-    setBody({ ...body, last_name: e.target.value });
+    // setBody({ ...body, last_name: e.target.value });
+    setLastName(e.target.value)
   };
   const handleDOB = (e) => {
     setBody({ ...body, birthday: e.target.value });
@@ -45,6 +52,12 @@ const Profile = () => {
   const handlePhone = (e) => {
     setBody({ ...body, phone: e.target.value });
   };
+
+  const handleCancel = () => {
+    setDisplayName("");
+    setFirstName("");
+    setLastName("");
+  }
 
   const getDataProfile = async () => {
     try {
@@ -143,6 +156,7 @@ const Profile = () => {
                         setIsEdit(!isEdit);
                       }}
                   className={css.editIcon} src={editIcon} alt="profile" />
+                  <i class="fa fa-pencil-square" aria-hidden="true"></i>
                     </div>
                     <div
                       className={
@@ -255,10 +269,11 @@ const Profile = () => {
                   <input
                     className={css.mail}
                     type="text"
-                            id="displayname"
-                            onChange={handleDisplayName}
-                            disabled={isEdit}
-                            placeholder={profile.display_name}
+                    value={displayName}
+                    id="displayname"
+                    onChange={handleDisplayName}
+                    disabled={isEdit}
+                    placeholder={profile.display_name}
                   />
                   <hr className={css.hr} />
                 </div>
@@ -272,10 +287,11 @@ const Profile = () => {
                   <input
                     className={css.mail}
                     type="text"
-                            id="firstname"
-                            onChange={handleFirstName}
-                            disabled={isEdit}
-                            placeholder={profile.first_name}
+                    value={FirstName}
+                    id="firstname"
+                    onChange={handleFirstName}
+                    disabled={isEdit}
+                    placeholder={profile.first_name}
                   />
                   <hr className={css.hr} />
                 </div>
@@ -289,6 +305,7 @@ const Profile = () => {
                   <input
                     className={css.mail}
                     type="text"
+                    value={lastName}
                             id="lastname"
                             onChange={handleLastName}
                             disabled={isEdit}
@@ -369,10 +386,7 @@ const Profile = () => {
                   Save Change
                 </button>
                 <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsEdit(isEdit);
-                }}
+                  onClick={handleCancel}
                   className={css.btncancel}
                 >
                   Cancel
