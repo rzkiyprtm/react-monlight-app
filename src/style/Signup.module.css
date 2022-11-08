@@ -199,7 +199,7 @@ form {
 }
 
 .signlabel1 {
-   position: relative;
+   position: inherit;
    font-size: large;
    display: block;
    height: 60px;
@@ -211,10 +211,10 @@ form {
 }
 
 .password {
-  position: absolute;
-  padding-left: 240px;
-  padding-top: 0px;
-  /* top: -10px; */
+  position: relative;
+  top: -42px;
+  padding-bottom: 30px;
+  right: -330px;
 }
 
 

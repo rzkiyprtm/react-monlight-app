@@ -3,7 +3,7 @@ import axios from 'axios'
 const axiosRequest = (method, url, data) => {
   return axios({
     method,
-    url: `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/}${url}`,
+    url: `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/${url}`,
     data,
   });
 };
@@ -12,7 +12,6 @@ export const getProfile = () => {
   const login = (localStorage.getItem("token"));
   const token = login;
   const URL =
-    // process.env.REACT_APP_BACKEND_HOST +
     `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/users`;
   return axios.get(URL, {
     headers: {
@@ -38,6 +37,10 @@ export const editProfile = (body) => {
 
 export const login = (data) => {
   return axiosRequest("POST", "auths/login", data);
+};
+
+export const getData = (url, params, data) => {
+  return axiosRequest("GET", url, data, params);
 };
 
 export const getProduct = (param) => {

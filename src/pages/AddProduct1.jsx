@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../style/AddProduct1.module.css";
+import css from "../style/AddProduct1.module.css";
 import { connect } from "react-redux";
 import withNavigate from "../Helper/withNavigate";
 import productAction from "../redux/actions/product";
@@ -102,8 +102,8 @@ class AddProduct extends React.Component {
     return (
       <>
         {this.props.product.isLoading && (
-          <div className={styles["loader-container"]}>
-            <div className={styles.spinner}></div>
+          <div className={css["loader-container"]}>
+            <div className={css.spinner}></div>
           </div>
         )}
         <main>
@@ -111,7 +111,7 @@ class AddProduct extends React.Component {
             <div className="row">
               <div className="col-12">
                 <div
-                  className={styles.title}
+                  className={css.title}
                   onClick={() => {
                     this.props.navigate("/product");
                   }}
@@ -127,30 +127,35 @@ class AddProduct extends React.Component {
           <div className="container">
             <div className="row ">
               <div className="col-lg-4 text-center">
-                <section className={styles["left-content"]}>
-                  <div className={styles["photo-detail"]}>
+                <section className={css["left-content"]}>
+                  <div className={css["photo-detail"]}>
+                    <div className={css.imagecontainer}>
+                    {this.state.newPicture ? 
                     <img
                       src={
-                        this.state.newPicture
-                          ? URL.createObjectURL(this.state.newPicture)
-                          : Camera
+                        URL.createObjectURL(this.state.newPicture)
                       }
                       alt="img"
-                      className={styles["photo-promo"]}
-                    >
-                      {/* <img src={this.state.newPicture? URL.createObjectURL(this.state.newPicture) : Camera} alt="default" /> */}
-                    </img>
+                      className={css["photo-promo"]}
+                      /> : 
+                      <img
+                   src={Camera}
+                   alt="img"
+                   className={css["photo-gummy"]}
+                 />
+                  }
+                    </div>
                     {this.state.errPicture && (
-                      <p className={styles.err}>{this.state.errPicture}</p>
+                      <p className={css.err}>{this.state.errPicture}</p>
                     )}
-                    <div className={styles["take-picture"]}>
-                      <p className={`${styles.btn} ${styles["take-img"]}`}>
+                    <div className={css["take-picture"]}>
+                      <p className={`${css.btn} ${css["take-img"]}`}>
                         Take a picture
                       </p>
                     </div>
-                    <div className={styles["from-gallery"]}>
+                    <div className={css["from-gallery"]}>
                       <label
-                        className={`${styles.btn} ${styles["choose-img"]}`}
+                        className={`${css.btn} ${css["choose-img"]}`}
                       >
                         <input
                           type="file"
@@ -164,15 +169,15 @@ class AddProduct extends React.Component {
                     </div>
                   </div>
                   <form action="">
-                    <div className={`${styles["promo-details"]} `}>
+                    <div className={`${css["promo-details"]} `}>
                       <div
-                        className={`${styles["coupon-code"]} ${styles["input-box"]}`}
+                        className={`${css["coupon-code"]} ${css["input-box"]}`}
                       >
-                        <label className={styles["input-title"]}>
+                        <label className={css["input-title"]}>
                           Select Category :
                         </label>
                         <div
-                          className={styles["box-dropdown"]}
+                          className={css["box-dropdown"]}
                           onClick={() => {
                             this.setState((prevState) => ({
                               selectCategory: prevState.selectCategory
@@ -186,8 +191,8 @@ class AddProduct extends React.Component {
                         <div
                           className={
                             this.state.selectCategory
-                              ? styles["list-dropdown"]
-                              : styles.none
+                              ? css["list-dropdown"]
+                              : css.none
                           }
                         >
                           <p
@@ -237,18 +242,18 @@ class AddProduct extends React.Component {
                         </div>
                       </div>
                       {this.state.errCategory && (
-                        <p className={styles.err}>{this.state.errCategory}</p>
+                        <p className={css.err}>{this.state.errCategory}</p>
                       )}
                     </div>
                   </form>
                 </section>
               </div>
               <div className="col-lg-7 offset-lg-1">
-                <section className={styles["right-content"]}>
+                <section className={css["right-content"]}>
                   <form action="">
-                    <div className={styles["promo-details"]}>
-                      <div className={styles["input-box"]}>
-                        <label className={styles["input-title"]}>Name :</label>
+                    <div className={css["promo-details"]}>
+                      <div className={css["input-box"]}>
+                        <label className={css["input-title"]}>Name :</label>
                         <input
                           type="text"
                           name="stock"
@@ -260,10 +265,10 @@ class AddProduct extends React.Component {
                         />
                       </div>
                       {this.state.errProduct && (
-                        <p className={styles.err}>{this.state.errProduct}</p>
+                        <p className={css.err}>{this.state.errProduct}</p>
                       )}
-                      <div className={styles["input-box"]}>
-                        <label className={styles["input-title"]}>
+                      <div className={css["input-box"]}>
+                        <label className={css["input-title"]}>
                           Normal Price :
                         </label>
                         <input
@@ -276,10 +281,10 @@ class AddProduct extends React.Component {
                         />
                       </div>
                       {this.state.errPrice && (
-                        <p className={styles.err}>{this.state.errPrice}</p>
+                        <p className={css.err}>{this.state.errPrice}</p>
                       )}
-                      <div className={styles["input-box"]}>
-                        <label className={styles["input-title"]}>
+                      <div className={css["input-box"]}>
+                        <label className={css["input-title"]}>
                           Description :
                         </label>
                         <input
@@ -292,49 +297,49 @@ class AddProduct extends React.Component {
                         />
                       </div>
                       {this.state.errDescription && (
-                        <p className={styles.err}>
+                        <p className={css.err}>
                           {this.state.errDescription}
                         </p>
                       )}
                       {/* <div>
-                                <div className={styles["input-box"]}>
-                                    <p className={styles["input-title"]}>Input product size :</p>
-                                    <p className={styles["select-title"]}>Click size you want to use for this product</p>
-                                    <div className={styles["box-btn-methods"]}>
-                                        <div className={`${styles.sizes} ${styles.nonSelect}`}><p>R</p></div>
-                                        <div className={`${styles.sizes} ${styles.nonSelect}`}><p>L</p></div>
-                                        <div className={`${styles.sizes} ${styles.nonSelect}`}><p>XL</p></div>
-                                        <div className={styles.gram}><p>250 gr</p></div>
-                                        <div className={styles.gram}><p>300 gr</p></div>
-                                        <div className={styles.gram}><p>500 gr</p></div>
+                                <div className={css["input-box"]}>
+                                    <p className={css["input-title"]}>Input product size :</p>
+                                    <p className={css["select-title"]}>Click size you want to use for this product</p>
+                                    <div className={css["box-btn-methods"]}>
+                                        <div className={`${css.sizes} ${css.nonSelect}`}><p>R</p></div>
+                                        <div className={`${css.sizes} ${css.nonSelect}`}><p>L</p></div>
+                                        <div className={`${css.sizes} ${css.nonSelect}`}><p>XL</p></div>
+                                        <div className={css.gram}><p>250 gr</p></div>
+                                        <div className={css.gram}><p>300 gr</p></div>
+                                        <div className={css.gram}><p>500 gr</p></div>
             
                                     </div>
                                 </div>
-                                <div className={styles["input-box"]}>
-                                    <p className={styles["input-title"]}>Input delivery methods :</p>
-                                    <p className={styles["select-title"]}>Click methods you want to use for this product</p>
-                                    <div className={styles["box-btn-methods"]}>
-                                        <p className={`${styles["btn-methods"]}  ${styles.select}`}>Home Delivery</p>
-                                        <p className={`${styles["btn-methods"]}  ${styles.select}`}>Dine in</p>
-                                        <p className={`${styles["btn-methods"]}  ${styles.select}`}>Take away</p>
+                                <div className={css["input-box"]}>
+                                    <p className={css["input-title"]}>Input delivery methods :</p>
+                                    <p className={css["select-title"]}>Click methods you want to use for this product</p>
+                                    <div className={css["box-btn-methods"]}>
+                                        <p className={`${css["btn-methods"]}  ${css.select}`}>Home Delivery</p>
+                                        <p className={`${css["btn-methods"]}  ${css.select}`}>Dine in</p>
+                                        <p className={`${css["btn-methods"]}  ${css.select}`}>Take away</p>
                                     </div>
                                 </div>
                             </div> */}
                     </div>
                   </form>
                   <div
-                    className={styles["save-change"]}
+                    className={css["save-change"]}
                     onClick={() => {
                       this.sendCreate();
                     }}
                   >
-                    <p className={`${styles.btn} ${styles["save-btn"]}`}>
+                    <p className={`${css.btn} ${css["save-btn"]}`}>
                       Save Product
                     </p>
                   </div>
-                  <div className={styles.cancel}>
+                  <div className={css.cancel}>
                     <p
-                      className={`${styles.btn} ${styles["cancel-btn"]}`}
+                      className={`${css.btn} ${css["cancel-btn"]}`}
                       onClick={() => {
                         this.setState({
                           selectCategory: false,

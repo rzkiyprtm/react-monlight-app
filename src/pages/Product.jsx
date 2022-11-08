@@ -271,7 +271,8 @@ class Product extends Component {
                           .catch((err) =>
                             console.log(err),
                           );
-                      }}
+                        }}
+                        href='#noncoffee'
                     >
                       Foods
                     </li>

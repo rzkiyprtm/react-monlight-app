@@ -18,7 +18,7 @@ const Navbar = () => {
   const [search, setSearch] = useState(() => "");
 
   const setValue = (event) => {
-    console.log(event);
+
     setSearch(event.target.value);
   };
   const getSearch = () => {
@@ -28,9 +28,9 @@ const Navbar = () => {
   const getDataProfile = async () => {
     try {
       const result = await getProfile();
-      console.log(result.data.result);
+
       setProfile(result.data.result[0]);
-      console.log(result);
+
     } catch (error) {
       if (
         error.response.data.statusCode === 403

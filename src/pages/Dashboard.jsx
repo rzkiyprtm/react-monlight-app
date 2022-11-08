@@ -23,7 +23,7 @@ import Footer from '../component/Footer/Footer'
 
 export default function Dashboard() {
 
-  const isAdmin = localStorage.getItem('role') === 'Admin'
+  const isAdmin = localStorage.getItem('role')
 
   return (
     <>

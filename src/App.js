@@ -1,9 +1,9 @@
 import './App.css';
-import AdminNavbar from "./component/Navbar/AdminNavbar"
-import UserNavbar from './component/Navbar/Navbar'
+// import AdminNavbar from "./component/Navbar/AdminNavbar"
+// import UserNavbar from './component/Navbar/Navbar'
 import Footer from "./component/Footer/Footer"
 // import Dashboard from "./pages/Dashboard"
-import AddPromo from './pages/AddPromo'
+import AddPromo from './pages/ProductDetailNew'
 // import ProductUser from './pages/Product'
 
 
@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
     <div>
-     {isAdminLogin ?  <AdminNavbar /> : <UserNavbar/> }
+     {/* {isAdminLogin ?  <AdminNavbar /> : <UserNavbar/> } */}
     </div>
     <div>
     <AddPromo/>

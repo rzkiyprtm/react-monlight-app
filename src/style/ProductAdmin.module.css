@@ -196,6 +196,33 @@ a {
     z-index: 11;
 }
 
+.right-content .paginate-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.right-content .paginate-container .title-paginate p {
+    margin: 0;
+}
+
+.right-content .paginate-container .btn-paginate {
+    display: flex;
+    gap: 1rem;
+}
+
+.right-content .paginate-container .btn-paginate .btn-prev, .right-content .paginate-container .btn-paginate .btn-next {
+    background-color: #FFCB65;
+    border: none;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #6A4029;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
 /* hamburger animation */
 
 .menu-toggle input:checked ~ span {

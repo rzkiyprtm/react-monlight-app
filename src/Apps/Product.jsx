@@ -14,7 +14,7 @@ function ProductNew() {
       </div>
 
       <div>
-      {isAdmin ? <ProductAdmin/> : <Product/> }
+      {/* {isAdmin ? <ProductAdmin/> : <Product/> } */}
       </div>
 
       <div>

@@ -67,7 +67,7 @@ class Signup extends Component {
           .then((res) => {
             this.successToastMessage()
             setTimeout(() => {
-              this.props.navigate(`/`)
+              this.props.navigate(`/login`)
             }, 3000)
             // successToastMessage();
             console.log(res.data.msg);
@@ -93,7 +93,7 @@ class Signup extends Component {
                         <h2 className={css.title}>Monlight</h2>
                     </div>
                     <div className={css.rightheadcontent}>
-                        <Link to={'/'}>
+                        <Link to={'/login'}>
                         <p>Login</p>
                         </Link>
                     </div>

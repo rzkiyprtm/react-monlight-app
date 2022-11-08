@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import css from '../../component/Cardproduct/Cardprd.module.css'
+import withNavigate from '../../Helper/withNavigate';
 
 class Cardproduct extends Component {
   render() {
-    const {title, price, img} = this.props
-    console.log(img);
+    const {title, price, img, id} = this.props
     return (
-      <div className={css.box1}>
+      <div 
+      onClick={ () => {
+        this.props.navigate(`/detail/${id}`)
+      }}
+      className={css.box1}>
               <div className={css.overimg}>
                 <img src={`${process.env.REACT_APP_BACKEND_HOST}/${img}`} alt=""/>
               </div>
@@ -19,4 +23,4 @@ class Cardproduct extends Component {
   }
 }
 
-export default Cardproduct
+export default withNavigate(Cardproduct)

@@ -21,6 +21,7 @@ const initialState = {
   err: null,
   errCreate: null,
   errEdit: null,
+  products:[],
 };
 
 const productsReducer = (prevState = initialState, action) => {
@@ -51,7 +52,7 @@ const productsReducer = (prevState = initialState, action) => {
       };
     case actionStrings.getProducts + actionStrings.rejected:
       const errorResponse = action.payload;
-      const errorMessage = errorResponse.response.data.message;
+      const errorMessage = errorResponse;
       return {
         ...prevState,
         isError: true,
@@ -89,19 +90,11 @@ const productsReducer = (prevState = initialState, action) => {
       };
     case actionStrings.getProducts + actionStrings.fulfilled:
       const response = action.payload;
-      const result = response.data.data.data;
-      let toNext = styles.hide;
-      let toPrev = styles.hide;
-      if (response.data.data.next) toNext = styles.next;
-      if (response.data.data.prev) toPrev = styles.prev;
+      const result = response.data.result.result.data;
       return {
         ...prevState,
         isLoading: false,
-        data: result,
-        next: response.data.data.next,
-        prev: response.data.data.prev,
-        tglnext: toNext,
-        tglprev: toPrev,
+        products: result,
       };
     case actionStrings.getProductsPromo + actionStrings.fulfilled:
       const responsePromo = action.payload;

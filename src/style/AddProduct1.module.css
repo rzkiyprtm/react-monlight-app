@@ -36,7 +36,24 @@ body {
 
 .photo-promo {
   background-color: #dddddd;
-  padding: 5rem 5rem;
+  /* padding: 5rem 5rem; */
+  border-radius: 50%;
+  width: 390px;
+}
+
+.photo-gummy {
+  /* border-radius: 50%; */
+  width: 10em;
+  height: 10em;
+  margin: auto;
+}
+
+.imagecontainer {
+  display: flex;
+  justify-content: center;
+  background-color: #dddddd;
+  width: 390px;
+  aspect-ratio: 1;
   border-radius: 50%;
 }
 
