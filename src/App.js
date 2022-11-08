@@ -3,8 +3,8 @@ import AdminNavbar from "./component/Navbar/AdminNavbar"
 import UserNavbar from './component/Navbar/Navbar'
 import Footer from "./component/Footer/Footer"
 // import Dashboard from "./pages/Dashboard"
-import ProductAdmin from './pages/ProductAdmin'
-import ProductUser from './pages/Product'
+import AddPromo from './pages/AddPromo'
+// import ProductUser from './pages/Product'
 
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
      {isAdminLogin ?  <AdminNavbar /> : <UserNavbar/> }
     </div>
     <div>
-    {isAdmin ? <ProductAdmin/> : <ProductUser/>}
+    <AddPromo/>
     </div>
     <div>
       <Footer/>

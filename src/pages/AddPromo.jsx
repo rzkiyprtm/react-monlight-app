@@ -1,140 +1,202 @@
-import React from "react";
-import styles from "../style/AddPromo.module.css";
+import React, { Fragment, useRef, useState } from "react";
+import Header from "../component/Navbar/AdminNavbar";
 import Footer from "../component/Footer/Footer";
-import NavBelumLogin from '../component/Navbar/Homenavbar'
-import Header from "../component/Navbar/Navbar";
+import styles from "../style/AddPromo.module.css";
+import camera from "../assets/images/Icon/camera-promo.png";
+import { useNavigate } from "react-router-dom";
+import { postPromo } from "../Helper/Fetch";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import Camera from "../assets/images/Icon/camera-promo.png";
+const AddPromo = () => {
+  const token = (localStorage.getItem("token")) || "";
+  const refTarget = useRef(null);
+  const navigate = useNavigate();
+  const [body, setBody] = useState({});
+  const [imgPrev, setImgPrev] = useState(null);
 
-function AddPromo() {
-  const isLogin = localStorage.getItem('token')
+  const successToastMessage = () => {
+    toast.success('New Promo Added !', {
+        position: toast.POSITION.TOP_CENTER
+    });
+};
+  const failedMessage = () => {
+    toast.error('Something Wrong, Try Again !', {
+      position: toast.POSITION.TOP_CENTER
+  });
+  }
+  const failedImages = () => {
+    toast.error('File too big, try at least 2mb !', {
+      position: toast.POSITION.TOP_CENTER
+  });
+  }
+  const failedType = () => {
+    toast.error('Extension file wrong! Only .jpeg, .jpg, .png are allowed.', {
+      position: toast.POSITION.TOP_CENTER
+  });
+  }
+  const bodyChecked = () => {
+    toast.error('All input must be fulfilled !', {
+      position: toast.POSITION.TOP_CENTER
+  });
+  }
 
+  const changeHandler = (e) =>
+    setBody({ ...body, [e.target.name]: e.target.value });
+
+  const imageHandler = (e) => {
+    const photo = e.target.files[0];
+    const defaultSize = 2 * 1024 * 1024;
+    if (
+      photo.type !== "image/jpeg" &&
+      photo.type !== "image/jpg" &&
+      photo.type !== "image/png"
+    )
+      return failedType();
+
+    if (photo.size > defaultSize)
+      return failedImages();
+    setBody({ ...body, images: photo });
+    setImgPrev(URL.createObjectURL(photo));
+  };
+  const submitHandler = async () => {
+    if (
+      !body.code ||
+      !body.description ||
+      !body.discount ||
+      !body.duration ||
+      !body.images ||
+      !body.min_price ||
+      !body.promo_name
+    ) {
+      return bodyChecked();
+    }
+    const formData = new FormData();
+    Object.keys(body).forEach((e) => {
+      formData.append(e, body[e]);
+    });
+    try {
+      const response = await postPromo(token, formData);
+      successToastMessage();
+      console.log(response);
+    } catch (error) {
+      console.log(error)
+      failedMessage();
+      ;
+    }
+  };
+  console.log(token, body);
   return (
-    <>
-  {isLogin ? <Header/> : <NavBelumLogin/>}
-      <main>
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className={styles.title}>
-                <p>
-                  Favorite & Promo
-                  <span> &gt; Add new promo</span>
-                </p>
+    <Fragment>
+      <Header />
+      <main className={styles["main-add-product"]}>
+        <p className={styles["category-text"]}>
+          Favorites and Promos{" "}
+          <span className={styles["add-title"]}> &#62; Add new promos</span>
+        </p>
+        <section className={styles["main-section"]}>
+          <section className={`${styles["content"]} ${styles["left"]}`}>
+            <form action="submit">
+              <div
+                className={`${styles["image-container"]} `}
+                onClick={(e) => {
+                  e.preventDefault();
+                  refTarget.current.click();
+                }}
+              >
+                <img
+                  src={camera}
+                  className={imgPrev ? styles.none : "image-dummy"}
+                  alt="promo"
+                />
+                <img
+                  className={styles[!imgPrev ? "none" : "image-preview"]}
+                  src={imgPrev}
+                  alt="preview"
+                />
               </div>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  refTarget.current.click();
+                }}
+                className={`${styles["btn"]} ${styles["btn-take-pic"]}`}
+              >
+                Take Picture
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  refTarget.current.click();
+                }}
+                className={`${styles["btn"]} ${styles["btn-choose-gallery"]}`}
+              >
+                Choose From Gallery
+              </button>
+              <input
+                onChange={(e) => imageHandler(e)}
+                ref={refTarget}
+                type="file"
+                style={{ display: "none" }}
+              />
+            </form>
+            <form action="" className={styles["form-discount"]}>
+              <label htmlFor="discount">Enter Discount:</label>
+              <input onChange={changeHandler} name="discount" type="text" placeholder="Ex: 20%" />
+              <label htmlFor="durations">Expire Date:</label>
+              <input onChange={changeHandler} name="duration" type="text" placeholder="Ex: 25 Desember 2022" />
+              <label htmlFor="code">Input Coupon Code:</label>
+              <input onChange={changeHandler} name="code" type="text" placeholder="Ex: MAMAMUDA20"/>
+            </form>
+          </section>
+          <section className={`${styles["content"]} ${styles["right"]}`}>
+            <form action="">
+              <label htmlFor="name">Product Name:</label>
+              <input
+                onChange={changeHandler}
+                name="promo_name"
+                type="text"
+                placeholder="Input promo name"
+              />
+              <label htmlFor="price">Price:</label>
+              <input
+                onChange={changeHandler}
+                name="min_price"
+                placeholder="Input price"
+                type="text"
+              />
+              <label htmlFor="description">Description:</label>
+              <input
+                name="description"
+                onChange={changeHandler}
+                placeholder="Input description"
+                type="text"
+              />
+            </form>
+            <div className={styles["btn-container"]}>
+              <button
+                onClick={() => {
+                  submitHandler();
+                }}
+                className={`${styles["btn"]} ${styles["btn-save"]}`}
+              >
+                Save Product
+              </button>
+              <button 
+              onClick={() => {
+                navigate('/productadmin')
+              }}
+              className={`${styles["btn"]} ${styles["btn-cancel"]}`}>
+                Cancel
+              </button>
             </div>
-          </div>
-        </div>
-        <div className="container">
-          <div className="row ">
-            <div className="col-lg-4 text-center">
-              <section className={styles["left-content"]}>
-                <div className={styles["photo-detail"]}>
-                  <div className={styles["photo-promo"]}>
-                    <img src={Camera} alt="default" />
-                  </div>
-                  <div className={styles["take-picture"]}>
-                    <button className={styles.btn1}>Take A Picture</button>
-                  </div>
-                  <div className={styles["from-gallery"]}>
-                    <button className={styles.btn2}>Choose From Galery</button>
-                  </div>
-                </div>
-                <form action="">
-                  <div className={`${styles["promo-details"]} `}>
-                    <div
-                      className={`${styles["enter-discount"]} ${styles["input-box"]}`}
-                    >
-                      <label className={styles["input-title"]}>
-                        Enter the discount :
-                      </label>
-                      <input
-                        type="text"
-                        name="stock"
-                        required
-                        placeholder="Input stock"
-                      />
-                    </div>
-                    <div
-                      className={`${styles["expire-date"]} ${styles["input-box"]}`}
-                    >
-                      <label className={styles["input-title"]}>
-                        Expire date :
-                      </label>
-                      <input
-                        type="date"
-                        name="start"
-                        required
-                        placeholder="Select start date"
-                      />
-                      <input
-                        type="date"
-                        name="end"
-                        required
-                        placeholder="Select end date"
-                      />
-                    </div>
-                    <div
-                      className={`${styles["coupon-code"]} ${styles["input-box"]}`}
-                    >
-                      <label className={styles["input-title"]}>
-                        Input coupon code :
-                      </label>
-                      <input type="text" name="code" placeholder="Input code" />
-                    </div>
-                  </div>
-                </form>
-              </section>
-            </div>
-            <div className="col-lg-7 offset-lg-1">
-              <section className={styles["right-content"]}>
-                <form action="">
-                  <div className={styles["promo-details"]}>
-                    <div className={styles["input-box"]}>
-                      <label className={styles["input-title"]}>Name :</label>
-                      <input
-                        type="text"
-                        name="stock"
-                        required
-                        placeholder="Type promo name min. 50 characters"
-                      />
-                    </div>
-                    <div className={styles["input-box"]}>
-                      <label className={styles["input-title"]}>
-                        Normal Price :
-                      </label>
-                      <input
-                        type="text"
-                        name="code"
-                        placeholder="Type the normal price"
-                      />
-                    </div>
-                    <div className={styles["input-box"]}>
-                      <label className={styles["input-title"]}>
-                        Description :
-                      </label>
-                      <input
-                        type="text"
-                        name="code"
-                        placeholder="Describe your promo min. 150 characters"
-                      />
-                    </div>
-                  </div>
-                </form>
-                <div className={styles["save-change"]}>
-                  <button className={styles.btn3}>Save Promo</button>
-                </div>
-                <div className={styles.cancel}>
-                  <button className={styles.btn4}>Cancel</button>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
+          </section>
+        </section>
       </main>
       <Footer />
-    </>
+      <ToastContainer />
+    </Fragment>
   );
-}
+};
 
 export default AddPromo;

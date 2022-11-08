@@ -5,7 +5,10 @@ import Card from "../component/Cardproduct/Cardproduct";
 import CardPromo from "../component/CardPromo/CardPromo";
 import { useState, useEffect } from "react";
 import withNavigate from "../Helper/withNavigate";
-import { getProduct } from "../Helper/Fetch";
+import { getProduct, getPromo } from "../Helper/Fetch";
+import axios from "axios";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 // import { useLocation } from "react-router-dom";
 
 // const useQuery = () => {
@@ -15,17 +18,26 @@ import { getProduct } from "../Helper/Fetch";
 // };
 
 function EditProduct({ navigate }) {
-
+  const [promo, setPromo] = useState([])
   const [allProduct, setAllProduct] = useState([]);
   const [param, setParam] = useState({
     categories: "",
     sort: "",
   });
 
+  const getAllPromo = async () => {
+    try {
+      const result = await getPromo(param);
+      console.log(result.data.result);
+      setPromo(result.data.result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getAllProduct = async () => {
     try {
       const result = await getProduct(param);
-      console.log(result);
       setAllProduct(result.data.result.result.data);
     } catch (error) {
       console.log(error);
@@ -34,10 +46,8 @@ function EditProduct({ navigate }) {
   const handleNonCofee = async () => {
     try {
       const body = { ...param, categories: "non-coffee", sort: "" };
-      console.log(body);
       setParam(body);
       const result = await getProduct(body);
-      console.log(result.data.result.result.data);
       setAllProduct(result.data.result.result.data);
     } catch (error) {
       console.log(error);
@@ -83,6 +93,7 @@ function EditProduct({ navigate }) {
 
   useEffect(() => {
     getAllProduct();
+    getAllPromo();
   }, []);
 
   return (
@@ -96,11 +107,19 @@ function EditProduct({ navigate }) {
             <div className={styles["promo-detail"]}>
               <div className={styles["back-bar"]}></div>
               <div className={styles["med-bar"]}></div>
-              <CardPromo
-                title="Chocolate Croissant"
-                discount="15%"
-                code="PUTRAPARKER15"
-              />
+              {promo?.map((e, index) => {
+                console.log();
+                return (
+                  <CardPromo
+                    title={e.promo_name}
+                    discount={e.discount}
+                    description={e.description}
+                    code={e.code}
+                    image={e.image}
+                    duration={e.duration}
+                  />
+                );
+              })}
               {/* <button type="submit">Apply Coupon</button> */}
               <Button text="Apply Coupon" />
             </div>
@@ -129,6 +148,75 @@ function EditProduct({ navigate }) {
               <li onClick={handleNonCofee}>Non Coffee</li>
               <li onClick={handleFood}>Foods</li>
               <li>Add-on</li>
+              <DropdownButton
+                      id='dropdown-basic-button'
+                      title='Sort'
+                    >
+                      <Dropdown.Item
+                        onClick={() => {
+                          const urlSortMurah = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?sort=murah`;
+                          axios
+                            .get(urlSortMurah)
+                            .then((res) =>
+                              this.setState(
+                                {
+                                  product:
+                                    res.data
+                                      .result
+                                      .result
+                                      .data,
+                                },
+                                () => {
+                                  console.log(
+                                    res.data
+                                      .result
+                                      .result
+                                      .data,
+                                  );
+                                },
+                              ),
+                            )
+                            .catch((err) =>
+                              console.log(err),
+                            );
+                        }}
+                        href='#minprice'
+                      >
+                        Min-Max
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => {
+                          const urlSortMahal = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?sort=mahal`;
+                          axios
+                            .get(urlSortMahal)
+                            .then((res) =>
+                              this.setState(
+                                {
+                                  product:
+                                    res.data
+                                      .result
+                                      .result
+                                      .data,
+                                },
+                                () => {
+                                  console.log(
+                                    res.data
+                                      .result
+                                      .result
+                                      .data,
+                                  );
+                                },
+                              ),
+                            )
+                            .catch((err) =>
+                              console.log(err),
+                            );
+                        }}
+                        href='#maxprice'
+                      >
+                        Max-Min
+                      </Dropdown.Item>
+                    </DropdownButton>
             </ul>
           </div>
           <div className={styles["content-detail"]}>

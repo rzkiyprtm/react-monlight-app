@@ -15,12 +15,15 @@
 .front-bar .top img {
   border-radius: 50%;
   height: 200px;
+  width: 200px;
   margin-top: 1.5rem;
   padding: 1.5rem ;
 }
 
 .front-bar .top h2 {
   font-size: 1.3rem;
+  text-align: center;
+  font-weight: 900;
 }
 
 .front-bar .top p {

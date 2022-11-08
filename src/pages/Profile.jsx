@@ -130,7 +130,7 @@ const Profile = () => {
                 className={css.editIcon} src={editIcon} alt="editphoto" />
                 <img
                   className={css.putra}
-                  src={ !profile.image ? avatar : `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`}
+                  src={imgPrev ?? `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`}
                   alt='profile'
                 />
                 <input

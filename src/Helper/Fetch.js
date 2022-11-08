@@ -84,3 +84,21 @@ export const editProduct = (data, token, id) => {
     },
   });
 };
+
+export const postPromo = (token, data) => {
+  return axios({
+    method: "POST",
+    url: `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/promos`,
+    data,
+    headers: { "access-token": token },
+  });
+};
+
+export const getPromo = (token, data) => {
+  const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/promos/get`
+  return axios.get(url, data, {
+    headers: {
+      "access-token": token,
+    }
+  })
+}

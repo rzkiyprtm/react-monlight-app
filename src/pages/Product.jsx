@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import css from "../style/Product.module.css";
 import Card from "../component/Cardproduct/Cardproduct";
-import imgSpagety from "../assets/images/product/29.png";
-// import Navbar from "../component/Navbar/Navbar";
 import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
 import Dropdown from "react-bootstrap/Dropdown";
