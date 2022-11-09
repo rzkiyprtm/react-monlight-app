@@ -46,7 +46,7 @@ const Login = () => {
         localStorage.setItem('id', response.data.data.payload.id);
         setLoading(false);
         setTimeout(() => {
-          navigate('/');
+          navigate('/product');
         }, 3000);
       })
       .catch((err) => {

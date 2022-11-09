@@ -162,7 +162,12 @@ function EditProduct({ navigate }) {
         <main className={styles["right-content"]}>
           <div className={styles["head-content"]}>
             <ul className={styles.ul}>
-              <li onClick={handleFavorite}>Favorite Product</li>
+              <li style={{
+                        color:
+                        "link1"
+                            ? "#6A4029"
+                            : "",
+                      }} onClick={handleFavorite}>Favorite Product</li>
               <li onClick={handleCoffee}>Coffee</li>
               <li onClick={handleNonCofee}>Non Coffee</li>
               <li onClick={handleFood}>Foods</li>

@@ -72,7 +72,7 @@ const Navbar = () => {
               <input
                 class={css.searchTxt}
                 type="text"
-              placeholder="search here ..."
+              placeholder="let search something"
               onChange={setValue}
               onSubmit={getSearch}
               />
