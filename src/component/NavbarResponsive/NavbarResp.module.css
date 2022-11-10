@@ -147,6 +147,7 @@ a {
     margin: auto;
     height: 50px;
     width: 100px;
+    margin-left: 13px;
 }
 
 .btn-logout:hover {
@@ -293,12 +294,19 @@ section .right-bar .input {
 section .right-bar .input .btn-login {
     font-size: 1.2rem;
     font-weight: 600;
-    margin: 0;
+    margin: auto;
     cursor: pointer;
     user-select: none;
+    background-color: #f3f3f3;
+    padding: .5rem 1.5rem;
+    border-radius: 10px;
+    color: #6A4029;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 section .right-bar .input .btn-login:hover {
-    color: #FFBA33;
+    transition: .1s;
+    color: #ffffff;
+    background-color: #6A4029;
 }
 section .right-bar .input .btn-login:active {
     position: relative;
@@ -307,8 +315,7 @@ section .right-bar .input .btn-login:active {
 section .right-bar .input .btn-sign {
     border: none;
     outline: none;
-    background: transparent;
-    background-color: #FFBA33;
+    background-color: #f3f3f3;
     padding: .5rem 1rem;
     border-radius: 10px;
     font-size: 1.2rem;
@@ -318,8 +325,9 @@ section .right-bar .input .btn-sign {
 }
 
 section .right-bar .input .btn-sign:hover {
-    transform: scale(1.1);
-    transition: .5s;
+    transition: .1s;
+    color: #ffffff;
+    background-color: #6A4029;
 }
 
 section .right-bar .input .btn-sign:active {
@@ -329,7 +337,7 @@ section .right-bar .input .btn-sign:active {
 
 .searchBox
 {
-  margin: 0;
+  margin: auto;
   top : 50%;
   left : 50%;
   transform : translate(-50%,-5%);
@@ -362,7 +370,7 @@ section .right-bar .input .btn-sign:active {
   color: rgb(24, 23, 19);
   font-size:16px;
   transition : 0.4s;
-  line-height: 40px;
+  line-height: 20px;
   width : 0px;
 }
 .searchBox:hover > .searchTxt

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "../../component/NavbarResponsive/NavbarResp.module.css";
 import withNavigate from "../../Helper/withNavigate";
 import sakaLogo from "../../assets/images/product/1.png";
-import chat from "../../assets/images/product/3.png";
+import chat from "../../assets/images/chat.png";
 import { getProfile } from "../../Helper/Fetch";
 import avatar from '../../assets/images/Icon/avatar.jpg'
 
