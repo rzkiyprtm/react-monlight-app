@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState } from "react";
-import Header from "../component/Navbar/AdminNavbar";
+import Header from '../component/NavbarResponsive/Navbar';
 import Footer from "../component/Footer/Footer";
 import styles from "../style/AddPromo.module.css";
 import camera from "../assets/images/Icon/camera-promo.png";

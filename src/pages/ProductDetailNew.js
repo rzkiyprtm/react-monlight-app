@@ -1,41 +1,17 @@
 import React, { useState } from "react";
 import Footer from "../component/Footer/Footer";
-import Navbar from "../component/Navbar/Navbar";
-import NavbarAdmin from '../component/Navbar/AdminNavbar'
+import Navbar from '../component/NavbarResponsive/Navbar'
 import Button from "../component/Button/Button";
 import styles from "../style/ProductDetailNew.module.css";
 import withNavigate from "../Helper/withNavigate";
-
 import { useParams } from "react-router-dom";
 import { getProductById } from "../Helper/Fetch";
 import { useEffect } from "react";
 
 function ProductDetails({ navigate }) {
-  // const [state, setState] = useState({ count: 0, size: "size" });
-  // const count = state.count;
-  // const size = state.size;
-
-  // function reguler() {
-  //   setState(() => {
-  //     return { size: "reguler" };
-  //   });
-  // }
-
-  // function decreamentCount() {
-  //   setState((prevState) => {
-  //     return { count: prevState.count - 1 };
-  //   });
-  // }
-
-  // function increamentCount() {
-  //   setState((prevState) => {
-  //     return { count: prevState.count + 1 };
-  //   });
-  // }
 
   const { id } = useParams();
   const [product, setProduct] = useState({});
-  // console.log(product);
   const currency = (price) => {
     return (
       "IDR " +
@@ -47,7 +23,6 @@ function ProductDetails({ navigate }) {
   const getDetail = async () => {
     try {
       const result = await getProductById(id);
-      // console.log(result.data.result.data);
       setProduct(result.data.result.data);
     } catch (error) {
       console.log(error);
@@ -59,7 +34,7 @@ function ProductDetails({ navigate }) {
 
   useEffect(() => {
     getDetail();
-  }, []);
+  }, );
 
   const [count, setCount] = useState(1);
   const [size, setSize] = useState("Size");
@@ -87,11 +62,9 @@ function ProductDetails({ navigate }) {
     setCount((prevCount) => prevCount + 1);
   }
 
-  const isAdmin = localStorage.getItem('role')
-
   return (
     <>
-      {isAdmin ? <NavbarAdmin/> : <Navbar/>}
+      <Navbar/>
       <main className={styles.content}>
         <div className="container">
           <div className="row">

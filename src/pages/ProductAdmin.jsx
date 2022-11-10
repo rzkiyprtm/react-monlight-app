@@ -9,8 +9,7 @@ import { getProduct, getPromo } from "../Helper/Fetch";
 import axios from "axios";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import Navbar from '../component/Navbar/Navbar'
-import NavbarAdmin from '../component/Navbar/AdminNavbar'
+import Navbar from '../component/NavbarResponsive/Navbar'
 import Footer from '../component/Footer/Footer'
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -116,7 +115,7 @@ function EditProduct({ navigate }) {
 
   return (
     <>
-     {isAdmin ? <NavbarAdmin/> : <Navbar/>}
+     <Navbar/>
       <section className={styles["main-container"]}>
         <aside className={styles["left-content"]}>
           <div className={styles.promo}>
@@ -172,11 +171,14 @@ function EditProduct({ navigate }) {
               <li onClick={handleNonCofee}>Non Coffee</li>
               <li onClick={handleFood}>Foods</li>
               <li>Add-on</li>
-              <DropdownButton
+            </ul>
+          <div className="dropdown-btn">
+          <DropdownButton
                       id='dropdown-basic-button'
                       title='Sort by'
+                      className={styles.dropdown}
                     >
-                      <Dropdown.Item
+                      <Dropdown.Item 
                         onClick={() => {
                           const urlSortMurah = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?sort=murah`;
                           axios
@@ -219,7 +221,7 @@ function EditProduct({ navigate }) {
                         Max Price
                       </Dropdown.Item>
                     </DropdownButton>
-            </ul>
+          </div>
           </div>
           <div className={styles["content-detail"]}>
             {allProduct?.map((e, index) => {

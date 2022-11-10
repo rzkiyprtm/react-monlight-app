@@ -16,18 +16,16 @@ import jun1 from '../assets/images/Icon/jun1.png'
 import parker from '../assets/images/parker.jpeg'
 import progress from '../assets/images/Icon/progress.png'
 import goalicon from '../assets/images/Icon/goal.png'
-import Navbar from "../component/Navbar/Navbar";
-import NavbarAdmin from '../component/Navbar/AdminNavbar'
+import NavbarAdmin from '../component/NavbarResponsive/Navbar'
 import Footer from '../component/Footer/Footer'
 
 
 export default function Dashboard() {
 
-  const isAdmin = localStorage.getItem('role')
 
   return (
     <>
-    {isAdmin ? <NavbarAdmin/> : <Navbar/>}
+<NavbarAdmin/>
     <div className={css.bordercontainer}>
       <div className={css.centerin}>
       <div className={css.topContent}>

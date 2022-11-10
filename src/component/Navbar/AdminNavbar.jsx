@@ -6,11 +6,10 @@ import { Link } from "react-router-dom";
 import { getProfile } from "../../Helper/Fetch";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import avatar from '../../assets/images/Icon/avatar.jpg'
-
+import avatar from "../../assets/images/Icon/avatar.jpg";
 
 const Navbar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [state, setState] = useState("");
   const text = state.text;
   const title = state.title;
@@ -22,7 +21,9 @@ const Navbar = () => {
     setSearch(event.target.value);
   };
   const getSearch = () => {
-    return navigate(`/product/get?search=${search}`);
+    return navigate(
+      `/product/get?search=${search}`,
+    );
   };
 
   const getDataProfile = async () => {
@@ -40,6 +41,9 @@ const Navbar = () => {
     }
   };
 
+  const isAdmin = localStorage.getItem("role");
+  const isUser = localStorage.getItem("role");
+
   useEffect(() => {
     getDataProfile();
   }, []);
@@ -52,29 +56,48 @@ const Navbar = () => {
             <p>Monlight</p>
           </div>
           <div className={css.midContent}>
-            <ol className={css.nav}>
-              <Link to={"/"}>
-                <li>Home</li>
-              </Link>
-              <Link to={"/product"}>
-                <li>Product</li>
-              </Link>
-              <Link to={"/payment"}>
-                <li>Your Cart</li>
-              </Link>
-              <Link to={"/dashboard"}>
-                <li>Dashboard</li>
-              </Link>
-            </ol>
+            {isAdmin === "Admin" && (
+              <ol className={css.nav}>
+                <Link to={"/"}>
+                  <li>Home</li>
+                </Link>
+                <Link to={"/product"}>
+                  <li>Product</li>
+                </Link>
+                <Link to={"/payment"}>
+                  <li>Order</li>
+                </Link>
+                <Link to={"/dashboard"}>
+                  <li>Dashboard</li>
+                </Link>
+              </ol>
+            )}
+
+            {isUser === "User" && (
+              <ol className={css.nav}>
+                <Link to={"/"}>
+                  <li>Home</li>
+                </Link>
+                <Link to={"/product"}>
+                  <li>Product</li>
+                </Link>
+                <Link to={"/payment"}>
+                  <li>Your Cart</li>
+                </Link>
+                <Link to={"/history"}>
+                  <li>History</li>
+                </Link>
+              </ol>
+            )}
           </div>
           <div className={css.rightContent}>
             <div class={css.searchBox}>
               <input
                 class={css.searchTxt}
-                type="text"
-              placeholder="let search something"
-              onChange={setValue}
-              onSubmit={getSearch}
+                type='text'
+                placeholder='let search something'
+                onChange={setValue}
+                onSubmit={getSearch}
               />
               <a class={css.searchBtn} href='#'>
                 <i class='fas fa-search'></i>
@@ -90,7 +113,9 @@ const Navbar = () => {
               <img
                 className={css.putra}
                 src={
-                  !profile.image ? avatar : `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`
+                  !profile.image
+                    ? avatar
+                    : `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`
                 }
                 alt=''
               />

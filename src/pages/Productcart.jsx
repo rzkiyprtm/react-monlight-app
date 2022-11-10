@@ -5,23 +5,29 @@ import img2 from '../assets/images/product/30.png'
 import card from '../assets/images/Icon/card.webp'
 import bank from '../assets/images/Icon/bank.webp'
 import cod from '../assets/images/Icon/cod.webp'
-import Navbar from '../component/Navbar/Navbar'
+import Navbar from '../component/NavbarResponsive/Navbar'
 import Footer from '../component/Footer/Footer'
-import NavbarAdmin from '../component/Navbar/AdminNavbar'
 
 const Productcart = () => {
-  const isAdmin = localStorage.getItem('role') === 'Admin'
-
+  const isAdmin = localStorage.getItem('role')
+  const isUser = localStorage.getItem('role')
   return (
     <div>
-      {isAdmin ? <NavbarAdmin/> : <Navbar/> }
+<Navbar/>
     <div className={css.bordercontainer}>
       <div className={css.maincontent}>
       <div className={css.contentBox}>
         <div className={css.leftContent}>
+          {isAdmin === 'Admin' && (
         <div className={css.textLeft}>
-          <h1 className={css.bigtitle}>Checkout your item now!</h1>
+          <h1 className={css.bigtitle}>Manage order here!</h1>
         </div>
+          )}
+          {isUser === 'User' && (
+            <div className={css.textLeft}>
+            <h1 className={css.bigtitle}>Checkout your item now!</h1>
+          </div>
+          )}
         <div className={css.mainbox}>
           <h1 className={css.txt1}>Order Summary</h1>
           <div className={css.listBuy}>

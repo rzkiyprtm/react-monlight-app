@@ -6,6 +6,8 @@ import productAction from "../redux/actions/product";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Camera from "../assets/images/Icon/camera-promo.png";
+import Navbar from '../component/NavbarResponsive/Navbar'
+import Footer from '../component/Footer/Footer'
 
 class AddProduct extends React.Component {
   state = {
@@ -101,6 +103,7 @@ class AddProduct extends React.Component {
   render() {
     return (
       <>
+      <Navbar/>
         {this.props.product.isLoading && (
           <div className={css["loader-container"]}>
             <div className={css.spinner}></div>
@@ -365,6 +368,7 @@ class AddProduct extends React.Component {
           </div>
         </main>
         <ToastContainer/>
+        <Footer/>
       </>
     );
   }

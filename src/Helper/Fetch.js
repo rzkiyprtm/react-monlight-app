@@ -35,9 +35,6 @@ export const editProfile = (body) => {
   });
 };
 
-export const login = (data) => {
-  return axiosRequest("POST", "auths/login", data);
-};
 
 export const getData = (url, params, data) => {
   return axiosRequest("GET", url, data, params);

@@ -2,17 +2,12 @@ import React from 'react'
 import css from '../style/History.module.css'
 import Cardhst from '../component/Cardhistory/Cardhst'
 import Footer from '../component/Footer/Footer'
-import NavBelumLogin from '../component/Navbar/Homenavbar'
-import Navbar from '../component/Navbar/Navbar'
+import Navbar from '../component/NavbarResponsive/Navbar'
 
 const History = () => {
-  const isLogin = localStorage.getItem('token')
-
-
-
   return (
     <div>
-      {isLogin ? <Navbar/> : <NavBelumLogin/>}
+    <Navbar/>
     <div className={css.main}>
       <div className={css.mainBg}>
         <div className={css.title}>

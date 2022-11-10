@@ -223,6 +223,18 @@ a {
     font-weight: 500;
 }
 
+.dropdown button {
+    color: #6A4029 !important;
+    background: #FFCB65;
+    border: none;
+}
+
+.dropdown button:hover {
+    color: #6A4029 !important;
+    background: #FFCB65;
+    border: none;
+}
+
 /* hamburger animation */
 
 .menu-toggle input:checked ~ span {

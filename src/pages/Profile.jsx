@@ -1,6 +1,6 @@
 import React from "react";
 import css from "../style/Profile.module.css";
-import Navbar from "../component/Navbar/Navbar";
+import Navbar from '../component/NavbarResponsive/Navbar'
 import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
 import { useEffect, useState, useRef } from 'react'
