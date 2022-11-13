@@ -1,19 +1,21 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import styles from "../style/ProductAdmin.module.css";
 import Button from "../component/Button/Button";
 import Card from "../component/Cardproduct/Cardproduct";
 import CardPromo from "../component/CardPromo/CardPromo";
 import { useState, useEffect } from "react";
 import withNavigate from "../Helper/withNavigate";
-import { getProduct, getPromo } from "../Helper/Fetch";
+import { getPromo } from "../Helper/Fetch";
 import axios from "axios";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Navbar from '../component/NavbarResponsive/Navbar'
 import Footer from '../component/Footer/Footer'
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import productAction from "../redux/actions/product";
+import { useLocation, useNavigate, createSearchParams } from "react-router-dom";
+import { getProductsAction } from "../redux/actions/product";
+import withSearchParams from "../Helper/withSearchParams";
+
 
 const useQuery = () => {
   const { search } = useLocation();
@@ -21,23 +23,25 @@ const useQuery = () => {
   return useMemo(() => new URLSearchParams(search), [search]);
 };
 
-function EditProduct({ navigate }) {
+function Products({ navigate, setSearchParams }) {
   const [promo, setPromo] = useState([])
   const [allProduct, setAllProduct] = useState([]);
-  const products = useSelector(state => state.products.products)
+  const products = useSelector(state => state.products.data)
+  const totalPage = useSelector((state) => state.products.meta.totalPage);
   const dispatch = useDispatch();
-  console.log(products);
   const [param, setParam] = useState({
     categories: "",
     sort: "",
   });
   const getQuery = useQuery();
-  const [totalPage, setTotalPage] = useState(null);
-  const [isActive, setIsActive] = useState(false);
+
   const [query, setQuery] = useState({
     search: getQuery.get("search") ? getQuery.get("search") : "",
+    sort: getQuery.get("sort") ? getQuery.get("sort") : "popular",
     page: getQuery.get("page") ? getQuery.get("page") : 1,
   });
+
+  const [linkActive, setLinkActive] = useState('favorite');
 
   const getAllPromo = async () => {
     try {
@@ -48,74 +52,26 @@ function EditProduct({ navigate }) {
     }
   };
 
-  const getAllProduct = async () => {
-    try {
-      const result = await getProduct(param);
-      setAllProduct(result.data.result.result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const searchValue = (search) => {
+    console.log(search);
+    navigate(`?search=${search}&sort=popular&page=1`);
+    window.location.reload();
+  }
 
-  const handleNonCofee = async () => {
-    try {
-      const body = { ...param, categories: "non-coffee", sort: "" };
-      setParam(body);
-      const result = await getProduct(body);
-      setAllProduct(result.data.result.result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+   useEffect(() => {
+    getAllPromo();
+    dispatch(getProductsAction(query));
+    const urlSearchParams = createSearchParams({ ...query });
+    setSearchParams(urlSearchParams);
+  }, [query]);
 
-  const handleFavorite = async () => {
-    try {
-      const body = {
-        ...param,
-        sort: "",
-        categories: "",
-      };
-      setParam(body);
-      const result = await getProduct(body);
-      setAllProduct(result.data.result.result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleFood = async () => {
-    try {
-      const body = { ...param, categories: "Food", sort: "" };
-      setParam(body);
-      const result = await getProduct(body);
-      setAllProduct(result.data.result.result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleCoffee = async () => {
-    try {
-      const body = { ...param, categories: "Coffee", sort: "" };
-      setParam(body);
-      const result = await getProduct(body);
-      setAllProduct(result.data.result.result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const isAdmin = localStorage.getItem('role')
 
-  useEffect(() => {
-    getAllProduct();
-    getAllPromo();
-    dispatch(productAction.getProductsAction(query))
-  }, []);
 
   return (
     <>
-     <Navbar/>
+     <Navbar onSearch={searchValue}/>
       <section className={styles["main-container"]}>
         <aside className={styles["left-content"]}>
           <div className={styles.promo}>
@@ -151,7 +107,7 @@ function EditProduct({ navigate }) {
             <div
               className={styles["add-promo"]}
               onClick={() => {
-                navigate("/addpromo");
+                navigate("/product/addpromo");
               }}
             >
               <Button text="Add Promo" variant="color-4" font="style-1" />
@@ -161,15 +117,50 @@ function EditProduct({ navigate }) {
         <main className={styles["right-content"]}>
           <div className={styles["head-content"]}>
             <ul className={styles.ul}>
-              <li style={{
-                        color:
-                        "link1"
-                            ? "#6A4029"
-                            : "",
-                      }} onClick={handleFavorite}>Favorite Product</li>
-              <li onClick={handleCoffee}>Coffee</li>
-              <li onClick={handleNonCofee}>Non Coffee</li>
-              <li onClick={handleFood}>Foods</li>
+              <li 
+              onClick={() => {
+                setLinkActive("favorite")
+                setQuery({
+                  sort:"popular",
+                  page: 1,
+                });
+                // const urlSearchParams = createSearchParams({ ...query });
+                //   setSearchParams(urlSearchParams);
+              }}
+              style={{ color: linkActive === "favorite" ? "#6A4029" : "" }}>Favorite Product</li>
+              <li 
+              onClick={() => {
+                setLinkActive("coffee")
+                setQuery({
+                  categories: "coffee",
+                  page: 1,
+                });
+                const urlSearchParams = createSearchParams({ ...query });
+                  setSearchParams(urlSearchParams);
+              }}
+              style={{ color: linkActive === "coffee" ? "#6A4029" : "" }}>Coffee</li>
+              <li 
+              onClick={() => {
+                setLinkActive("non-coffee")
+                setQuery({
+                  categories: "non-coffee",
+                  page: 1,
+                });
+                const urlSearchParams = createSearchParams({ ...query });
+                  setSearchParams(urlSearchParams);
+              }}
+              style={{ color: linkActive === "non-coffee" ? "#6A4029" : "" }}>Non Coffee</li>
+              <li 
+              onClick={() => {
+                setLinkActive("food")
+                setQuery({
+                  categories: "food",
+                  page: 1,
+                });
+                // const urlSearchParams = createSearchParams({ ...query });
+                //   setSearchParams(urlSearchParams);
+              }}
+              style={{ color: linkActive === "food" ? "#6A4029" : "" }}>Foods</li>
               <li>Add-on</li>
             </ul>
           <div className="dropdown-btn">
@@ -180,20 +171,7 @@ function EditProduct({ navigate }) {
                     >
                       <Dropdown.Item 
                         onClick={() => {
-                          const urlSortMurah = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?sort=murah`;
-                          axios
-                            .get(urlSortMurah)
-                            .then((res) =>
-                              (
-                                setAllProduct(res.data
-                                .result
-                                .result
-                                .data)
-                              ),
-                            )
-                            .catch((err) =>
-                              console.log(err),
-                            );
+                          setQuery({...query,sort:"cheapest"})
                         }}
                         href='#minprice'
                       >
@@ -201,20 +179,7 @@ function EditProduct({ navigate }) {
                       </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() => {
-                          const urlSortMahal = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?sort=mahal`;
-                          axios
-                            .get(urlSortMahal)
-                            .then((res) =>
-                              (
-                              setAllProduct(res.data
-                                .result
-                                .result
-                                .data)
-                              ),
-                            )
-                            .catch((err) =>
-                              console.log(err),
-                            );
+                          setQuery({...query,sort:"priciest"})
                         }}
                         href='#maxprice'
                       >
@@ -224,7 +189,7 @@ function EditProduct({ navigate }) {
           </div>
           </div>
           <div className={styles["content-detail"]}>
-            {allProduct?.map((e, index) => {
+            {products?.map((e, index) => {
             
               return (
                 <Card
@@ -237,11 +202,36 @@ function EditProduct({ navigate }) {
               );
             })}
           </div>
+        <div className={`${styles["paginate-container"]}`}>
+            <div className={styles["title-paginate"]}>
+              <p className={styles.p}>{`Showing page ${query.page} of ${totalPage}`}</p>
+            </div>
+            <div className={styles["btn-paginate"]}>
+              <button
+                onClick={() => {
+                  setQuery({ ...query, page: query.page - 1 });
+                }}
+                disabled={query.page === 1 ? true : false}
+                className={`${styles["btn-prev"]}`}
+              >
+                prev
+              </button>
+              <button
+                onClick={() => {
+                  setQuery({ ...query, page: query.page + 1 });
+                }}
+                disabled={query.page === totalPage ? true : false}
+                className={`${styles["btn-next"]}`}
+              >
+                next
+              </button>
+            </div>
+          </div>
           {isAdmin === "Admin" && (
             <div
               className={styles["add-product"]}
               onClick={() => {
-                navigate("/addproduct");
+                navigate("/product/addproduct");
               }}
             >
               <Button text="Add Product" />
@@ -254,4 +244,4 @@ function EditProduct({ navigate }) {
   );
 }
 
-export default withNavigate(EditProduct);
+export default withNavigate(withSearchParams(Products));

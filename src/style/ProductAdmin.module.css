@@ -150,15 +150,18 @@ a {
 .right-content .content-detail {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     align-self: flex-start;
-    gap: 8rem 2rem;
-    padding: 0 3rem;
+    gap: 9.5rem 2rem;
+    padding: 0 1rem;
+    padding-top: 40px;
 }
 
 .right-content .add-product {
     width: 100%;
     padding: 8.6rem 2rem;
+    /* padding-top: 12.5em; */
 }
 
 .button {
@@ -197,14 +200,16 @@ a {
 }
 
 .right-content .paginate-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
+    display: flex; 
+    flex-direction: column-reverse;
+    align-self: center;
+    /* padding: 0 2rem; */
 }
 
-.right-content .paginate-container .title-paginate p {
-    margin: 0;
+.right-content .paginate-container .title-paginate .p {
+    margin: auto;
+    /* padding-right: 10px; */
+    opacity: 50%;
 }
 
 .right-content .paginate-container .btn-paginate {
@@ -221,6 +226,7 @@ a {
     color: #6A4029;
     font-size: 1rem;
     font-weight: 500;
+    margin: auto;
 }
 
 .dropdown button {
@@ -247,7 +253,8 @@ a {
 /* menu content */
 @media screen and (max-width: 768px) {
     .main-container {
-        flex-direction: column;       
+        flex-direction: column;     
+        
     }
 
     .main-container .left-content {
@@ -277,9 +284,15 @@ a {
     .left-content .add-promo, .right-content .add-product {
         padding-top: 1rem;
     }
+    .main-container .right-content {
+        border: none;  
+    }
 }
 
 @media screen and (max-width: 556px) {
+    .main-container .right-content{
+        border: none;
+    }
     .main-container .right-content .ul {
         gap: 1rem;
     }

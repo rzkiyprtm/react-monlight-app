@@ -1,4 +1,5 @@
 import axios from 'axios'
+const baseURL = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project}`
 
 const axiosRequest = (method, url, data) => {
   return axios({
@@ -40,14 +41,12 @@ export const getData = (url, params, data) => {
   return axiosRequest("GET", url, data, params);
 };
 
-export const getProduct = (param) => {
-  console.log(param);
-  const queryParam = {
-    categories: param.categories ?? "",
-    sort: param.sort ?? "id",
-  };
-  const URL = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get?categories=${queryParam.categories}&sort=${queryParam.sort}&limit=12&page=1`;
-  return axios.get(URL);
+export const getProduct = (params) => {
+  return axios({
+    method:'get',
+    url: `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/get`,
+    params,
+  })
 };
 
 export const getProductById = (id) => {
@@ -61,6 +60,7 @@ export const getProductById = (id) => {
     },
   });
 };
+
 
 export const getPromoProduct = (id) => {
   const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/products/${id}`;
@@ -102,3 +102,13 @@ export const getPromo = (token, data) => {
     }
   })
 }
+
+export const logout = (token, data) => {
+  const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/auth/delete`
+  return axios.delete(url, data, {
+    headers: {
+      'access-token': token,
+    }
+  })
+}
+

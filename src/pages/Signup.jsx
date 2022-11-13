@@ -122,7 +122,7 @@ class Signup extends Component {
          }}></i>
                         </div>
 
-                        <div className={css.inputdiv}>
+                        <div className={css.inputdiv1}>
                             <label className={css.labelsign}>Phone Number:</label>
                            <input className={css.signlabel}  type="tel" placeholder="Enter your phone number"
                            value={this.state.phone}

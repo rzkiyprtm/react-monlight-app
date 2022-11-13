@@ -12,6 +12,7 @@ const initialState = {
   image: "",
   desc: "",
   ctg: "",
+  meta: { totalPage: null },
   tglnext: styles.hide,
   tglprev: styles.hide,
   next: null,
@@ -21,7 +22,6 @@ const initialState = {
   err: null,
   errCreate: null,
   errEdit: null,
-  products:[],
 };
 
 const productsReducer = (prevState = initialState, action) => {
@@ -52,12 +52,11 @@ const productsReducer = (prevState = initialState, action) => {
       };
     case actionStrings.getProducts + actionStrings.rejected:
       const errorResponse = action.payload;
-      const errorMessage = errorResponse;
+      const errorMessage = errorResponse.response.data.message;
       return {
         ...prevState,
         isError: true,
         isLoading: false,
-        data: [],
         err: errorMessage,
       };
     case actionStrings.getProductsPromo + actionStrings.rejected:
@@ -94,21 +93,23 @@ const productsReducer = (prevState = initialState, action) => {
       return {
         ...prevState,
         isLoading: false,
-        products: result,
+        data: result,
+        meta: { totalPage: response.data.result.result.meta.totalPage },
       };
     case actionStrings.getProductsPromo + actionStrings.fulfilled:
       const responsePromo = action.payload;
-      const resultPromo = responsePromo.data.data;
+      console.log(responsePromo)
+      const resultPromo = responsePromo.data.result.data;
       return {
         ...prevState,
         isLoading: false,
-        id: resultPromo.dataProduct.id,
-        name: resultPromo.dataProduct.product_name,
-        price: resultPromo.dataProduct.price,
-        image: resultPromo.dataProduct.image,
-        desc: resultPromo.dataProduct.description,
-        ctg: resultPromo.dataProduct.category_name,
-        promo: resultPromo.dataPromo,
+        id: resultPromo.id,
+        name: resultPromo.product_name,
+        price: resultPromo.price,
+        image: resultPromo.image,
+        desc: resultPromo.description,
+        ctg: resultPromo.category_name,
+        // promo: resultPromo.dataPromo,
       };
     case actionStrings.createProduct + actionStrings.fulfilled:
       const responseCreate = action.payload;

@@ -2,7 +2,7 @@ import React from "react";
 import css from "../style/AddProduct1.module.css";
 import { connect } from "react-redux";
 import withNavigate from "../Helper/withNavigate";
-import productAction from "../redux/actions/product";
+import { createProductAction } from "../redux/actions/product";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Camera from "../assets/images/Icon/camera-promo.png";
@@ -72,7 +72,7 @@ class AddProduct extends React.Component {
         console.log(pair);
       }
       this.props.dispatch(
-        productAction.createProductAction(body, token)
+        createProductAction(body, token)
         );
         this.successToastMessage()
     }, 10);

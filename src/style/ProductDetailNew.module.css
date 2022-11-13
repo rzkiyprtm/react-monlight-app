@@ -191,7 +191,7 @@
     outline: 0;
     background: transparent;
     width: 40vh;
-    border-bottom: 1px solid #9F9F9F;
+    /* border-bottom: 1px solid #9F9F9F; */
 }
 
 .set-time input [placeholder] {

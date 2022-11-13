@@ -1,14 +1,15 @@
 import React from "react";
 import css from "../style/Profile.module.css";
-import Navbar from '../component/NavbarResponsive/Navbar'
 import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { editProfile, getProfile } from "../Helper/Fetch";
+import { editProfile, getProfile, logout} from "../Helper/Fetch";
 import editIcon from '../assets/images/Icon/edit.png'
 import avatar from '../assets/images/Icon/avatar.jpg'
-import NavbarAdmin from '../component/Navbar/AdminNavbar'
+import Navbar from '../component/NavbarResponsive/Navbar'
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -18,12 +19,15 @@ const Profile = () => {
   const [isEdit, setIsEdit] = useState(true);
   const [body, setBody] = useState({});
   console.log(body);
-
   const [displayName, setDisplayName] = useState("");
   const [FirstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [Address, setAddress] = useState("");
   const [Phone, setPhone] = useState("");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
 
   const handleAddress = (e) => {
@@ -87,6 +91,7 @@ const Profile = () => {
     } catch (error) {
       console.log(error);
     }
+    window.location.reload()
   };
 
   const changeHandler = (e) => [
@@ -115,7 +120,7 @@ const Profile = () => {
 
   return (
     <div>
-     {isAdmin ? <NavbarAdmin/> : <Navbar/>}
+     <Navbar/>
       <main className={css.maincontent}>
         <div className={css.maincontentgrid}>
           <div className={css.backtopcontent}>
@@ -398,12 +403,12 @@ const Profile = () => {
                 <button className={css.editbtn}>
                   Edit Password
                 </button>
-               
                   <button
-                  onClick={() => {
-                    localStorage.removeItem('token')
-                    navigate('/')
-                  }}
+                  // onClick={() => {
+                  //   localStorage.removeItem('token')
+                  //   navigate('/')
+                  // }}
+                  onClick={handleShow}
                     className={css.editbtn}
                   >
                     Log out
@@ -415,6 +420,24 @@ const Profile = () => {
         </div>
       </main>
       <Footer />
+      {/* modal */}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Monlight</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure to logout?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={() => {
+                    localStorage.removeItem('token')
+                    navigate('/login')
+                  }}>
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

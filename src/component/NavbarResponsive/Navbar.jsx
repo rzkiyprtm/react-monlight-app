@@ -5,40 +5,49 @@ import withNavigate from "../../Helper/withNavigate";
 import sakaLogo from "../../assets/images/product/1.png";
 import chat from "../../assets/images/chat.png";
 import { getProfile } from "../../Helper/Fetch";
-import avatar from '../../assets/images/Icon/avatar.jpg'
+import avatar from "../../assets/images/Icon/avatar.jpg";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
-function Header({ navigate }) {
+function Header({ navigate, onSearch }) {
   const [state, setState] = useState("");
   const text = state.text;
   const [profile, setProfile] = useState({});
   const [search, setSearch] = useState(() => "");
-  // console.log(element);
-
-  const isLogin = (localStorage.getItem("token"))
-  const isAdmin = (localStorage.getItem("role"))
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const logoutShow = () => setShow(true);
+  const [linkActive, setLinkActive] = useState('home');
+  // const [linkAdmin, setLinkAdmin] = useState('home1');
+  
+  const isLogin = localStorage.getItem("token");
+  const isAdmin = localStorage.getItem("role");
+  
   function slide() {
     setState((state) => ({
       text:
-        state.text === `${styles["slide-bar"]}` ? "" : `${styles["slide-bar"]}`,
+        state.text === `${styles["slide-bar"]}`
+          ? ""
+          : `${styles["slide-bar"]}`,
     }));
   }
 
   const setValue = (event) => {
-    console.log(event);
     setSearch(event.target.value);
   };
-  const getSearch = () => {
-    return navigate(`/product?search=${search}`);
+  const getSearch = (e) => {
+    e.preventDefault();
+    onSearch(search)
   };
 
   const getDataProfile = async () => {
     try {
       const result = await getProfile();
       setProfile(result.data.result[0]);
-      console.log(result);
     } catch (error) {
-      if (error.response.data.statusCode === 403) {
+      if (
+        error.response.data.statusCode === 403
+      ) {
         navigate("/login");
       }
     }
@@ -58,7 +67,7 @@ function Header({ navigate }) {
               navigate("/");
             }}
           >
-            <img src={sakaLogo} alt="logo" />
+            <img src={sakaLogo} alt='logo' />
           </div>
           <p
             className={styles["logo-title"]}
@@ -73,29 +82,37 @@ function Header({ navigate }) {
           <ol className={text}>
             <li
               onClick={() => {
+                setLinkActive("home-admin")
                 navigate("/");
               }}
+              style={{ color: linkActive === "home-admin" ? "#6A4029" : "" }}
             >
               Home
             </li>
             <li
               onClick={() => {
+                setLinkActive("product-admin")
                 navigate("/product");
               }}
+              style={{ color: linkActive === "product-admin" ? "#6A4029" : "" }}
             >
               Product
             </li>
             <li
               onClick={() => {
+                setLinkActive("cart-admin")
                 navigate("/payment");
               }}
+              style={{ color: linkActive === "cart-admin" ? "#6A4029" : "" }}
             >
               Orders
             </li>
             <li
               onClick={() => {
+                setLinkActive("dashboard-admin")
                 navigate("/dashboard");
               }}
+              style={{ color: linkActive === "dashboard-admin" ? "#6A4029" : "" }}
             >
               Dashboard
             </li>
@@ -103,30 +120,38 @@ function Header({ navigate }) {
         ) : (
           <ol className={text}>
             <li
+              style={{ color: linkActive === "home" ? "#6A4029" : "" }}
               onClick={() => {
                 navigate("/");
+                setLinkActive("home")
               }}
             >
               Home
             </li>
             <li
               onClick={() => {
+                setLinkActive("product")
                 navigate("/product");
               }}
+              style={{ color: linkActive === "product" ? "#6A4029" : "" }}
             >
               Product
             </li>
             <li
               onClick={() => {
+                setLinkActive("cart")
                 navigate("/payment");
               }}
+              style={{ color: linkActive === "cart" ? "#6A4029" : "" }}
             >
               Your Cart
             </li>
             <li
               onClick={() => {
+                setLinkActive("history")
                 navigate("/history");
               }}
+              style={{ color: linkActive === "history" ? "#6A4029" : "" }}
             >
               History
             </li>
@@ -136,43 +161,48 @@ function Header({ navigate }) {
 
       {isLogin ? (
         <section className={text}>
-          <div class={styles.searchBox}>
-              <input
-                class={styles.searchTxt}
-                type="text"
-              placeholder="search here ..."
+          <form onSubmit={getSearch}>
+          <div class={styles.searchBox} >
+            <input
+              class={styles.searchTxt}
+              type='text'
+              placeholder='let search something'
               onChange={setValue}
-              onSubmit={getSearch}
-              />
-              <a class={styles.searchBtn} href='#'>
-                <i class='fas fa-search'></i>
-              </a>
-            </div>
+              // onChange={(e) => onSearch(e.target.value)}
+            />
+            <a class={styles.searchBtn} href='#'>
+              <i class='fas fa-search'></i>
+            </a>
+          </div>
+          </form>
           <div className={styles.chat}>
             <div className={styles.notif}>1</div>
-            <img src={chat} alt="" />
+            <img src={chat} alt='' />
           </div>
-          <div
-            className={styles.profile}
-            onClick={() => {
-              navigate("/profile");
-            }}
-          >
-            {isAdmin === 'Admin' ? (
-              <button 
+          {isAdmin === "Admin" ? (
+            <button
               className={styles["btn-logout"]}
+              onClick={logoutShow}
+            >
+              LOGOUT
+            </button>
+          ) : (
+            <div
+              className={styles.profile}
               onClick={() => {
-                localStorage.removeItem('token')
-                navigate('/')
-              }}>LOGOUT</button>
-              ) : (
-              <img src={
-                    !profile.image
-                      ? avatar
-                      : `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`
-                  } alt="profile" />
-            )} 
-          </div>
+                navigate("/profile");
+              }}
+            >
+              <img
+                src={
+                  !profile.image
+                    ? avatar
+                    : `${process.env.REACT_APP_BACKEND_HOST}/${profile.image}`
+                }
+                alt='profile'
+              />
+            </div>
+          )}
         </section>
       ) : (
         <section className={text}>
@@ -188,7 +218,7 @@ function Header({ navigate }) {
               </p>
               <button
                 className={styles["btn-sign"]}
-                type="submit"
+                type='submit'
                 onClick={() => {
                   navigate("/signup");
                 }}
@@ -199,8 +229,36 @@ function Header({ navigate }) {
           </div>
         </section>
       )}
-      <div className={styles["menu-toggle"]} onClick={slide}>
-        <input type="checkbox" />
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Monlight</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure to logout?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant='secondary'
+            onClick={handleClose}
+          >
+            Close
+          </Button>
+          <Button
+            variant='danger'
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate("/login");
+            }}
+          >
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <div
+        className={styles["menu-toggle"]}
+        onClick={slide}
+      >
+        <input type='checkbox' />
         <span></span>
         <span></span>
         <span></span>

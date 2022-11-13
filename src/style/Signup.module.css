@@ -49,13 +49,13 @@ body {
 
 
 .h1 {
-  margin-bottom: 90px;
+  margin-bottom: 30px;
 }
 
 .headcontent {
   justify-content: space-between;
   align-items: center;
-  padding: 50px;
+  padding: 30px 50px 0px 50px;
 }
 
 .logodetail {
@@ -138,8 +138,17 @@ form {
   margin: 10px;
 }
 
-.signcontainer {
+.inputdiv1 {
   width: 60%;
+  position: relative;
+  top: -37px;
+}
+
+.signcontainer {
+  position: relative;
+  width: 60%;
+  margin: auto;
+  top: -50px;
 }
 
 .labelsign {
@@ -329,4 +338,10 @@ a:visited {
   right: 15px;
 }
 
+}
+
+@media screen and (max-width: 568px) {
+  .getmember {
+    display: none;
+  }
 }

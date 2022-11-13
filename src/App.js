@@ -1,12 +1,13 @@
 import './App.css';
-import Navbar from './component/NavbarResponsive/Navbar';
+// import Navbar from './component/NavbarResponsive/Navbar';
+import EditProduct from './pages/EditProduct';
 
 
 function App() {
 
   return (
     <div>
-    <Navbar/>
+    <EditProduct/>
     </div>
   );
 }

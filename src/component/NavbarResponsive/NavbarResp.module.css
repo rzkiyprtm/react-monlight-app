@@ -55,18 +55,16 @@ a {
 }
 
 .navbar ol li {
-    color: #4F5665;
+    color: #bababa;
     list-style: none;
     font-size: 1rem;
     font-weight: 600;
 }
 
 .navbar ol li:hover {
-    color: #6A4029;
-    text-decoration: underline;
     font-weight: 700;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.2s;
 }
 
 .navbar .right-bar {

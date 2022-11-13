@@ -1,24 +1,33 @@
 import actionStrings from "./actionStrings";
 import {
-  createProduct, getData
+  createProduct, getProduct, editProduct, getPromoProduct
 } from "../../Helper/Fetch";
 
-const getProductsAction = (params) => {
+export const getProductsAction = (params) => {
   return {
     type: actionStrings.getProducts,
-    payload: getData("products/get", params),
+    payload: getProduct(params)
   };
 };
 
-const createProductAction = (data, token) => {
+export const getProductID = (id) => {
+  return {
+    type: actionStrings.getProductsPromo,
+    payload: getPromoProduct(id)
+  }
+}
+
+export const createProductAction = (data, token) => {
   return {
     type: actionStrings.createProduct,
     payload: createProduct(data, token),
   };
 };
-const productAction = {
 
-  createProductAction, getProductsAction
+export const editProductAction = (data, token, id) => {
+  return {
+    type: actionStrings.editProduct,
+    payload: editProduct(data, token, id),
+  };
 };
 
-export default productAction;
