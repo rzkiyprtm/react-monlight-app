@@ -5,9 +5,9 @@ import {
 } from "redux";
 import rpm from "redux-promise-middleware";
 import productsReducer from "./reducers/product";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 
-const middleware = applyMiddleware(rpm, logger);
+const middleware = applyMiddleware(rpm);
 const reducers = combineReducers({
   products: productsReducer,
 });

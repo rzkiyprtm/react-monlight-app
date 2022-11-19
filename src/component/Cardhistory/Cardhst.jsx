@@ -1,18 +1,31 @@
-import React, { Component } from 'react'
-import img from '../../assets/images/product/2.png'
-import css from '../Cardhistory/Cardhst.module.css'
+import React from "react";
+import styles from "../../component/Cardhistory/Cardhst.module.css";
 
-export default class Cardhst extends Component {
-  render() {
-    return (
-      <div className={css.mainBox1}>
-            <img src={img} alt="product"/>
-            <div className={css.name}>
-              <p className={css.txt}>Veggie Tomato Mix</p>
-              <p className={css.txt1}>Price</p>
-              <p className={css.txt1}>Status</p>
-            </div>
-          </div>
-    )
-  }
+import bean from "../../assets/images/Icon/bean.png";
+
+function CardHistory(props) {
+  return (
+    <div className={styles.card}>
+      <div className="side-bar">
+        <div className={`{styles.delete}`}>
+          <img src={bean} alt="bean"></img>
+        </div>
+        <div className={`${styles.close} ${props.display}`}>
+          <span>x</span>
+        </div>
+      </div>
+      <div className={styles["card-bar"]}>
+        <div className={styles["card-image"]}>
+          <img src={`http://localhost:8181/${props.image}`} alt="product"></img>
+        </div>
+        <div className={styles["card-content"]}>
+          <h2 className={styles["card-title"]}>{props.productName}</h2>
+          <p className={styles["card-price"]}>{props.price}</p>
+          <p className={styles["deliv-method"]}>{props.status}</p>
+        </div>
+      </div>
+    </div>
+  );
 }
+
+export default CardHistory;

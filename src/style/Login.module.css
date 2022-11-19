@@ -79,8 +79,8 @@ a {
 
 .rightheadcontent {
   background-color: #6A4029;
-  padding: 13px 50px;
-  border-radius: 20px;
+  padding: 10px 30px;
+  border-radius: 10px;
   box-shadow: var(--shadow);
 }
 
@@ -127,6 +127,7 @@ form {
 
 
 .fullwidth {
+  padding-top: 10px;
   margin: 20px 0px;
   width: 600px;
 }
@@ -160,9 +161,9 @@ form {
 
 .showpwd {
   position: relative;
-  top: 58px;
-  left: 235px;
-  width: 35px;
+  top: 53px;
+  left: 245px;
+  width: 20px;
   margin: 0 auto;
   padding: 0;
   cursor: pointer;
@@ -178,7 +179,7 @@ form {
 
 .btnsignup {
   background-color: var(--primary-color);
-  margin-top: 70px;
+  margin-top: 80px;
   font-size: 18px;
   width: 360px;
   padding: 20px 0px;

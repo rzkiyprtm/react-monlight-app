@@ -37,12 +37,15 @@ body {
 .footercontainer {
   justify-content: space-between;
   background-color: #F8F8F8;
-  height:500px;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  /* height:500px; */
 ;
 }
 
 .leftfootcontent {
-  margin: 200px 0px 0px 70px;
+  margin: 0px 0px 0px 70px;
+  padding-top: 50px;
 }
 
 .aboutdetail {
@@ -85,11 +88,11 @@ body {
 .copyright {
   font-size: 16px;
   color: #AFB5C0;
-  margin-top: 40px;
+  padding-top: 20px;
 }
 
 .rightfootcontent {
-  margin-top: 160px;
+  margin: auto;
   display: flex;
   justify-content: space-around;
 }
@@ -117,3 +120,13 @@ body {
   padding: 0;
   margin: 0;
 }
+
+@media screen and (max-width: 568px) {
+  .footercontainer {
+    flex-direction: column-reverse;
+  }
+
+  .footercontainer .contentdetail {
+    padding-left: 30px;
+  }
+  }

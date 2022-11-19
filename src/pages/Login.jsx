@@ -1,6 +1,6 @@
 import { useState } from "react";
 import css from "../style/Login.module.css";
-import eyeIcon from '../assets/images/Icon/eye-icon.png'
+import eyeIcon from '../assets/images/Icon/eye.svg'
 import imgbg from "../assets/images/img-property.png";
 import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
@@ -113,6 +113,7 @@ const Login = () => {
                     Password:
                   </label>
                   <img className={css.showpwd} src={eyeIcon} alt="show-password" onClick={togglePassword} />
+                  {/* <i class="fa-regular fa-eye"></i> */}
                   <input
                     className={css.signlabel}
                     type={passwordShown ? "text" : "password"}

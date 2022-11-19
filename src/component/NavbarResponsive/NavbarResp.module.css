@@ -9,6 +9,11 @@ a {
     text-decoration: none;
 }
 
+main {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
 /* navbar */
 .navbar {
     display: flex;
@@ -62,6 +67,7 @@ a {
 }
 
 .navbar ol li:hover {
+    color: #6A4029;
     font-weight: 700;
     cursor: pointer;
     transition: 0.2s;
@@ -146,6 +152,7 @@ a {
     height: 50px;
     width: 100px;
     margin-left: 13px;
+    border-radius: 10px;
 }
 
 .btn-logout:hover {
@@ -337,8 +344,8 @@ section .right-bar .input .btn-sign:active {
 {
   margin: auto;
   top : 50%;
-  left : 50%;
-  transform : translate(-50%,-5%);
+  left : 100%;
+  transform : translate(-10%,0%);
   background : #f3f3f3;
   height : 40px;
   border-radius : 40px;
@@ -422,6 +429,7 @@ section .right-bar .input .btn-sign:active {
     .navbar ol.slide-bar {
         opacity: 1;
         transform: translateY(0);
+        width: -webkit-fill-available;
     }
 
     .navbar section {
@@ -436,7 +444,7 @@ section .right-bar .input .btn-sign:active {
         background-color: white;
         height: 4vh;
         align-items: center;
-        /* transform: translateY(-1000%); */
+        transform: translateY(0);
         transition: 0.5s;
         opacity: 0;
     }
@@ -460,6 +468,12 @@ section .right-bar .input .btn-sign:active {
 
     .menu-toggle {
         display: flex;
+    }
+    .btn-logout {
+        position: relative;
+        top: -10px;
+        height: 40px;
+        border-radius: 10px;
     }
 }
 

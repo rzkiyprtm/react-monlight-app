@@ -68,11 +68,10 @@ const Profile = () => {
   const getDataProfile = async () => {
     try {
       const result = await getProfile();
-      console.log(result.data.result);
       setProfile(result.data.result[0]);
-      console.log(result);
+      // console.log(result);
     } catch (error) {
-      if (error.response.data.statusCode === 403) {
+      if (error.result.data.result.statusCode === 403) {
        ;
       }
     }
@@ -98,10 +97,7 @@ const Profile = () => {
     setBody({ ...body, [e.target.name]: e.target.value }),
   ];
 
-  useEffect(() => {
-    getDataProfile();
-  }, []);
-
+  
   const getBirthday = () => {
     const date = new Date(profile.birthday);
     const yyyy = date.getFullYear();
@@ -115,8 +111,10 @@ const Profile = () => {
   };
 
   const isAdmin = localStorage.getItem('role') === 'Admin'
-
-  console.log(profile);
+  
+  useEffect(() => {
+    getDataProfile();
+  }, []);
 
   return (
     <div>

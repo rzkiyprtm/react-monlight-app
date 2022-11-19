@@ -1,6 +1,6 @@
 import './App.css';
 // import Navbar from './component/NavbarResponsive/Navbar';
-import EditProduct from './pages/EditProduct';
+import EditProduct from './pages/EditPromo';
 
 
 function App() {

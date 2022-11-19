@@ -121,7 +121,7 @@ class AddProduct extends React.Component {
                 >
                   <p>
                     Favorite & Promo
-                    <span> &gt; Add new product </span>
+                    <span className={css.product}> &gt; Add new product </span>
                   </p>
                 </div>
               </div>

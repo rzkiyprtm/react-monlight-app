@@ -31,11 +31,11 @@ class Footer extends Component {
             <img className="img-logo" src={igicon}alt="" />
           </div>
         </div>
-        <p className="copyright">©2022 Pratama Putra</p>
+        <p className={css.copyright}>©2022 Pratama Putra</p>
       </div>
       <div className={css.rightfootcontent}>
         <div className={css.contentdetail}>
-          <p>Product</p>
+          <p className={css.product}>Product</p>
           <ol className={css.ol}>
             <li> Download</li>
             <li>Pricing</li>

@@ -7,7 +7,8 @@ import Camera from "../assets/images/Icon/edit.png";
 import {getProductID, editProductAction} from "../redux/actions/product";
 import withNavigate from "../Helper/withNavigate";
 import withRouteParams from "../Helper/withRouteParams";
-
+import { ToastContainer, toast } from 'react-toastify';
+import Loading from '../component/Loading/Loading'
 class AddProduct extends React.Component {
   state = {
     selectCategory: false,
@@ -45,6 +46,7 @@ class AddProduct extends React.Component {
     if (this.state.newPicture) body.append("images", this.state.newPicture);
     if (this.state.ctg_id) body.append("category_id", this.state.ctg_id);
     console.log(this.state.ctg_id);
+    this.successToastMessage()
     this.props.dispatch(
       editProductAction(
         body,
@@ -53,14 +55,24 @@ class AddProduct extends React.Component {
       )
     );
   };
+
+  successToastMessage = () => {
+    toast.success('Edit Product Success !', {
+        position: toast.POSITION.TOP_CENTER
+    });
+};
+
+  failedMessage = () => {
+    toast.error('Edit Product Failed !', {
+      position: toast.POSITION.TOP_CENTER
+  });
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.product.dataEdit !== this.props.product.dataEdit)
-      return this.props.navigate(`/detail/${this.props.params.id}`);
+      return this.props.navigate(`/product/${this.props.params.id}`);
     if (prevProps.product.img !== this.props.product.img)
-      return this.props.navigate(`/detail/${this.props.params.id}`);
-    // if (prevState.state !== this.state){
-    //     return this.sendSelect()
-    // }
+      return this.props.navigate(`/product/${this.props.params.id}`);
   }
   imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -101,8 +113,8 @@ class AddProduct extends React.Component {
     return `${styles.btn} ${styles["save-btn-none"]}`;
   };
   setCtg = (category) => {
-    if (category === "foods") return (category = "Foods");
-    if (category === "non coffee") return (category = "Non Coffee");
+    if (category === "food") return (category = "Foods");
+    if (category === "non-coffee") return (category = "Non-Coffee");
     if (category === "coffee") return (category = "Coffee");
     if (category === "addon") return (category = "Add-On");
   };
@@ -110,11 +122,9 @@ class AddProduct extends React.Component {
     return (
       <>
         <Header />
-        {/* {this.props.product.isLoading && (
-          <div className={styles["loader-container"]}>
-            <div className={styles.spinner}></div>
-          </div>
-        )} */}
+        {this.props.product.isLoading && (
+         <Loading/>
+        )}
         <main>
           <div className="container">
             <div className="row">
@@ -123,7 +133,7 @@ class AddProduct extends React.Component {
                   className={styles.title}
                   onClick={() => {
                     this.props.navigate(
-                      `/product-details/${this.props.params.id}`
+                      `/detail/${this.props.params.id}`
                     );
                   }}
                 >
@@ -192,7 +202,6 @@ class AddProduct extends React.Component {
                             }));
                           }}
                         >
-                          {/* <p>{!this.props.product.isLoading ? this.props.product.ctg: this.state.category}</p> */}
                           <p>
                             {this.state.selectCtg
                               ? this.state.selectCtg
@@ -323,9 +332,9 @@ class AddProduct extends React.Component {
                           }}
                         />
                       </div>
-                      {this.state.errDescription && (
+                      {this.state.description && (
                         <p className={styles.err}>
-                          {this.state.errDescription}
+                          {this.state.description}
                         </p>
                       )}
                       {/* <div>
@@ -387,6 +396,7 @@ class AddProduct extends React.Component {
           </div>
         </main>
         <Footer />
+        <ToastContainer/>
       </>
     );
   }

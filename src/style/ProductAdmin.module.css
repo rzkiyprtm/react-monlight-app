@@ -115,7 +115,7 @@ a {
 }
 
 .left-content .add-promo {
-    padding: 8rem 3rem;
+    padding: 2.9rem 3rem 0rem 3rem;
 }
 
 .main-container .right-content {
@@ -158,10 +158,16 @@ a {
     padding-top: 40px;
 }
 
-.right-content .add-product {
+.right-content .product-box {
+    height: 550px;
+    margin: 0 auto;
+}
+
+.add-product {
     width: 100%;
-    padding: 8.6rem 2rem;
-    /* padding-top: 12.5em; */
+    /* padding: 8.6rem 2rem; */
+    margin: 0 auto;
+    padding-top: 200px;
 }
 
 .button {
@@ -201,9 +207,10 @@ a {
 
 .right-content .paginate-container {
     display: flex; 
-    flex-direction: column-reverse;
-    align-self: center;
-    /* padding: 0 2rem; */
+    /* flex-direction: row; */
+    /* align-self: center; */
+    justify-content: space-around;
+    gap: 28em;
 }
 
 .right-content .paginate-container .title-paginate .p {
@@ -286,12 +293,17 @@ a {
     }
     .main-container .right-content {
         border: none;  
+        height: auto;
+    }
+    .right-content .product-box {
+        height: auto;
     }
 }
 
 @media screen and (max-width: 556px) {
     .main-container .right-content{
         border: none;
+        height: auto;
     }
     .main-container .right-content .ul {
         gap: 1rem;
@@ -303,5 +315,12 @@ a {
 
     .right-content .content-detail {
     justify-content: center;
+    }
+
+    .right-content .paginate-container {
+        display: flex;
+        gap: 3.3em;
+        position: relative;
+        top: 70px;
     }
 }

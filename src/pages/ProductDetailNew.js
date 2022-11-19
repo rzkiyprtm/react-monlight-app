@@ -32,9 +32,12 @@ function ProductDetails({ navigate }) {
     }
   };
 
+  const [linkActive, setLinkActive] = useState('');
+  const [linkActiveSize, setLinkActiveSize] = useState('');
+
   useEffect(() => {
     getDetail();
-  }, );
+  }, []);
 
   const [count, setCount] = useState(1);
   const [size, setSize] = useState("Size");
@@ -108,13 +111,30 @@ function ProductDetails({ navigate }) {
                     <h2>Choose a size</h2>
                   </div>
                   <div className={styles.choice}>
-                    <div className={styles.circle} onClick={reguler}>
+                    <div 
+                    style={{ "background-color": linkActiveSize === "size-r" ? "#6A4029" : "" }}
+                    className={styles.circle} onClick={() => {
+                      reguler()
+                      setLinkActiveSize("size-r")
+                    }}>
                       <p className={styles.reg}>R</p>
                     </div>
-                    <div className={styles.circle} onClick={large}>
+                    <div  
+                    style={{ "background-color": linkActiveSize === "size-large" ? "#6A4029" : "" }}
+                    className={styles.circle} 
+                    onClick={() => {
+                      large()
+                      setLinkActiveSize("size-large")
+                    }}>
                       <p className={styles.lar}>L</p>
                     </div>
-                    <div className={styles.circle} onClick={xtra}>
+                    <div
+                    style={{ "background-color": linkActiveSize === "size-xtra" ? "#6A4029" : "" }}
+                    className={styles.circle} 
+                    onClick={() => {
+                      xtra()
+                      setLinkActiveSize("size-xtra")
+                    }}>
                       <p className={styles.xl}>XL</p>
                     </div>
                   </div>
@@ -125,13 +145,26 @@ function ProductDetails({ navigate }) {
                   <h3>Choose Delivery Methods</h3>
                 </div>
                 <div className={styles.methods}>
-                  <div className={styles.bar}>
+                  <div 
+                  onClick={() =>{
+                    setLinkActive("dine-in")
+                  }}
+                  className={styles.bar}
+                  style={{ "background-color": linkActive === "dine-in" ? "#6A4029" : "" }}>
                     <p>Dine in</p>
                   </div>
-                  <div className={styles.bar}>
+                  <div onClick={() =>{
+                    setLinkActive("delivery")
+                  }}
+                  className={styles.bar}
+                  style={{ "background-color": linkActive === "delivery" ? "#6A4029" : "" }}>
                     <p>Door Delivery</p>
                   </div>
-                  <div className={styles.bar}>
+                  <div onClick={() =>{
+                    setLinkActive("pick-up")
+                  }}
+                  className={styles.bar}
+                  style={{ "background-color": linkActive === "pick-up" ? "#6A4029" : "" }}>
                     <p>Pick up</p>
                   </div>
                 </div>

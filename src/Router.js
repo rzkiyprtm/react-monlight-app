@@ -13,12 +13,14 @@ import AddPromo from './pages/AddPromo'
 import AddProduct from './pages/AddProduct1'
 import Dashboard from './pages/Dashboard'
 import EditProduct from "./pages/EditProduct";
+import EditPromo from "./pages/EditPromo"
 
 import PrivateElement from '../src/component/PrivateElement'
 
 const router = createBrowserRouter ([
   { path: "/app", element: <App />, },
-  { path: "/product/edit/:id", element: <EditProduct />, },
+  { path: "/product/edit/:id", element: <PrivateElement allowedRoles={['Admin']}><EditProduct/> </PrivateElement> },
+  { path: "/product/promos/edit/:id", element: <PrivateElement allowedRoles={['Admin']}><EditPromo/> </PrivateElement> },
   { path: '/signup', element: <Signup /> },
   { path: '/login', element: <Login /> },
   { path: "/", element: <Home /> },
@@ -28,8 +30,8 @@ const router = createBrowserRouter ([
   { path: '/history', element: <PrivateElement allowedRoles={['User', 'Admin']}><History/></PrivateElement> },
   { path: '/detail/:id', element: <Detail/> },
   { path: '/product', element: <PrivateElement allowedRoles={['Admin', 'User']}> <ProductAdmin/> </PrivateElement> },
-  { path: '/product/addpromo', element: <PrivateElement allowedRoles={['Admin']}><AddPromo/> </PrivateElement> },
-  { path: '/product/addproduct', element: <PrivateElement allowedRoles={['Admin']}><AddProduct/> </PrivateElement>},
+  { path: '/product/promos/new', element: <PrivateElement allowedRoles={['Admin']}><AddPromo/> </PrivateElement> },
+  { path: '/product/new', element: <PrivateElement allowedRoles={['Admin']}><AddProduct/> </PrivateElement>},
   { path: '/dashboard', element: <PrivateElement allowedRoles={['Admin']}><Dashboard/></PrivateElement> },
 ]);
 

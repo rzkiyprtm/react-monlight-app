@@ -1,12 +1,12 @@
 import React from 'react'
 import css from '../style/Productcart.module.css'
-import img1 from '../assets/images/product/2.png'
 import img2 from '../assets/images/product/30.png'
 import card from '../assets/images/Icon/card.webp'
 import bank from '../assets/images/Icon/bank.webp'
 import cod from '../assets/images/Icon/cod.webp'
 import Navbar from '../component/NavbarResponsive/Navbar'
 import Footer from '../component/Footer/Footer'
+import CardCart from '../component/CardPayment/CardCart'
 
 const Productcart = () => {
   const isAdmin = localStorage.getItem('role')
@@ -20,7 +20,7 @@ const Productcart = () => {
         <div className={css.leftContent}>
           {isAdmin === 'Admin' && (
         <div className={css.textLeft}>
-          <h1 className={css.bigtitle}>Manage order here!</h1>
+          <h1 className={css.bigtitle}>Finish your customer order now.</h1>
         </div>
           )}
           {isUser === 'User' && (
@@ -29,28 +29,26 @@ const Productcart = () => {
           </div>
           )}
         <div className={css.mainbox}>
-          <h1 className={css.txt1}>Order Summary</h1>
-          <div className={css.listBuy}>
-            <img src={img1} alt="product" />
-            <div className={css.namePrd}>
-              <p>Hazelnut Latte</p>
-              <p>x 1</p>
-              <p>Regular</p>
-            </div>
-            <div className={css.price}>
-              <p>Rp. 24</p>
-            </div>
+          {isUser === "User" &&(
+            <h1 className={css.txt1}>Order Summary</h1>
+          )}
+          {isUser === "Admin" &&(
+            <h1 className={css.txt1}>Delivery Order</h1>
+          )}
+          <div>
+            <CardCart
+            title="Vanilla Latte"
+            qty="4"
+            size="Reguler"
+            price='45'
+            />
           </div>
-          <div className={css.listBuy2}>
-            <img src={img2} alt="product" />
-            <div className={css.namePrd}>
-              <p>Chicken Wings</p>
-              <p>x 2</p>
-              <p></p>
-            </div>
-            <div className={css.price}>
-              <p>Rp. 30</p>
-            </div>
+          <div>
+            <CardCart
+            title="Vanilla Latte"
+            qty="2"
+            size="Reguler"
+            price='45'/>
           </div>
           <hr className={css.hr1}/>
           <div className={css.sub}>
@@ -108,9 +106,16 @@ const Productcart = () => {
             <label htmlFor=""><img src={cod} alt="" />Cash on Delivery</label>
             </div>
           </div>
+          {isAdmin === "Admin" && (
           <div className={css.btn}>
+            <button>Mark as done</button>
+          </div>
+          )}
+          {isUser === "User" && (
+            <div className={css.btn}>
             <button>Confirm and Pay</button>
           </div>
+          )}
           </div>
         </div>
       </div>

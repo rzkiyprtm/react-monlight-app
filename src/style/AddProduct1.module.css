@@ -316,7 +316,7 @@ form .input-title {
   padding-top: 15px;
   padding-left: 10px;
   padding-right: 10px;
-  /* border: 1px solid #9F9F9F; */
+  border: 1px solid #9F9F9F;
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -328,9 +328,39 @@ form .input-title {
 .list-dropdown p {
   cursor: pointer;
   margin-bottom: 15px;
-  /* border-bottom: 1px solid #9F9F9F; */
+  border-bottom: 1px solid #9F9F9F;
 }
 
 .list-dropdown p:hover {
   color: #f5ab18;
+}
+
+.loader-container {
+  position: fixed;
+  top: 50%;
+  bottom: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.spinner {
+  width: 55px;
+  height: 55px;
+  border: 8px solid;
+  border-color: #6a4029 transparent #6a4029 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
 }

@@ -78,8 +78,8 @@ a {
 
 .rightheadcontent {
   background-color: #6A4029;
-  padding: 13px 50px;
-  border-radius: 20px;
+  padding: 10px 30px;
+  border-radius: 10px;
   box-shadow: var(--shadow);
 }
 

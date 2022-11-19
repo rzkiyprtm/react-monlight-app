@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, createSearchParams } from "react-router-dom";
 import { getProductsAction } from "../redux/actions/product";
 import withSearchParams from "../Helper/withSearchParams";
+import Loading from '../component/Loading/Loading'
 
 
 const useQuery = () => {
@@ -42,6 +43,7 @@ function Products({ navigate, setSearchParams }) {
   });
 
   const [linkActive, setLinkActive] = useState('favorite');
+  // const isLoading = useSelector((state) => state.product.isLoading);
 
   const getAllPromo = async () => {
     try {
@@ -83,16 +85,17 @@ function Products({ navigate, setSearchParams }) {
               {promo?.map((e, index) => {
                 return (
                   <CardPromo
+                    key={index}
                     title={e.promo_name}
                     discount={e.discount}
                     description={e.description}
                     code={e.code}
                     image={e.image}
                     duration={e.duration}
+                    id={e.id}
                   />
                 );
               })}
-              {/* <button type="submit">Apply Coupon</button> */}
               <Button text="Apply Coupon" />
             </div>
           </div>
@@ -107,7 +110,7 @@ function Products({ navigate, setSearchParams }) {
             <div
               className={styles["add-promo"]}
               onClick={() => {
-                navigate("/product/addpromo");
+                navigate("/product/promos/new");
               }}
             >
               <Button text="Add Promo" variant="color-4" font="style-1" />
@@ -124,10 +127,8 @@ function Products({ navigate, setSearchParams }) {
                   sort:"popular",
                   page: 1,
                 });
-                // const urlSearchParams = createSearchParams({ ...query });
-                //   setSearchParams(urlSearchParams);
               }}
-              style={{ color: linkActive === "favorite" ? "#6A4029" : "" }}>Favorite Product</li>
+              style={{ color: linkActive === "favorite" ? "#333" : "" }}>Favorite Product</li>
               <li 
               onClick={() => {
                 setLinkActive("coffee")
@@ -157,8 +158,6 @@ function Products({ navigate, setSearchParams }) {
                   categories: "food",
                   page: 1,
                 });
-                // const urlSearchParams = createSearchParams({ ...query });
-                //   setSearchParams(urlSearchParams);
               }}
               style={{ color: linkActive === "food" ? "#6A4029" : "" }}>Foods</li>
               <li>Add-on</li>
@@ -188,6 +187,7 @@ function Products({ navigate, setSearchParams }) {
                     </DropdownButton>
           </div>
           </div>
+            <div className={styles["product-box"]}>
           <div className={styles["content-detail"]}>
             {products?.map((e, index) => {
             
@@ -201,6 +201,7 @@ function Products({ navigate, setSearchParams }) {
                 />
               );
             })}
+          </div>
           </div>
         <div className={`${styles["paginate-container"]}`}>
             <div className={styles["title-paginate"]}>
@@ -231,7 +232,7 @@ function Products({ navigate, setSearchParams }) {
             <div
               className={styles["add-product"]}
               onClick={() => {
-                navigate("/product/addproduct");
+                navigate("/product/new");
               }}
             >
               <Button text="Add Product" />

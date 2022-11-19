@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styles from "../../component/NavbarResponsive/NavbarResp.module.css";
 import withNavigate from "../../Helper/withNavigate";
-import sakaLogo from "../../assets/images/product/1.png";
+import monlightlogo from "../../assets/images/logo.png";
 import chat from "../../assets/images/chat.png";
 import { getProfile } from "../../Helper/Fetch";
 import avatar from "../../assets/images/Icon/avatar.jpg";
@@ -17,11 +17,12 @@ function Header({ navigate, onSearch }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const logoutShow = () => setShow(true);
-  const [linkActive, setLinkActive] = useState('home');
-  // const [linkAdmin, setLinkAdmin] = useState('home1');
+  // const [LinkNav, setLinkNav] = useState("home");
+  // const [LinkNavAdmin, setLinkNavAdmin] = useState("home-admin");
   
   const isLogin = localStorage.getItem("token");
   const isAdmin = localStorage.getItem("role");
+  const isUser = localStorage.getItem("role");
   
   function slide() {
     setState((state) => ({
@@ -58,6 +59,7 @@ function Header({ navigate, onSearch }) {
   }, []);
 
   return (
+    <main>
     <nav className={styles.navbar}>
       <div className={styles["left-bar"]}>
         <div className={styles.logo}>
@@ -67,7 +69,7 @@ function Header({ navigate, onSearch }) {
               navigate("/");
             }}
           >
-            <img src={sakaLogo} alt='logo' />
+            <img src={monlightlogo} alt='logo' />
           </div>
           <p
             className={styles["logo-title"]}
@@ -78,80 +80,68 @@ function Header({ navigate, onSearch }) {
             MONLIGHT
           </p>
         </div>
-        {isAdmin === "Admin" ? (
+        {isAdmin === "Admin" && (
           <ol className={text}>
             <li
               onClick={() => {
-                setLinkActive("home-admin")
                 navigate("/");
               }}
-              style={{ color: linkActive === "home-admin" ? "#6A4029" : "" }}
             >
               Home
             </li>
             <li
               onClick={() => {
-                setLinkActive("product-admin")
                 navigate("/product");
               }}
-              style={{ color: linkActive === "product-admin" ? "#6A4029" : "" }}
-            >
+
+              >
               Product
             </li>
             <li
               onClick={() => {
-                setLinkActive("cart-admin")
                 navigate("/payment");
               }}
-              style={{ color: linkActive === "cart-admin" ? "#6A4029" : "" }}
             >
               Orders
             </li>
             <li
               onClick={() => {
-                setLinkActive("dashboard-admin")
                 navigate("/dashboard");
               }}
-              style={{ color: linkActive === "dashboard-admin" ? "#6A4029" : "" }}
             >
               Dashboard
             </li>
+
           </ol>
-        ) : (
+        )}
+        
+        {isUser === "User" && (
           <ol className={text}>
             <li
-              style={{ color: linkActive === "home" ? "#6A4029" : "" }}
               onClick={() => {
                 navigate("/");
-                setLinkActive("home")
               }}
             >
               Home
             </li>
             <li
               onClick={() => {
-                setLinkActive("product")
                 navigate("/product");
               }}
-              style={{ color: linkActive === "product" ? "#6A4029" : "" }}
             >
               Product
             </li>
             <li
               onClick={() => {
-                setLinkActive("cart")
                 navigate("/payment");
               }}
-              style={{ color: linkActive === "cart" ? "#6A4029" : "" }}
             >
               Your Cart
             </li>
             <li
               onClick={() => {
-                setLinkActive("history")
                 navigate("/history");
               }}
-              style={{ color: linkActive === "history" ? "#6A4029" : "" }}
             >
               History
             </li>
@@ -264,6 +254,7 @@ function Header({ navigate, onSearch }) {
         <span></span>
       </div>
     </nav>
+    </main>
   );
 }
 

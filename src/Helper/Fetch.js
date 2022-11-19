@@ -94,6 +94,11 @@ export const postPromo = (token, data) => {
   });
 };
 
+export const getPromos = (id) => {
+  const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/promos/${id}`;
+  return axios.get(url);
+};
+
 export const getPromo = (token, data) => {
   const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/promos/get`
   return axios.get(url, data, {
@@ -112,3 +117,15 @@ export const logout = (token, data) => {
   })
 }
 
+export const getHistory = () => {
+  const login = (localStorage.getItem("token"));
+  const token = login;
+  console.log(token);
+  const URL =
+    `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/transactions`;
+  return axios.get(URL, {
+    headers: {
+      "access-token": token,
+    },
+  });
+};

@@ -1,8 +1,13 @@
 import React from "react";
 import styles from "../../component/CardPromo/CardPromo.module.css";
+import pencil from '../../assets/images/Icon/edit.png'
+import withNavigate from '../../Helper/withNavigate';
 
 
 function CardPromo(props) {
+
+  const isAdmin = (localStorage.getItem("role"))
+
   return (
     <div className={styles["front-bar"]}>
       <div className={styles.top}>
@@ -16,10 +21,20 @@ function CardPromo(props) {
         <h4>COUPON CODE</h4>
         <h3>{props.code}</h3>
         <p>Valid untill {props.duration}</p>
-        {/* <p>Valid untill October 10th 2020</p> */}
+        {isAdmin === "Admin" && (
+          <div className={`${styles["edit-pencil"]}`}>
+            <img
+              src={pencil}
+              alt="edit"
+              onClick={() => {
+                props.navigate(`/product/promos/edit/${props.id}`);
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-export default CardPromo;
+export default withNavigate(CardPromo);
