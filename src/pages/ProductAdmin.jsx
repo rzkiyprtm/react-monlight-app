@@ -11,7 +11,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Navbar from '../component/NavbarResponsive/Navbar'
 import Footer from '../component/Footer/Footer'
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, createSearchParams } from "react-router-dom";
+import { useLocation, createSearchParams } from "react-router-dom";
 import { getProductsAction } from "../redux/actions/product";
 import withSearchParams from "../Helper/withSearchParams";
 import Loading from '../component/Loading/Loading'
