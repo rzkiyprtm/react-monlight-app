@@ -129,3 +129,12 @@ export const getHistory = () => {
     },
   });
 };
+
+export const createTrans = (data, token) => {
+  const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/transactions`;
+  return axios.post(url, data, {
+    headers: {
+      "access-token": token,
+    },
+  });
+};

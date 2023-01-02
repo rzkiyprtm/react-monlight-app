@@ -6,6 +6,7 @@ import Card from "../component/Cardhistory/Cardhst";
 import { useState, useEffect } from "react";
 import { getHistory } from "../Helper/Fetch";
 import withNavigate from "../Helper/withNavigate";
+import Loader from '../component/Loading/Loading'
 
 function History({ navigate }) {
   
@@ -54,14 +55,28 @@ function History({ navigate }) {
           <div className="row">
             <div className="col-12">
               <div className={styles.card}>
-                {/* {history.map((e) => (
-                  <Card
-                    productName={e.product_name}
-                    price={e.price}
-                    status={e.status_name}
-                    image={e.image}
-                  />
-                ))} */}
+            
+                {/* {allHistory.length === 0 ? (
+                  <h1 className={styles.historyLength}>
+                        Here is no order history.
+                     </h1>
+                ) : (
+                  <>
+                  {allHistory.lenght > 0 && allHistory ? (
+                    allHistory.map((item, index) => (
+                      <Card
+                      key={index}
+                      data={item}
+                      productName={item.product_name}
+                      price={item.price}
+                      status={item.status_name}
+                      image={item.image}
+                      display={show}
+                    />
+                    ))
+                  ) : (
+                    <Loader/>
+                  )} */}
                 {allHistory.map((item, index) => {
                   // const data = {...item,ceklistItem:dataCeklist, setCeklist:setDataCeklist()}
                   return (
@@ -76,6 +91,8 @@ function History({ navigate }) {
                     />
                   );
                 })}
+                  {/* </>
+                )} */}
               </div>
             </div>
           </div>

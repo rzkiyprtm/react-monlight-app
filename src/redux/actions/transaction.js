@@ -1,8 +1,8 @@
 import {
   createTrans,
   getHistory as apiGetHistory,
-} from '../../utils/transaction';
-import ACTION_STRING from './actionString';
+} from '../../Helper/Fetch';
+import ACTION_STRING from './actionStrings';
 
 const {
   createTransaction,
@@ -49,7 +49,7 @@ const getHistoryThunk =
     try {
       dispatch(getHistoryPending());
       const result = await apiGetHistory(token, params);
-      dispatch(getHistoryFulfilled(result.data));
+      dispatch(getHistoryFulfilled(result.data.data));
       typeof cbSuccess === 'function' && cbSuccess();
     } catch (error) {
       dispatch(getHistoryRejected(error));
@@ -62,7 +62,7 @@ const createTransactionThunk =
     try {
       dispatch(createTransactionPending());
       const result = await createTrans(body, token);
-      dispatch(createTransactionFulfilled(result.data));
+      dispatch(createTransactionFulfilled(result.data.data));
       typeof cbSuccess === 'function' && cbSuccess(result.data.data.id);
     } catch (error) {
       dispatch(createTransactionRejected(error));
