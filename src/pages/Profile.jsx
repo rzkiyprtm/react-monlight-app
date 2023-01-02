@@ -4,9 +4,8 @@ import Footer from "../component/Footer/Footer";
 import withNavigate from "../Helper/withNavigate";
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { editProfile, getProfile, logout} from "../Helper/Fetch";
+import { editProfile, getProfile} from "../Helper/Fetch";
 import editIcon from '../assets/images/Icon/edit.png'
-import avatar from '../assets/images/Icon/avatar.jpg'
 import Navbar from '../component/NavbarResponsive/Navbar'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';

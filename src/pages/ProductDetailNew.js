@@ -8,7 +8,7 @@ import withNavigate from "../Helper/withNavigate";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../Helper/Fetch";
 import {useSelector, useDispatch} from "react-redux";
-import Loading from '../component/Loading/Loading'
+import Loading from '../component/Loading/Loading';
 
 function ProductDetails({ navigate }) {
 
@@ -46,6 +46,23 @@ function ProductDetails({ navigate }) {
 
   const [count, setCount] = useState(1);
   const [size, setSize] = useState("Size");
+
+  const [ukuran, setUkuran] = useState('');
+  const [deliveryMethod, setDeliveryMethod] = useState('');
+  const [qty, setQty] = useState(0);
+
+
+  const handleSizeChange = (event) => {
+    setUkuran(event.target.value);
+  };
+
+  const handleDeliveryMethodChange = (e) => {
+    setDeliveryMethod(e.target.value);
+  };
+
+  const handleQtyChange = (e) => {
+    setQty(e);
+  };
 
   function reguler() {
     setSize(() => "Reguler");
@@ -120,7 +137,8 @@ function ProductDetails({ navigate }) {
                     style={{ "background-color": linkActiveSize === "size-r" ? "#6A4029" : "" }}
                     className={styles.circle} onClick={() => {
                       reguler()
-                      setLinkActiveSize("size-r")
+                      setLinkActiveSize("size-r");
+                      setUkuran("size-r");
                     }}>
                       <p className={styles.reg}>R</p>
                     </div>
@@ -129,7 +147,8 @@ function ProductDetails({ navigate }) {
                     className={styles.circle} 
                     onClick={() => {
                       large()
-                      setLinkActiveSize("size-large")
+                      setLinkActiveSize("size-large");
+                      setUkuran("size-large");
                     }}>
                       <p className={styles.lar}>L</p>
                     </div>
@@ -138,7 +157,8 @@ function ProductDetails({ navigate }) {
                     className={styles.circle} 
                     onClick={() => {
                       xtra()
-                      setLinkActiveSize("size-xtra")
+                      setLinkActiveSize("size-xtra");
+                      setUkuran("size-xtra");
                     }}>
                       <p className={styles.xl}>XL</p>
                     </div>
@@ -152,21 +172,24 @@ function ProductDetails({ navigate }) {
                 <div className={styles.methods}>
                   <div 
                   onClick={() =>{
-                    setLinkActive("dine-in")
+                    setLinkActive("dine-in");
+                    setDeliveryMethod("dine-in");
                   }}
                   className={styles.bar}
                   style={{ "background-color": linkActive === "dine-in" ? "#6A4029" : "" }}>
                     <p>Dine in</p>
                   </div>
                   <div onClick={() =>{
-                    setLinkActive("delivery")
+                    setLinkActive("delivery");
+                    setDeliveryMethod("delivery");
                   }}
                   className={styles.bar}
                   style={{ "background-color": linkActive === "delivery" ? "#6A4029" : "" }}>
                     <p>Door Delivery</p>
                   </div>
                   <div onClick={() =>{
-                    setLinkActive("pick-up")
+                    setLinkActive("pick-up");
+                    setDeliveryMethod("pick-up")
                   }}
                   className={styles.bar}
                   style={{ "background-color": linkActive === "pick-up" ? "#6A4029" : "" }}>
@@ -225,6 +248,13 @@ function ProductDetails({ navigate }) {
             <div className="col-lg-2">
               <div
                 onClick={() => {
+                  localStorage.setItem("qty", count);
+                  localStorage.setItem("productName", product.product_name);
+                  localStorage.setItem("size", ukuran);
+                  localStorage.setItem("deliveryMethod", deliveryMethod);
+                  localStorage.setItem("productId", id);
+                  localStorage.setItem("price", product.price * count);
+                  localStorage.setItem("image", `${process.env.REACT_APP_BACKEND_HOST}/${product.image}`);
                   navigate("/payment");
                 }}
               >

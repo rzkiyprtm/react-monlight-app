@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react'
 import css from '../style/Productcart.module.css'
 import img2 from '../assets/images/product/30.png'
 import card from '../assets/images/Icon/card.webp'
@@ -6,9 +7,72 @@ import bank from '../assets/images/Icon/bank.webp'
 import cod from '../assets/images/Icon/cod.webp'
 import Navbar from '../component/NavbarResponsive/Navbar'
 import Footer from '../component/Footer/Footer'
-import CardCart from '../component/CardPayment/CardCart'
+import CardCart from '../component/CardPayment/CardCart';
+import { Link , useNavigate, useParams } from "react-router-dom";
+import {getProfile} from "../Helper/Fetch";
+import axios from 'axios'
+import { createTrans } from "../Helper/Fetch";
+
 
 const Productcart = () => {
+  const navigate = useNavigate()
+  const [profile, setProfile] = useState({});
+  const { id } = useParams();
+  const [Address, setAddress] = useState("");
+  const [body, setBody] = useState({});
+  const [payment, setPayment] = useState("");
+  
+
+  const productId = localStorage.getItem("productId");
+  const size = localStorage.getItem("size");
+  const deliveryMethod = localStorage.getItem("deliveryMethod");
+  const qty = localStorage.getItem("qty");
+  const price = localStorage.getItem("price");
+  const imageUrl = localStorage.getItem("image");
+  const productName = localStorage.getItem("productName");
+
+  const handleAddress = (e) => {
+    setBody({ ...body, address: e.target.value });
+    setAddress(e.target.value);
+  };
+
+  const getDataProfile = async () => {
+    try {
+      const result = await getProfile();
+      setProfile(result.data.result[0]);
+      console.log(result);
+    } catch (error) {
+      if (error.result.data.result.statusCode === 403) {
+       ;
+      }
+    }
+  };
+
+  useEffect(() => {
+    getDataProfile();
+  }, []);
+
+  const onSubmit = async () => {
+    const url = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/transactions`;
+
+    const data = {
+      product_id: productId,
+      qty,
+      subtotal: price,
+      user_id: localStorage.getItem("id"),
+      status_id: 1,
+    }
+    
+    const token = localStorage.getItem("token")
+
+    try {
+      const result = await createTrans(data, token);
+    } catch (error) {
+      console.log(error);
+    }
+
+  };
+
   const isAdmin = localStorage.getItem('role')
   const isUser = localStorage.getItem('role')
   return (
@@ -37,35 +101,30 @@ const Productcart = () => {
           )}
           <div>
             <CardCart
-            title="Vanilla Latte"
-            qty="4"
-            size="Reguler"
-            price='45'
+            title={productName}
+            image={imageUrl}
+            qty={qty}
+            size={size}
+            price={price}
             />
           </div>
-          <div>
-            <CardCart
-            title="Vanilla Latte"
-            qty="2"
-            size="Reguler"
-            price='45'/>
-          </div>
+
           <hr className={css.hr1}/>
           <div className={css.sub}>
             <p>SUBTOTAL</p>
-            <p>IDR 120.000</p>
+            <p>{price}</p>
           </div>
           <div className={css.tax}>
           <p>TAX & FEES</p>
-          <p>IDR 20.000</p>
+          <p>IDR 0</p>
           </div>
           <div className={css.ship}>
           <p>SHIPPING</p>
-          <p>IDR 10.000</p>
+          <p>IDR 0</p>
           </div>
           <div className={css.total}>
           <p>TOTAL</p>
-          <p>IDR 150.000</p>
+          <p>{price}</p>
           </div>
         </div>
         </div>
@@ -78,7 +137,10 @@ const Productcart = () => {
           <p className={css.edt}>edit</p>
             </div>
           <div className={css.box1}>
-            <input className={css.input} type="text" />
+            <input className={css.input} 
+            type="text"
+            onChange={handleAddress} 
+            value={profile.address} />
             <hr className={css.hr2} />
             <input className={css.input}  type="text" />
             <hr className={css.hr2} />
@@ -92,17 +154,17 @@ const Productcart = () => {
             </p>
           <div className={css.box2}>
             <div className={css.pay}>
-            <input className={css.input}  type="radio" name="pay" id="" />
+            <input className={css.input}  type="radio" name="pay" id="" onClick={() => setPayment("card")} />
             <label htmlFor=""><img src={card} alt="" />Card</label>
             </div>
             <hr className={css.hr}/>
             <div className={css.pay}>
-            <input className={css.input}  type="radio" name="pay" id="" />
+            <input className={css.input}  type="radio" name="pay" id="" onClick={() => setPayment("bank")} />
             <label htmlFor=""><img src={bank} alt="" />Bank Account</label>
             </div>
             <hr className={css.hr} />
             <div className={css.pay}>
-            <input className={css.input}  type="radio" name="pay" id="" />
+            <input className={css.input}  type="radio" name="pay" id="" onClick={() => setPayment("cod")} />
             <label htmlFor=""><img src={cod} alt="" />Cash on Delivery</label>
             </div>
           </div>
@@ -113,7 +175,7 @@ const Productcart = () => {
           )}
           {isUser === "User" && (
             <div className={css.btn}>
-            <button>Confirm and Pay</button>
+            <button onClick={onSubmit}>Confirm and Pay</button>
           </div>
           )}
           </div>
@@ -125,110 +187,5 @@ const Productcart = () => {
     </div>
   )
 }
-// class Productcart extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <Navbar/>
-//       <div className={css.bordercontainer}>
-//         <div className={css.maincontent}>
-//         <div className={css.contentBox}>
-//           <div className={css.leftContent}>
-//           <div className={css.textLeft}>
-//             <h1 className={css.bigtitle}>Checkout your item now!</h1>
-//           </div>
-//           <div className={css.mainbox}>
-//             <h1 className={css.txt1}>Order Summary</h1>
-//             <div className={css.listBuy}>
-//               <img src={img1} alt="product" />
-//               <div className={css.namePrd}>
-//                 <p>Hazelnut Latte</p>
-//                 <p>x 1</p>
-//                 <p>Regular</p>
-//               </div>
-//               <div className={css.price}>
-//                 <p>Rp. 24</p>
-//               </div>
-//             </div>
-//             <div className={css.listBuy2}>
-//               <img src={img2} alt="product" />
-//               <div className={css.namePrd}>
-//                 <p>Chicken Wings</p>
-//                 <p>x 2</p>
-//                 <p></p>
-//               </div>
-//               <div className={css.price}>
-//                 <p>Rp. 30</p>
-//               </div>
-//             </div>
-//             <hr className={css.hr1}/>
-//             <div className={css.sub}>
-//               <p>SUBTOTAL</p>
-//               <p>IDR 120.000</p>
-//             </div>
-//             <div className={css.tax}>
-//             <p>TAX & FEES</p>
-//             <p>IDR 20.000</p>
-//             </div>
-//             <div className={css.ship}>
-//             <p>SHIPPING</p>
-//             <p>IDR 10.000</p>
-//             </div>
-//             <div className={css.total}>
-//             <p>TOTAL</p>
-//             <p>IDR 150.000</p>
-//             </div>
-//           </div>
-//           </div>
-//           <div className={css.rightContent}>
-//             <div className="delivery">
-//               <div className={css.txt}>
-//             <p className={css.txt2}>
-//             Address details
-//             </p>
-//             <p className={css.edt}>edit</p>
-//               </div>
-//             <div className={css.box1}>
-//               <input className={css.input} type="text" />
-//               <hr className={css.hr2} />
-//               <input className={css.input}  type="text" />
-//               <hr className={css.hr2} />
-//               <input className={css.input}  type="text" />
-//               <hr className={css.hr2} />
-//             </div>
-//             </div>
-//             <div className={css.payment}>
-//               <p className={css.txt2}>
-//                 Payment
-//               </p>
-//             <div className={css.box2}>
-//               <div className={css.pay}>
-//               <input className={css.input}  type="radio" name="pay" id="" />
-//               <label htmlFor=""><img src={card} alt="" />Card</label>
-//               </div>
-//               <hr className={css.hr}/>
-//               <div className={css.pay}>
-//               <input className={css.input}  type="radio" name="pay" id="" />
-//               <label htmlFor=""><img src={bank} alt="" />Bank Account</label>
-//               </div>
-//               <hr className={css.hr} />
-//               <div className={css.pay}>
-//               <input className={css.input}  type="radio" name="pay" id="" />
-//               <label htmlFor=""><img src={cod} alt="" />Cash on Delivery</label>
-//               </div>
-//             </div>
-//             <div className={css.btn}>
-//               <button>Confirm and Pay</button>
-//             </div>
-//             </div>
-//           </div>
-//         </div>
-//         </div>
-//       </div>
-//       <Footer />
-//       </div>
-//     )
-//   }
-// }
 
 export default Productcart
