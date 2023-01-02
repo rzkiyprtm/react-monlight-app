@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React, { useState, useEffect } from "react";
 import Footer from "../component/Footer/Footer";
 import Navbar from '../component/NavbarResponsive/Navbar'
 import Button from "../component/Button/Button";
@@ -6,10 +7,14 @@ import styles from "../style/ProductDetailNew.module.css";
 import withNavigate from "../Helper/withNavigate";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../Helper/Fetch";
-import { useEffect } from "react";
+import {useSelector, useDispatch} from "react-redux";
+import Loading from '../component/Loading/Loading'
 
 function ProductDetails({ navigate }) {
 
+  const isLoading = useSelector(state => state.products.isLoading)
+  const products = useSelector(state => state.products.data)
+  console.log(products);
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const currency = (price) => {
@@ -183,11 +188,14 @@ function ProductDetails({ navigate }) {
           <div className={`${styles.cta} row text-center`}>
             <div className="col-lg-8 offset-lg-1">
               <div className={styles["checkout-bar"]}>
+              {isLoading ? (
+                <Loading/>
+              ) : (
                 <div className={styles.left}>
                   <div className={styles["checkout-img"]}>
                     <img
                       src={`${process.env.REACT_APP_BACKEND_HOST}/${product.image}`}
-                      alt="cold-brew"
+                      alt="image"
                     ></img>
                   </div>
                   <div className={styles["checkout-detail"]}>
@@ -198,6 +206,7 @@ function ProductDetails({ navigate }) {
                     </p>
                   </div>
                 </div>
+              )}
                 <div className={styles["check-count"]}>
                   <div className={styles.btn} onClick={decreamentCount}>
                     <div className={styles.circle}></div>

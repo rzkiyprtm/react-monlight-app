@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Camera from "../assets/images/Icon/camera-promo.png";
 import Navbar from '../component/NavbarResponsive/Navbar'
 import Footer from '../component/Footer/Footer'
+import axios from "axios";
 
 class AddProduct extends React.Component {
   state = {

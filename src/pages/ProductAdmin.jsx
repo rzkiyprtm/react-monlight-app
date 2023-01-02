@@ -6,7 +6,6 @@ import CardPromo from "../component/CardPromo/CardPromo";
 import { useState, useEffect } from "react";
 import withNavigate from "../Helper/withNavigate";
 import { getPromo } from "../Helper/Fetch";
-import axios from "axios";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Navbar from '../component/NavbarResponsive/Navbar'
@@ -26,8 +25,8 @@ const useQuery = () => {
 
 function Products({ navigate, setSearchParams }) {
   const [promo, setPromo] = useState([])
-  const [allProduct, setAllProduct] = useState([]);
   const products = useSelector(state => state.products.data)
+  const isLoading = useSelector(state => state.products.isLoading)
   const totalPage = useSelector((state) => state.products.meta.totalPage);
   const dispatch = useDispatch();
   const [param, setParam] = useState({
@@ -79,6 +78,9 @@ function Products({ navigate, setSearchParams }) {
           <div className={styles.promo}>
             <h1>Promo for you</h1>
             <p>Coupons will be updated every weeks. Check them out! </p>
+            {isLoading? (
+              <Loading/>
+            ) : (
             <div className={styles["promo-detail"]}>
               <div className={styles["back-bar"]}></div>
               <div className={styles["med-bar"]}></div>
@@ -98,6 +100,7 @@ function Products({ navigate, setSearchParams }) {
               })}
               <Button text="Apply Coupon" />
             </div>
+            )}
           </div>
           <ol>
             <h3>Terms and Condition</h3>
@@ -187,6 +190,9 @@ function Products({ navigate, setSearchParams }) {
                     </DropdownButton>
           </div>
           </div>
+          {isLoading ? (
+            <Loading />
+          ) : (
             <div className={styles["product-box"]}>
           <div className={styles["content-detail"]}>
             {products?.map((e, index) => {
@@ -203,6 +209,7 @@ function Products({ navigate, setSearchParams }) {
             })}
           </div>
           </div>
+          )}
         <div className={`${styles["paginate-container"]}`}>
             <div className={styles["title-paginate"]}>
               <p className={styles.p}>{`Showing page ${query.page} of ${totalPage}`}</p>

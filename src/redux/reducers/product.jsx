@@ -50,6 +50,21 @@ const productsReducer = (prevState = initialState, action) => {
         isLoading: true,
         isError: false,
       };
+    case actionStrings.getDetail + actionStrings.pending:
+      return {
+        ...prevState,
+        isLoading: true,
+        isError: false,
+      };
+    case actionStrings.getDetail + actionStrings.rejected:
+        const errorResponseDetail = action.payload;
+        const errorMessageDetail = errorResponseDetail.response.data.message;
+        return {
+          ...prevState,
+          isError: true,
+          isLoading: false,
+          err: errorMessageDetail,
+        };
     case actionStrings.getProducts + actionStrings.rejected:
       const errorResponse = action.payload;
       const errorMessage = errorResponse.response.data.message;
@@ -87,6 +102,15 @@ const productsReducer = (prevState = initialState, action) => {
         isLoading: false,
         errEdit: errorResponseEdit,
       };
+      case actionStrings.getDetail + actionStrings.fulfilled:
+        const responseDetail = action.payload;
+        const resultDetail = responseDetail.data.result.result.data[0];
+        return {
+          ...prevState,
+          isLoading: false,
+          data: resultDetail,
+          // meta: { totalPage: response.data.result.result.meta.totalPage },
+        };
     case actionStrings.getProducts + actionStrings.fulfilled:
       const response = action.payload;
       const result = response.data.result.result.data;
@@ -114,8 +138,8 @@ const productsReducer = (prevState = initialState, action) => {
     case actionStrings.createProduct + actionStrings.fulfilled:
       const responseCreate = action.payload;
       const resultCreate = responseCreate.data.data;
-      console.log(responseCreate);
-      console.log(resultCreate);
+      // console.log(responseCreate);
+      // console.log(resultCreate);
       return {
         ...prevState,
         isLoading: false,

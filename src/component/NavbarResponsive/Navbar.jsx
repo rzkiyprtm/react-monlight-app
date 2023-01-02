@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { useState, useEffect } from "react";
 import styles from "../../component/NavbarResponsive/NavbarResp.module.css";
@@ -80,7 +81,7 @@ function Header({ navigate, onSearch }) {
             MONLIGHT
           </p>
         </div>
-        {isAdmin === "Admin" && (
+        {isAdmin === "Admin" ? (
           <ol className={text}>
             <li
               onClick={() => {
@@ -113,9 +114,7 @@ function Header({ navigate, onSearch }) {
             </li>
 
           </ol>
-        )}
-        
-        {isUser === "User" && (
+        ) : (
           <ol className={text}>
             <li
               onClick={() => {
