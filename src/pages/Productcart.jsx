@@ -12,6 +12,8 @@ import { Link , useNavigate, useParams } from "react-router-dom";
 import {getProfile} from "../Helper/Fetch";
 import axios from 'axios'
 import { createTrans } from "../Helper/Fetch";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Productcart = () => {
@@ -21,7 +23,17 @@ const Productcart = () => {
   const [Address, setAddress] = useState("");
   const [body, setBody] = useState({});
   const [payment, setPayment] = useState("");
-  
+
+  const successToastMessage = () => {
+    toast.success('Transaction Created !', {
+        position: toast.POSITION.TOP_CENTER
+    });
+};
+  const failedMessage = () => {
+    toast.error('Password or Email Wrong !', {
+      position: toast.POSITION.TOP_CENTER
+  });
+  }
 
   const productId = localStorage.getItem("productId");
   const size = localStorage.getItem("size");
@@ -61,16 +73,21 @@ const Productcart = () => {
       subtotal: price,
       user_id: localStorage.getItem("id"),
       status_id: 1,
+      promo_id: 6,
+      size_id: 1,
+      delivery_id: 1,
+      tax: 1,
+      payment_id: 1,
     }
-    
     const token = localStorage.getItem("token")
-
     try {
       const result = await createTrans(data, token);
+      successToastMessage();
+      // navigate('/history');
+
     } catch (error) {
       console.log(error);
     }
-
   };
 
   const isAdmin = localStorage.getItem('role')
@@ -184,6 +201,7 @@ const Productcart = () => {
       </div>
     </div>
     <Footer />
+    <ToastContainer />
     </div>
   )
 }
