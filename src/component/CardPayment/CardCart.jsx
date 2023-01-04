@@ -13,7 +13,7 @@ function CardCart(props) {
               <p>{props.size}</p>
             </div>
             <div className={css.price}>
-              <p>{props.price}</p>
+              <p>IDR {props.price}</p>
             </div>
           </div>
    </>

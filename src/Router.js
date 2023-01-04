@@ -13,7 +13,8 @@ import AddPromo from './pages/AddPromo'
 import AddProduct from './pages/AddProduct1'
 import Dashboard from './pages/Dashboard'
 import EditProduct from "./pages/EditProduct";
-import EditPromo from "./pages/EditPromo"
+import EditPromo from "./pages/EditPromo";
+import CardAdmin from "./pages/manageOrder";
 
 import PrivateElement from '../src/component/PrivateElement'
 
@@ -33,6 +34,7 @@ const router = createBrowserRouter ([
   { path: '/product/promos/new', element: <PrivateElement allowedRoles={['Admin']}><AddPromo/> </PrivateElement> },
   { path: '/product/new', element: <PrivateElement allowedRoles={['Admin']}><AddProduct/> </PrivateElement>},
   { path: '/dashboard', element: <PrivateElement allowedRoles={['Admin']}><Dashboard/></PrivateElement> },
+  { path: '/manageorder', element: <PrivateElement allowedRoles={['Admin']}><CardAdmin/></PrivateElement> },
 ]);
 
 export default router

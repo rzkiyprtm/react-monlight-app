@@ -6,6 +6,7 @@ import Camera from "../assets/images/Icon/edit.png";
 import withNavigate from "../Helper/withNavigate";
 import withRouteParams from "../Helper/withRouteParams";
 import Axios from "axios"
+import { ToastContainer, toast } from 'react-toastify';
 
 class AddPromo extends React.Component {
   state = {
@@ -39,6 +40,19 @@ class AddPromo extends React.Component {
       }).catch((err)=>{ this.setState({errMsg: "", isLoading:false})})
   }
 
+  // toast message
+  successToastMessage = () => {
+    toast.success('Edit Product Success !', {
+        position: toast.POSITION.TOP_CENTER
+    });
+};
+
+  failedMessage = () => {
+    toast.error('Edit Product Failed !', {
+      position: toast.POSITION.TOP_CENTER
+  });
+  }
+
   setDisplay = () => {
     if (this.state.isLoading && this.state.dataPromo === {} && !this.state.newPicture) return Camera
     if (!this.state.isLoading && this.state.dataPromo.image && !this.state.newPicture) return `http://localhost:8181/${this.state.dataPromo.image}`
@@ -54,7 +68,7 @@ class AddPromo extends React.Component {
     let body = new FormData();
     console.log(newPicture)
     if (newPicture) body.append('images', newPicture)
-    if (newName) body.append('product_name', newName)
+    if (newName) body.append('promo_name', newName)
     if (newDesc) body.append('description', newDesc)
     if (newDiscount) body.append('discount', newDiscount)
     // if (newColor) body.append('bgcolor', newColor)
@@ -68,7 +82,10 @@ class AddPromo extends React.Component {
       },
     }).then(()=>{
       this.setState({isLoading: false})
+      this.successToastMessage()
+      setTimeout(() => {
       this.props.navigate("/product")
+    }, 2000);
     }).catch((err)=>{
       this.setState({errMsg: "*** sistem error, try again later ***", isLoading:false})
     })
@@ -87,7 +104,7 @@ class AddPromo extends React.Component {
   }
   getCategory = () => {
     if (!this.state.isLoading){
-        if(this.state.dataPromo !== {}) return `${this.state.dataPromo.product_name}`
+        if(this.state.dataPromo !== {}) return `${this.state.dataPromo.promo_name}`
         return "Loading...."
     } return "Loading...."
 }
@@ -224,6 +241,7 @@ class AddPromo extends React.Component {
           </div>
         </main>
         <Footer />
+        <ToastContainer/>
       </>
     );
   }

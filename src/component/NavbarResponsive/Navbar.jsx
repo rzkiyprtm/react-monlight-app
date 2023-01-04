@@ -100,7 +100,7 @@ function Header({ navigate, onSearch }) {
             </li>
             <li
               onClick={() => {
-                navigate("/payment");
+                navigate("/manageorder");
               }}
             >
               Orders

@@ -33,6 +33,11 @@
 
 .delete img {
   padding: .2rem;
+  cursor: pointer;
+}
+
+.deleteImg {
+  cursor: pointer;
 }
 
 .close {

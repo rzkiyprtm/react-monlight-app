@@ -70,9 +70,13 @@ class AddProduct extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.product.dataEdit !== this.props.product.dataEdit)
-      return this.props.navigate(`/product/${this.props.params.id}`);
+    setTimeout(() => {
+      return this.props.navigate(`/detail/${this.props.params.id}`);
+    }, 2000);
     if (prevProps.product.img !== this.props.product.img)
-      return this.props.navigate(`/product/${this.props.params.id}`);
+    setTimeout(() => {
+      return this.props.navigate(`/detail/${this.props.params.id}`);
+    }, 2000);
   }
   imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {

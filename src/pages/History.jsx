@@ -78,13 +78,12 @@ function History({ navigate }) {
                     <Loader/>
                   )} */}
                 {allHistory.map((item, index) => {
-                  // const data = {...item,ceklistItem:dataCeklist, setCeklist:setDataCeklist()}
                   return (
                     <Card
                       key={index}
                       data={item}
                       productName={item.product_name}
-                      price={item.price}
+                      price={item.subtotal}
                       status={item.status_name}
                       image={item.image}
                       display={show}

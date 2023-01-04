@@ -83,7 +83,9 @@ const Productcart = () => {
     try {
       const result = await createTrans(data, token);
       successToastMessage();
-      // navigate('/history');
+      setTimeout(() => {
+        navigate('/history');
+      }, 2000);
 
     } catch (error) {
       console.log(error);
@@ -129,7 +131,7 @@ const Productcart = () => {
           <hr className={css.hr1}/>
           <div className={css.sub}>
             <p>SUBTOTAL</p>
-            <p>{price}</p>
+            <p>IDR {price}</p>
           </div>
           <div className={css.tax}>
           <p>TAX & FEES</p>
@@ -141,7 +143,7 @@ const Productcart = () => {
           </div>
           <div className={css.total}>
           <p>TOTAL</p>
-          <p>{price}</p>
+          <p>IDR {price}</p>
           </div>
         </div>
         </div>
@@ -192,7 +194,18 @@ const Productcart = () => {
           )}
           {isUser === "User" && (
             <div className={css.btn}>
-            <button onClick={onSubmit}>Confirm and Pay</button>
+            {/* <button onClick={onSubmit}>Confirm and Pay</button> */}
+            <button   onClick={() => {
+                  localStorage.removeItem("qty");
+                  localStorage.removeItem("productName");
+                  localStorage.removeItem("size");
+                  localStorage.removeItem("deliveryMethod");
+                  localStorage.removeItem("productId");
+                  localStorage.removeItem("price");
+                  localStorage.removeItem("image");
+                  onSubmit();
+                  // navigate("/history");
+                }}>Confirm and Pay</button>
           </div>
           )}
           </div>

@@ -1,3 +1,7 @@
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #000;
+}
+
 .maincontent {
   background: url(/src/assets/images/coffee.png);
   background-position: center;

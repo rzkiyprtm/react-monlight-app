@@ -39,8 +39,6 @@
     padding: 2rem 2rem 5rem;
 }
 
-
-
 @media screen and (max-width: 768px) {
     .title {
         padding-top: 10rem;

@@ -9,6 +9,8 @@ import editIcon from '../assets/images/Icon/edit.png'
 import Navbar from '../component/NavbarResponsive/Navbar'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -27,6 +29,17 @@ const Profile = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const successToastMessage = () => {
+    toast.success('Change Success !', {
+        position: toast.POSITION.TOP_CENTER
+    });
+};
+  const failedMessage = () => {
+    toast.error('Change Failed !', {
+      position: toast.POSITION.TOP_CENTER
+  });
+  }
 
 
   const handleAddress = (e) => {
@@ -85,6 +98,7 @@ const Profile = () => {
       await editProfile(formData);
       setBody({});
       setIsEdit(true);
+      successToastMessage();
       await getDataProfile();
     } catch (error) {
       console.log(error);
@@ -188,7 +202,7 @@ const Profile = () => {
                         // placeholder='Insert email here'
                         id="emailaddress"
                         disabled={isEdit}
-                        value={profile.email}
+                        placeholder={profile.email}
                       />
                       <hr className={css.hr} />
                       <div
@@ -435,6 +449,7 @@ const Profile = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer />
     </div>
   );
 }
