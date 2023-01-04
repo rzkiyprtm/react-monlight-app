@@ -81,9 +81,9 @@ export class Payment extends Component {
         console.log(data);
         // console.log(data);
         let py = null;
-        if (data.mpayment === "Card") py = 1;
-        if (data.mpayment === "Bank Account") py = 2;
-        if (data.mpayment === "Cash On Delivery") py = 3;
+        if (data.method === "Card") py = 1;
+        if (data.method === "Bank Account") py = 2;
+        if (data.method === "Cash On Delivery") py = 3;
         this.setState({
           payment: py,
           pending: data,
@@ -298,7 +298,7 @@ export class Payment extends Component {
                           value="1"
                           name="via"
                           disabled={true}
-                          defaultChecked={this.state.payment}
+                          defaultChecked={this.state.method}
                         ></input>
                         <div className={styles["logo-card"]}>
                           <img src={debit} alt="card" />
@@ -314,7 +314,7 @@ export class Payment extends Component {
                           value="2"
                           name="via"
                           disabled={true}
-                          defaultChecked={this.state.payment}
+                          defaultChecked={this.state.method}
                         ></input>
                         <div className={styles["logo-card-bank"]}>
                           <img src={bank} alt="card" />
@@ -330,7 +330,7 @@ export class Payment extends Component {
                           value="3"
                           name="via"
                           disabled={true}
-                          defaultChecked={this.state.payment}
+                          defaultChecked={this.state.method}
                         ></input>
                         <div className={styles["logo-card-cod"]}>
                           <img src={cod} alt="card" />

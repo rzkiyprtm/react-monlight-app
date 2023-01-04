@@ -83,6 +83,8 @@ function ProductDetails({ navigate }) {
     });
   }
 
+  const isAdmin = localStorage.getItem("role");
+
   function increamentCount() {
     setCount((prevCount) => prevCount + 1);
   }
@@ -115,8 +117,25 @@ function ProductDetails({ navigate }) {
                 </div>
                 <h3>{product.product_name}</h3>
                 <h4> {currency(product.price * count)}</h4>
+                {isAdmin === 'User' ? (
+                  <>
                 <Button text="Add to Cart" />
                 <Button text="Ask to Staff" variant="color-1" font="style-1" />
+                  </>
+                ) : (
+                  <>
+                  <div className={styles.buttonHome} onClick={() => {
+                navigate(`/product/edit/${id}`);
+              }} >
+                  <Button text="Edit Product"/>
+              </div>
+                  <div className={styles.buttonHome} onClick={() => {
+                navigate("/product");
+              }} >
+                <Button text="Home" variant="color-1" font="style-1"/>
+              </div>
+                  </>
+                )}
               </div>
             </div>
             <div className="col-lg-6 offset-lg-1 pt-md-2">
@@ -128,7 +147,8 @@ function ProductDetails({ navigate }) {
                   </p>
                   <p className={styles.bottom}>{product.description}</p>
                 </div>
-                <div className={styles.size}>
+                {isAdmin === 'User' ? (
+                  <div className={styles.size}>
                   <div className={styles.title}>
                     <h2>Choose a size</h2>
                   </div>
@@ -164,8 +184,47 @@ function ProductDetails({ navigate }) {
                     </div>
                   </div>
                 </div>
+                ) : (
+                <div className={styles.sizeAdmin}>
+                  <div className={styles.title}>
+                    <h2>Choose a size</h2>
+                  </div>
+                  <div className={styles.choice}>
+                    <div 
+                    style={{ "background-color": linkActiveSize === "size-r" ? "#6A4029" : "" }}
+                    className={styles.circle} onClick={() => {
+                      reguler()
+                      setLinkActiveSize("size-r");
+                      setUkuran("size-r");
+                    }}>
+                      <p className={styles.reg}>R</p>
+                    </div>
+                    <div  
+                    style={{ "background-color": linkActiveSize === "size-large" ? "#6A4029" : "" }}
+                    className={styles.circle} 
+                    onClick={() => {
+                      large()
+                      setLinkActiveSize("size-large");
+                      setUkuran("size-large");
+                    }}>
+                      <p className={styles.lar}>L</p>
+                    </div>
+                    <div
+                    style={{ "background-color": linkActiveSize === "size-xtra" ? "#6A4029" : "" }}
+                    className={styles.circle} 
+                    onClick={() => {
+                      xtra()
+                      setLinkActiveSize("size-xtra");
+                      setUkuran("size-xtra");
+                    }}>
+                      <p className={styles.xl}>XL</p>
+                    </div>
+                  </div>
+                </div>
+                )}
               </div>
-              <div className={styles["deliv-method"]}>
+              {isAdmin === 'User' ? (
+                <div className={styles["deliv-method"]}>
                 <div className={styles.title}>
                   <h3>Choose Delivery Methods</h3>
                 </div>
@@ -204,12 +263,54 @@ function ProductDetails({ navigate }) {
                   ></input>
                 </div>
               </div>
+              ) : (
+              <div className={styles["deliv-method-admin"]}>
+                <div className={styles.title}>
+                  <h3>Choose Delivery Methods</h3>
+                </div>
+                <div className={styles.methods}>
+                  <div 
+                  onClick={() =>{
+                    setLinkActive("dine-in");
+                    setDeliveryMethod("dine-in");
+                  }}
+                  className={styles.bar}
+                  style={{ "background-color": linkActive === "dine-in" ? "#6A4029" : "" }}>
+                    <p>Dine in</p>
+                  </div>
+                  <div onClick={() =>{
+                    setLinkActive("delivery");
+                    setDeliveryMethod("delivery");
+                  }}
+                  className={styles.bar}
+                  style={{ "background-color": linkActive === "delivery" ? "#6A4029" : "" }}>
+                    <p>Door Delivery</p>
+                  </div>
+                  <div onClick={() =>{
+                    setLinkActive("pick-up");
+                    setDeliveryMethod("pick-up")
+                  }}
+                  className={styles.bar}
+                  style={{ "background-color": linkActive === "pick-up" ? "#6A4029" : "" }}>
+                    <p>Pick up</p>
+                  </div>
+                </div>
+                <div className={styles["set-time"]}>
+                  <label>Set time :</label>
+                  <input
+                    type="text"
+                    placeholder="Enter the time reservation"
+                  ></input>
+                </div>
+              </div>
+              )}
             </div>
           </div>
         </div>
         <div className="container">
           <div className={`${styles.cta} row text-center`}>
             <div className="col-lg-8 offset-lg-1">
+            {isAdmin === "User" ? (
               <div className={styles["checkout-bar"]}>
               {isLoading ? (
                 <Loading/>
@@ -244,7 +345,44 @@ function ProductDetails({ navigate }) {
                   </div>
                 </div>
               </div>
+            ) : (
+              <div className={styles["checkout-bar-admin"]}>
+              {isLoading ? (
+                <Loading/>
+              ) : (
+                <div className={styles.left}>
+                  <div className={styles["checkout-img"]}>
+                    <img
+                      src={`${process.env.REACT_APP_BACKEND_HOST}/${product.image}`}
+                      alt="image"
+                    ></img>
+                  </div>
+                  <div className={styles["checkout-detail"]}>
+                    <h5>{product.product_name}</h5>
+                    <p>
+                      x{count}
+                      <span> {size}</span>
+                    </p>
+                  </div>
+                </div>
+              )}
+                <div className={styles["check-count"]}>
+                  <div className={styles.btn} onClick={decreamentCount}>
+                    <div className={styles.circle}></div>
+                    <p>-</p>
+                  </div>
+                  <div className={styles.qty}>
+                    <p>{count}</p>
+                  </div>
+                  <div className={styles.btn} onClick={increamentCount}>
+                    <div className={styles.circle}></div>
+                    <p>+</p>
+                  </div>
+                </div>
+              </div>
+            )}
             </div>
+            {isAdmin === 'User' ? (
             <div className="col-lg-2">
               <div
                 onClick={() => {
@@ -266,6 +404,31 @@ function ProductDetails({ navigate }) {
                 />
               </div>
             </div>
+            ) : (
+              <div className={styles.checkoutAdmin}>
+              <div className="col-lg-2">
+              <div
+                onClick={() => {
+                  localStorage.setItem("qty", count);
+                  localStorage.setItem("productName", product.product_name);
+                  localStorage.setItem("size", ukuran);
+                  localStorage.setItem("deliveryMethod", deliveryMethod);
+                  localStorage.setItem("productId", id);
+                  localStorage.setItem("price", product.price * count);
+                  localStorage.setItem("image", `${process.env.REACT_APP_BACKEND_HOST}/${product.image}`);
+                  navigate("/payment");
+                }}
+              >
+                <Button
+                  text="CHECKOUT"
+                  variant="color-4"
+                  font="style-3"
+                  route="/payment"
+                />
+              </div>
+            </div>
+              </div>
+            )}
           </div>
         </div>
       </main>

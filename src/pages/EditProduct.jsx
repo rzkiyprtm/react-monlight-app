@@ -336,9 +336,9 @@ class AddProduct extends React.Component {
                           }}
                         />
                       </div>
-                      {this.state.description && (
+                      {this.state.errDescription && (
                         <p className={styles.err}>
-                          {this.state.description}
+                          {this.state.errDescription}
                         </p>
                       )}
                       {/* <div>

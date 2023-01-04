@@ -5,6 +5,26 @@
     box-sizing: border-box;
 }
 
+.checkout-bar-admin {
+    display: none;
+}
+
+.checkoutAdmin {
+    display: none;
+}
+
+.sizeAdmin {
+    display: none;
+}
+
+.deliv-method-admin {
+    display: none;
+}
+
+.buttonHome {
+    width: 100%;
+}
+
 .content {
     background-color: #ececec;
     margin-bottom: 5rem;
