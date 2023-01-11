@@ -47,6 +47,8 @@
     <img width="250" src="./src/assets/images/screenshoot/ss-9.jpeg"> 
 </div>
 
+## Related Project
+* [`Rima Furniture Website`](https://github.com/rzkiyprtm/rima-project)
 
 
 ## Previous Project
